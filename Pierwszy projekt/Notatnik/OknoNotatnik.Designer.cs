@@ -272,34 +272,36 @@ namespace Notatnik
             this.zmniejszToolStripMenuItem,
             this.wartośćDomyślnaToolStripMenuItem});
             this.powiększenieToolStripMenuItem.Name = "powiększenieToolStripMenuItem";
-            this.powiększenieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powiększenieToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.powiększenieToolStripMenuItem.Text = "Powiększenie";
             // 
             // powiększToolStripMenuItem
             // 
             this.powiększToolStripMenuItem.Name = "powiększToolStripMenuItem";
-            this.powiększToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powiększToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.powiększToolStripMenuItem.Tag = "4";
             this.powiększToolStripMenuItem.Text = "Powiększ";
-            this.powiększToolStripMenuItem.Click += new System.EventHandler(this.powiększToolStripMenuItem_Click);
+            this.powiększToolStripMenuItem.Click += new System.EventHandler(this.powiekszPomniejszToolStripMenuItem_Click);
             // 
             // zmniejszToolStripMenuItem
             // 
             this.zmniejszToolStripMenuItem.Name = "zmniejszToolStripMenuItem";
-            this.zmniejszToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.zmniejszToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
+            this.zmniejszToolStripMenuItem.Tag = "-4";
             this.zmniejszToolStripMenuItem.Text = "Zmniejsz";
-            this.zmniejszToolStripMenuItem.Click += new System.EventHandler(this.zmniejszToolStripMenuItem_Click);
+            this.zmniejszToolStripMenuItem.Click += new System.EventHandler(this.powiekszPomniejszToolStripMenuItem_Click);
             // 
             // wartośćDomyślnaToolStripMenuItem
             // 
             this.wartośćDomyślnaToolStripMenuItem.Name = "wartośćDomyślnaToolStripMenuItem";
-            this.wartośćDomyślnaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.wartośćDomyślnaToolStripMenuItem.Size = new System.Drawing.Size(172, 22);
             this.wartośćDomyślnaToolStripMenuItem.Text = "Wartość domyślna";
             this.wartośćDomyślnaToolStripMenuItem.Click += new System.EventHandler(this.wartośćDomyślnaToolStripMenuItem_Click);
             // 
             // pasekStanuToolStripMenuItem
             // 
             this.pasekStanuToolStripMenuItem.Name = "pasekStanuToolStripMenuItem";
-            this.pasekStanuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pasekStanuToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.pasekStanuToolStripMenuItem.Text = "Pasek stanu";
             // 
             // pomocToolStripMenuItem
@@ -328,6 +330,7 @@ namespace Notatnik
             // 
             this.textBoxNotatnik.Cursor = System.Windows.Forms.Cursors.Default;
             this.textBoxNotatnik.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.textBoxNotatnik.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxNotatnik.Location = new System.Drawing.Point(0, 24);
             this.textBoxNotatnik.Multiline = true;
             this.textBoxNotatnik.Name = "textBoxNotatnik";

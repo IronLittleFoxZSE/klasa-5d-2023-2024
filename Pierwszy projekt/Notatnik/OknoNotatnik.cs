@@ -7,11 +7,13 @@ namespace Notatnik
 {
     public partial class OknoNotatnik : Form
     {
-        string sciezkaDoPliku = "";
+        private string sciezkaDoPliku = "";
+        private float wartoscDomyslnaRozmiaruCzcionki;
 
         public OknoNotatnik()
         {
             InitializeComponent();
+            wartoscDomyslnaRozmiaruCzcionki = textBoxNotatnik.Font.Size;
         }
 
         #region Zdarzenia menu Plik
@@ -139,21 +141,21 @@ namespace Notatnik
 
         #region Zdarzenia menu Widok
 
-        private void powiększToolStripMenuItem_Click(object sender, EventArgs e)
+        private void powiekszPomniejszToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FontFamily fontFamily = textBoxNotatnik.Font.FontFamily;
-            float size = textBoxNotatnik.Font.Size + 4;
-            FontStyle fontStyle = textBoxNotatnik.Font.Style;
-            GraphicsUnit graphicsUnit = textBoxNotatnik.Font.Unit;
-            byte gdiCharSet = textBoxNotatnik.Font.GdiCharSet;
-
-            textBoxNotatnik.Font = new Font(fontFamily, size, fontStyle, graphicsUnit, gdiCharSet);
+            ToolStripMenuItem toolStripMenuItem = sender as ToolStripMenuItem;
+            if (toolStripMenuItem != null)
+            {
+                int krokZmiany;
+                if (int.TryParse(toolStripMenuItem.Tag.ToString(), out krokZmiany) == true)
+                    ZmienRozmiarCzcionki(krokZmiany);
+            }
         }
 
-        private void zmniejszToolStripMenuItem_Click(object sender, EventArgs e)
+        private void ZmienRozmiarCzcionki(int krokZmiany)
         {
             FontFamily fontFamily = textBoxNotatnik.Font.FontFamily;
-            float size = textBoxNotatnik.Font.Size - 4;
+            float size = textBoxNotatnik.Font.Size + krokZmiany;
             FontStyle fontStyle = textBoxNotatnik.Font.Style;
             GraphicsUnit graphicsUnit = textBoxNotatnik.Font.Unit;
             byte gdiCharSet = textBoxNotatnik.Font.GdiCharSet;
@@ -162,9 +164,17 @@ namespace Notatnik
                 textBoxNotatnik.Font = new Font(fontFamily, size, fontStyle, graphicsUnit, gdiCharSet);
         }
 
+
         private void wartośćDomyślnaToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            FontFamily fontFamily = textBoxNotatnik.Font.FontFamily;
+            float size = wartoscDomyslnaRozmiaruCzcionki;
+            FontStyle fontStyle = textBoxNotatnik.Font.Style;
+            GraphicsUnit graphicsUnit = textBoxNotatnik.Font.Unit;
+            byte gdiCharSet = textBoxNotatnik.Font.GdiCharSet;
 
+            if (size > 0)
+                textBoxNotatnik.Font = new Font(fontFamily, size, fontStyle, graphicsUnit, gdiCharSet);
         }
 
         #endregion
