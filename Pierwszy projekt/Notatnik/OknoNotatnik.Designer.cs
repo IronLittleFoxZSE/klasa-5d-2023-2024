@@ -62,7 +62,9 @@ namespace Notatnik
             this.notatnikInformacjeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.statusStripPasekDolny = new System.Windows.Forms.StatusStrip();
             this.textBoxNotatnik = new System.Windows.Forms.TextBox();
+            this.toolStripStatusLabelPowiekszenie = new System.Windows.Forms.ToolStripStatusLabel();
             this.menuStripMenuGlowne.SuspendLayout();
+            this.statusStripPasekDolny.SuspendLayout();
             this.SuspendLayout();
             // 
             // menuStripMenuGlowne
@@ -245,14 +247,14 @@ namespace Notatnik
             // zawijanieWierszyToolStripMenuItem
             // 
             this.zawijanieWierszyToolStripMenuItem.Name = "zawijanieWierszyToolStripMenuItem";
-            this.zawijanieWierszyToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.zawijanieWierszyToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.zawijanieWierszyToolStripMenuItem.Text = "Zawijanie wierszy";
             this.zawijanieWierszyToolStripMenuItem.Click += new System.EventHandler(this.zawijanieWierszyToolStripMenuItem_Click);
             // 
             // czcionkaToolStripMenuItem
             // 
             this.czcionkaToolStripMenuItem.Name = "czcionkaToolStripMenuItem";
-            this.czcionkaToolStripMenuItem.Size = new System.Drawing.Size(165, 22);
+            this.czcionkaToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
             this.czcionkaToolStripMenuItem.Text = "Czcionka";
             this.czcionkaToolStripMenuItem.Click += new System.EventHandler(this.czcionkaToolStripMenuItem_Click);
             // 
@@ -320,6 +322,8 @@ namespace Notatnik
             // 
             // statusStripPasekDolny
             // 
+            this.statusStripPasekDolny.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripStatusLabelPowiekszenie});
             this.statusStripPasekDolny.Location = new System.Drawing.Point(0, 484);
             this.statusStripPasekDolny.Name = "statusStripPasekDolny";
             this.statusStripPasekDolny.Size = new System.Drawing.Size(656, 22);
@@ -330,7 +334,7 @@ namespace Notatnik
             // 
             this.textBoxNotatnik.Cursor = System.Windows.Forms.Cursors.Default;
             this.textBoxNotatnik.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.textBoxNotatnik.Font = new System.Drawing.Font("Segoe UI", 14F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
+            this.textBoxNotatnik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxNotatnik.Location = new System.Drawing.Point(0, 24);
             this.textBoxNotatnik.Multiline = true;
             this.textBoxNotatnik.Name = "textBoxNotatnik";
@@ -338,6 +342,15 @@ namespace Notatnik
             this.textBoxNotatnik.Size = new System.Drawing.Size(656, 460);
             this.textBoxNotatnik.TabIndex = 2;
             this.textBoxNotatnik.WordWrap = false;
+            this.textBoxNotatnik.FontChanged += new System.EventHandler(this.textBoxNotatnik_FontChanged);
+            this.textBoxNotatnik.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNotatnik_KeyDown);
+            this.textBoxNotatnik.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxNotatnik_KeyUp);
+            // 
+            // toolStripStatusLabelPowiekszenie
+            // 
+            this.toolStripStatusLabelPowiekszenie.Name = "toolStripStatusLabelPowiekszenie";
+            this.toolStripStatusLabelPowiekszenie.Size = new System.Drawing.Size(111, 17);
+            this.toolStripStatusLabelPowiekszenie.Text = "Powiększenie: 100%";
             // 
             // OknoNotatnik
             // 
@@ -352,6 +365,8 @@ namespace Notatnik
             this.Text = "Notatnik";
             this.menuStripMenuGlowne.ResumeLayout(false);
             this.menuStripMenuGlowne.PerformLayout();
+            this.statusStripPasekDolny.ResumeLayout(false);
+            this.statusStripPasekDolny.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -392,6 +407,7 @@ namespace Notatnik
         private System.Windows.Forms.ToolStripMenuItem notatnikInformacjeToolStripMenuItem;
         private System.Windows.Forms.StatusStrip statusStripPasekDolny;
         private System.Windows.Forms.TextBox textBoxNotatnik;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelPowiekszenie;
     }
 }
 

@@ -10,11 +10,23 @@ namespace Notatnik
         private string sciezkaDoPliku = "";
         private float wartoscDomyslnaRozmiaruCzcionki;
 
+        private int krokZmianyCzcionki = 4;
+
+        private bool czyWcisnietyCTRL = false;
+
         public OknoNotatnik()
         {
             InitializeComponent();
+
             wartoscDomyslnaRozmiaruCzcionki = textBoxNotatnik.Font.Size;
+
+            powiększenieToolStripMenuItem.Tag = krokZmianyCzcionki;
+            zmniejszToolStripMenuItem.Tag = -krokZmianyCzcionki;
+
+            textBoxNotatnik.MouseWheel += textBoxNotatnik_MouseWheel;
         }
+
+
 
         #region Zdarzenia menu Plik
 
@@ -147,35 +159,58 @@ namespace Notatnik
             if (toolStripMenuItem != null)
             {
                 int krokZmiany;
-                if (int.TryParse(toolStripMenuItem.Tag.ToString(), out krokZmiany) == true)
-                    ZmienRozmiarCzcionki(krokZmiany);
+                if (int.TryParse(toolStripMenuItem.Tag.ToString(), out krokZmiany) /*== true*/)
+                    ZmienRozmiarCzcionki(textBoxNotatnik.Font.Size + krokZmiany);
             }
         }
 
-        private void ZmienRozmiarCzcionki(int krokZmiany)
+        private void ZmienRozmiarCzcionki(float wielkoscCzcionki)
         {
             FontFamily fontFamily = textBoxNotatnik.Font.FontFamily;
-            float size = textBoxNotatnik.Font.Size + krokZmiany;
+            float size = wielkoscCzcionki;
             FontStyle fontStyle = textBoxNotatnik.Font.Style;
             GraphicsUnit graphicsUnit = textBoxNotatnik.Font.Unit;
             byte gdiCharSet = textBoxNotatnik.Font.GdiCharSet;
 
-            if (size > 0)
+            if (size > 0 && size <= 72)
                 textBoxNotatnik.Font = new Font(fontFamily, size, fontStyle, graphicsUnit, gdiCharSet);
         }
 
 
         private void wartośćDomyślnaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            FontFamily fontFamily = textBoxNotatnik.Font.FontFamily;
-            float size = wartoscDomyslnaRozmiaruCzcionki;
-            FontStyle fontStyle = textBoxNotatnik.Font.Style;
-            GraphicsUnit graphicsUnit = textBoxNotatnik.Font.Unit;
-            byte gdiCharSet = textBoxNotatnik.Font.GdiCharSet;
-
-            if (size > 0)
-                textBoxNotatnik.Font = new Font(fontFamily, size, fontStyle, graphicsUnit, gdiCharSet);
+            ZmienRozmiarCzcionki(wartoscDomyslnaRozmiaruCzcionki);
         }
+
+        private void textBoxNotatnik_MouseWheel(object sender, MouseEventArgs e)
+        {
+            if (!czyWcisnietyCTRL)
+                return;
+
+            if (e.Delta > 0)
+                ZmienRozmiarCzcionki(textBoxNotatnik.Font.Size + krokZmianyCzcionki);
+            else
+                ZmienRozmiarCzcionki(textBoxNotatnik.Font.Size - krokZmianyCzcionki);
+        }
+
+        private void textBoxNotatnik_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+                czyWcisnietyCTRL = true;
+        }
+
+        private void textBoxNotatnik_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.ControlKey)
+                czyWcisnietyCTRL = false;
+        }
+
+        private void textBoxNotatnik_FontChanged(object sender, EventArgs e)
+        {
+            float powiekszenie = textBoxNotatnik.Font.Size / wartoscDomyslnaRozmiaruCzcionki * 100;
+            toolStripStatusLabelPowiekszenie.Text = "Powiększenie: " + powiekszenie.ToString("N2") + "%";
+        }
+
 
         #endregion
 
