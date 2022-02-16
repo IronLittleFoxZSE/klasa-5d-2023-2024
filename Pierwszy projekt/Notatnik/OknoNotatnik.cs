@@ -14,7 +14,7 @@ namespace Notatnik
 
         private bool czyWcisnietyCTRL = false;
 
-        public OknoNotatnik()
+        public OknoNotatnik(string[] arg)
         {
             InitializeComponent();
 
@@ -24,6 +24,12 @@ namespace Notatnik
             zmniejszToolStripMenuItem.Tag = -krokZmianyCzcionki;
 
             textBoxNotatnik.MouseWheel += textBoxNotatnik_MouseWheel;
+
+            if (arg != null && arg.Length == 1 && File.Exists(arg[0]))
+            {
+                sciezkaDoPliku = arg[0];
+                textBoxNotatnik.Text = File.ReadAllText(sciezkaDoPliku);
+            }
         }
 
 
@@ -211,10 +217,22 @@ namespace Notatnik
             toolStripStatusLabelPowiekszenie.Text = "Powiększenie: " + powiekszenie.ToString("N2") + "%";
         }
 
+        private void pasekStanuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            pasekStanuToolStripMenuItem.Checked = !pasekStanuToolStripMenuItem.Checked;
+            statusStripPasekDolny.Visible = pasekStanuToolStripMenuItem.Checked;
+        }
+
 
         #endregion
 
         #region Zdarzenia menu Pomoc
+
+        private void notatnikInformacjeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OknoPomoc oknoPomoc = new OknoPomoc();
+            oknoPomoc.ShowDialog();
+        }
 
         #endregion
 
