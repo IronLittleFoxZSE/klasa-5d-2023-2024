@@ -274,7 +274,7 @@ namespace Notatnik
             this.zmniejszToolStripMenuItem,
             this.wartośćDomyślnaToolStripMenuItem});
             this.powiększenieToolStripMenuItem.Name = "powiększenieToolStripMenuItem";
-            this.powiększenieToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.powiększenieToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.powiększenieToolStripMenuItem.Text = "Powiększenie";
             // 
             // powiększToolStripMenuItem
@@ -305,7 +305,7 @@ namespace Notatnik
             this.pasekStanuToolStripMenuItem.Checked = true;
             this.pasekStanuToolStripMenuItem.CheckState = System.Windows.Forms.CheckState.Checked;
             this.pasekStanuToolStripMenuItem.Name = "pasekStanuToolStripMenuItem";
-            this.pasekStanuToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
+            this.pasekStanuToolStripMenuItem.Size = new System.Drawing.Size(144, 22);
             this.pasekStanuToolStripMenuItem.Text = "Pasek stanu";
             this.pasekStanuToolStripMenuItem.Click += new System.EventHandler(this.pasekStanuToolStripMenuItem_Click);
             // 
@@ -342,7 +342,8 @@ namespace Notatnik
             // 
             // textBoxNotatnik
             // 
-            this.textBoxNotatnik.Cursor = System.Windows.Forms.Cursors.Default;
+            this.textBoxNotatnik.AllowDrop = true;
+            this.textBoxNotatnik.Cursor = System.Windows.Forms.Cursors.IBeam;
             this.textBoxNotatnik.Dock = System.Windows.Forms.DockStyle.Fill;
             this.textBoxNotatnik.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.textBoxNotatnik.Location = new System.Drawing.Point(0, 24);
@@ -353,6 +354,8 @@ namespace Notatnik
             this.textBoxNotatnik.TabIndex = 2;
             this.textBoxNotatnik.WordWrap = false;
             this.textBoxNotatnik.FontChanged += new System.EventHandler(this.textBoxNotatnik_FontChanged);
+            this.textBoxNotatnik.DragDrop += new System.Windows.Forms.DragEventHandler(this.textBoxNotatnik_DragDrop);
+            this.textBoxNotatnik.DragEnter += new System.Windows.Forms.DragEventHandler(this.textBoxNotatnik_DragEnter);
             this.textBoxNotatnik.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNotatnik_KeyDown);
             this.textBoxNotatnik.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxNotatnik_KeyUp);
             // 

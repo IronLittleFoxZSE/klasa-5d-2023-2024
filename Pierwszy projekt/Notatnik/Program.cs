@@ -17,7 +17,12 @@ namespace Notatnik
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new OknoNotatnik(arg));
+            if (arg != null && arg.Length >= 1 && (arg[0] == "\\?" || arg[0] == "?"))
+            {
+                Application.Run(new OknoPomoc());
+            }
+            else 
+                Application.Run(new OknoNotatnik(arg));
         }
     }
 }

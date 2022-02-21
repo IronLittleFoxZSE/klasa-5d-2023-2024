@@ -236,6 +236,34 @@ namespace Notatnik
 
         #endregion
 
+        #region Zdarzenia Drag&Drop
+
+        private void textBoxNotatnik_DragEnter(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+                e.Effect = DragDropEffects.Copy;
+            else if (e.Data.GetDataPresent(DataFormats.Text))
+                e.Effect = DragDropEffects.Move;
+        }
+
+        private void textBoxNotatnik_DragDrop(object sender, DragEventArgs e)
+        {
+            if (e.Data.GetDataPresent(DataFormats.FileDrop))
+            {
+                string[] pliki = e.Data.GetData(DataFormats.FileDrop) as string[];
+
+                sciezkaDoPliku = pliki[0];
+                textBoxNotatnik.Text = File.ReadAllText(sciezkaDoPliku);
+            }
+            else if (e.Data.GetDataPresent(DataFormats.Text))
+            {
+                string text = e.Data.GetData(DataFormats.Text) as string;
+                textBoxNotatnik.Paste(text);
+            }
+        }
+
+        #endregion
+
 
     }
 }
