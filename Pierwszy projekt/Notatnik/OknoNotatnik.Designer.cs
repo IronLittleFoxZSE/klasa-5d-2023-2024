@@ -63,6 +63,8 @@ namespace Notatnik
             this.statusStripPasekDolny = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelPowiekszenie = new System.Windows.Forms.ToolStripStatusLabel();
             this.textBoxNotatnik = new System.Windows.Forms.TextBox();
+            this.znajdzNastępnyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zaznaczWszystkoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStripMenuGlowne.SuspendLayout();
             this.statusStripPasekDolny.SuspendLayout();
             this.SuspendLayout();
@@ -150,9 +152,11 @@ namespace Notatnik
             this.usuńToolStripMenuItem,
             this.toolStripMenuItem3,
             this.znajdźToolStripMenuItem,
+            this.znajdzNastępnyToolStripMenuItem,
             this.toolStripMenuItem4,
             this.zaznaczWszystkoToolStripMenuItem,
-            this.godzinaDataToolStripMenuItem});
+            this.godzinaDataToolStripMenuItem,
+            this.zaznaczWszystkoToolStripMenuItem1});
             this.edycjaToolStripMenuItem.Name = "edycjaToolStripMenuItem";
             this.edycjaToolStripMenuItem.Size = new System.Drawing.Size(53, 20);
             this.edycjaToolStripMenuItem.Text = "&Edycja";
@@ -213,6 +217,7 @@ namespace Notatnik
             this.znajdźToolStripMenuItem.ShortcutKeys = ((System.Windows.Forms.Keys)((System.Windows.Forms.Keys.Control | System.Windows.Forms.Keys.F)));
             this.znajdźToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.znajdźToolStripMenuItem.Text = "Znajdź";
+            this.znajdźToolStripMenuItem.Click += new System.EventHandler(this.znajdźToolStripMenuItem_Click);
             // 
             // toolStripMenuItem4
             // 
@@ -359,6 +364,19 @@ namespace Notatnik
             this.textBoxNotatnik.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNotatnik_KeyDown);
             this.textBoxNotatnik.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxNotatnik_KeyUp);
             // 
+            // znajdzNastępnyToolStripMenuItem
+            // 
+            this.znajdzNastępnyToolStripMenuItem.Name = "znajdzNastępnyToolStripMenuItem";
+            this.znajdzNastępnyToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.znajdzNastępnyToolStripMenuItem.Text = "Znajdz następny";
+            this.znajdzNastępnyToolStripMenuItem.Click += new System.EventHandler(this.znajdzNastępnyToolStripMenuItem_Click);
+            // 
+            // zaznaczWszystkoToolStripMenuItem1
+            // 
+            this.zaznaczWszystkoToolStripMenuItem1.Name = "zaznaczWszystkoToolStripMenuItem1";
+            this.zaznaczWszystkoToolStripMenuItem1.Size = new System.Drawing.Size(208, 22);
+            this.zaznaczWszystkoToolStripMenuItem1.Text = "Zaznacz wszystko";
+            // 
             // OknoNotatnik
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
@@ -415,6 +433,8 @@ namespace Notatnik
         private System.Windows.Forms.StatusStrip statusStripPasekDolny;
         private System.Windows.Forms.TextBox textBoxNotatnik;
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelPowiekszenie;
+        private System.Windows.Forms.ToolStripMenuItem znajdzNastępnyToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem zaznaczWszystkoToolStripMenuItem1;
     }
 }
 

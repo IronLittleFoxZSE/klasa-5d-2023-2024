@@ -14,6 +14,8 @@ namespace Notatnik
 
         private bool czyWcisnietyCTRL = false;
 
+        private string szukanyTekst = "";
+
         public OknoNotatnik(string[] arg)
         {
             InitializeComponent();
@@ -128,6 +130,32 @@ namespace Notatnik
             //textBoxNotatnik.Paste(DateTime.Now.ToString("HH:mm:ss dd.MM.yyyy"));
         }
 
+        private void znajdźToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OknoSzukaj oknoSzukaj = new OknoSzukaj();
+            oknoSzukaj.SzukanyTekst = szukanyTekst;
+            if (oknoSzukaj.ShowDialog() == DialogResult.OK)
+            {
+                szukanyTekst = oknoSzukaj.SzukanyTekst;
+
+                Szukaj(0);
+            }
+        }
+
+        private void znajdzNastępnyToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Szukaj(textBoxNotatnik.SelectionStart + 1);
+        }
+
+        private void Szukaj(int start)
+        {
+            if (start > textBoxNotatnik.Text.Length)
+            {
+                MessageBox.Show("Szukanie poza zakresem");
+                return;
+            }
+
+        }
 
 
         #endregion
@@ -262,8 +290,9 @@ namespace Notatnik
             }
         }
 
+
         #endregion
 
-
+        
     }
 }
