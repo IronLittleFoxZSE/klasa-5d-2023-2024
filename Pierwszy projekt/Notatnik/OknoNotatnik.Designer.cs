@@ -29,6 +29,7 @@ namespace Notatnik
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.menuStripMenuGlowne = new System.Windows.Forms.MenuStrip();
             this.plikToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nowyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -46,9 +47,11 @@ namespace Notatnik
             this.usuńToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripSeparator();
             this.znajdźToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.znajdzNastępnyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripSeparator();
             this.zaznaczWszystkoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.godzinaDataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.zaznaczWszystkoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.formatToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.zawijanieWierszyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.czcionkaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -63,8 +66,8 @@ namespace Notatnik
             this.statusStripPasekDolny = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabelPowiekszenie = new System.Windows.Forms.ToolStripStatusLabel();
             this.textBoxNotatnik = new System.Windows.Forms.TextBox();
-            this.znajdzNastępnyToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.zaznaczWszystkoToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripStatusLabelAktualnaGodzina = new System.Windows.Forms.ToolStripStatusLabel();
+            this.timerGodzina = new System.Windows.Forms.Timer(this.components);
             this.menuStripMenuGlowne.SuspendLayout();
             this.statusStripPasekDolny.SuspendLayout();
             this.SuspendLayout();
@@ -219,6 +222,13 @@ namespace Notatnik
             this.znajdźToolStripMenuItem.Text = "Znajdź";
             this.znajdźToolStripMenuItem.Click += new System.EventHandler(this.znajdźToolStripMenuItem_Click);
             // 
+            // znajdzNastępnyToolStripMenuItem
+            // 
+            this.znajdzNastępnyToolStripMenuItem.Name = "znajdzNastępnyToolStripMenuItem";
+            this.znajdzNastępnyToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
+            this.znajdzNastępnyToolStripMenuItem.Text = "Znajdz następny";
+            this.znajdzNastępnyToolStripMenuItem.Click += new System.EventHandler(this.znajdzNastępnyToolStripMenuItem_Click);
+            // 
             // toolStripMenuItem4
             // 
             this.toolStripMenuItem4.Name = "toolStripMenuItem4";
@@ -239,6 +249,12 @@ namespace Notatnik
             this.godzinaDataToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
             this.godzinaDataToolStripMenuItem.Text = "Godzina/Data";
             this.godzinaDataToolStripMenuItem.Click += new System.EventHandler(this.godzinaDataToolStripMenuItem_Click);
+            // 
+            // zaznaczWszystkoToolStripMenuItem1
+            // 
+            this.zaznaczWszystkoToolStripMenuItem1.Name = "zaznaczWszystkoToolStripMenuItem1";
+            this.zaznaczWszystkoToolStripMenuItem1.Size = new System.Drawing.Size(208, 22);
+            this.zaznaczWszystkoToolStripMenuItem1.Text = "Zaznacz wszystko";
             // 
             // formatToolStripMenuItem
             // 
@@ -332,7 +348,8 @@ namespace Notatnik
             // statusStripPasekDolny
             // 
             this.statusStripPasekDolny.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripStatusLabelPowiekszenie});
+            this.toolStripStatusLabelPowiekszenie,
+            this.toolStripStatusLabelAktualnaGodzina});
             this.statusStripPasekDolny.Location = new System.Drawing.Point(0, 484);
             this.statusStripPasekDolny.Name = "statusStripPasekDolny";
             this.statusStripPasekDolny.Size = new System.Drawing.Size(656, 22);
@@ -364,18 +381,16 @@ namespace Notatnik
             this.textBoxNotatnik.KeyDown += new System.Windows.Forms.KeyEventHandler(this.textBoxNotatnik_KeyDown);
             this.textBoxNotatnik.KeyUp += new System.Windows.Forms.KeyEventHandler(this.textBoxNotatnik_KeyUp);
             // 
-            // znajdzNastępnyToolStripMenuItem
+            // toolStripStatusLabelAktualnaGodzina
             // 
-            this.znajdzNastępnyToolStripMenuItem.Name = "znajdzNastępnyToolStripMenuItem";
-            this.znajdzNastępnyToolStripMenuItem.Size = new System.Drawing.Size(208, 22);
-            this.znajdzNastępnyToolStripMenuItem.Text = "Znajdz następny";
-            this.znajdzNastępnyToolStripMenuItem.Click += new System.EventHandler(this.znajdzNastępnyToolStripMenuItem_Click);
+            this.toolStripStatusLabelAktualnaGodzina.Name = "toolStripStatusLabelAktualnaGodzina";
+            this.toolStripStatusLabelAktualnaGodzina.Size = new System.Drawing.Size(0, 17);
             // 
-            // zaznaczWszystkoToolStripMenuItem1
+            // timerGodzina
             // 
-            this.zaznaczWszystkoToolStripMenuItem1.Name = "zaznaczWszystkoToolStripMenuItem1";
-            this.zaznaczWszystkoToolStripMenuItem1.Size = new System.Drawing.Size(208, 22);
-            this.zaznaczWszystkoToolStripMenuItem1.Text = "Zaznacz wszystko";
+            this.timerGodzina.Enabled = true;
+            this.timerGodzina.Interval = 1000;
+            this.timerGodzina.Tick += new System.EventHandler(this.timerGodzina_Tick);
             // 
             // OknoNotatnik
             // 
@@ -435,6 +450,8 @@ namespace Notatnik
         private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelPowiekszenie;
         private System.Windows.Forms.ToolStripMenuItem znajdzNastępnyToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem zaznaczWszystkoToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripStatusLabel toolStripStatusLabelAktualnaGodzina;
+        private System.Windows.Forms.Timer timerGodzina;
     }
 }
 

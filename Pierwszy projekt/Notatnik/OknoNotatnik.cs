@@ -32,6 +32,8 @@ namespace Notatnik
                 sciezkaDoPliku = arg[0];
                 textBoxNotatnik.Text = File.ReadAllText(sciezkaDoPliku);
             }
+
+            toolStripStatusLabelAktualnaGodzina.Text = "Godzina " + DateTime.Now.ToString("hh:mm:ss");
         }
 
 
@@ -124,7 +126,7 @@ namespace Notatnik
         {
             DateTime aktualnyCzas;
             aktualnyCzas = DateTime.Now;
-            string aktulnyCzasStr = aktualnyCzas.ToString("HH:mm:ss dd.MM.yyyy");
+            string aktulnyCzasStr = aktualnyCzas.ToString(" HH:mm:ss dd.MM.yyyy");
 
             textBoxNotatnik.Paste(aktulnyCzasStr);
             //textBoxNotatnik.Paste(DateTime.Now.ToString("HH:mm:ss dd.MM.yyyy"));
@@ -155,6 +157,16 @@ namespace Notatnik
                 return;
             }
 
+            int pozycja = textBoxNotatnik.Text.IndexOf(szukanyTekst, start, StringComparison.CurrentCultureIgnoreCase);
+            if (pozycja != -1)
+            {
+                textBoxNotatnik.SelectionStart = pozycja;
+                textBoxNotatnik.SelectionLength = szukanyTekst.Length;
+            }
+            else
+            {
+                MessageBox.Show("Brak szukanej frazy");
+            }
         }
 
 
@@ -291,8 +303,12 @@ namespace Notatnik
         }
 
 
+
         #endregion
 
-        
+        private void timerGodzina_Tick(object sender, EventArgs e)
+        {
+            toolStripStatusLabelAktualnaGodzina.Text = "Godzina " + DateTime.Now.ToString("hh:mm:ss");
+        }
     }
 }
