@@ -20,6 +20,5 @@ namespace DaneOsobowe
             InitializeComponent();
             bazaDanychContext = new MojaBazaContext();
         }
-
     }
 }
