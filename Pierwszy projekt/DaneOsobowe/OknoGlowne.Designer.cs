@@ -66,6 +66,7 @@ namespace DaneOsobowe
             this.buttonDodaj.TabIndex = 6;
             this.buttonDodaj.Text = "Dodaj do bazy";
             this.buttonDodaj.UseVisualStyleBackColor = true;
+            this.buttonDodaj.Click += new System.EventHandler(this.buttonDodaj_Click);
             // 
             // numericUpDownWiek
             // 

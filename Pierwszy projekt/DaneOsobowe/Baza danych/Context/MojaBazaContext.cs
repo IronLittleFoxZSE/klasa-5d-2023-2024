@@ -11,6 +11,7 @@ namespace DaneOsobowe.Baza_danych.Context
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             optionsBuilder.UseSqlite("Filename=bazaDanych3d.db");
+
             base.OnConfiguring(optionsBuilder);
         }
 
