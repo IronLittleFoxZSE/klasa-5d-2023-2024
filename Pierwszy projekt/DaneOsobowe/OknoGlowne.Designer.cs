@@ -37,8 +37,18 @@ namespace DaneOsobowe
             this.labelNazwisko = new System.Windows.Forms.Label();
             this.textBoxImie = new System.Windows.Forms.TextBox();
             this.labelImie = new System.Windows.Forms.Label();
+            this.groupBoxRead = new System.Windows.Forms.GroupBox();
+            this.numericUpDownWiekRead = new System.Windows.Forms.NumericUpDown();
+            this.labelWiekRead = new System.Windows.Forms.Label();
+            this.textBoxNazwiskoRead = new System.Windows.Forms.TextBox();
+            this.labelNazwiskoRead = new System.Windows.Forms.Label();
+            this.textBoxImieRead = new System.Windows.Forms.TextBox();
+            this.labelImieRead = new System.Windows.Forms.Label();
+            this.buttonOdczytajWiersz = new System.Windows.Forms.Button();
             this.groupBoxCreate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiek)).BeginInit();
+            this.groupBoxRead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiekRead)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxCreate
@@ -132,17 +142,112 @@ namespace DaneOsobowe
             this.labelImie.TabIndex = 0;
             this.labelImie.Text = "Imie:";
             // 
+            // groupBoxRead
+            // 
+            this.groupBoxRead.Controls.Add(this.buttonOdczytajWiersz);
+            this.groupBoxRead.Controls.Add(this.numericUpDownWiekRead);
+            this.groupBoxRead.Controls.Add(this.labelWiekRead);
+            this.groupBoxRead.Controls.Add(this.textBoxNazwiskoRead);
+            this.groupBoxRead.Controls.Add(this.labelNazwiskoRead);
+            this.groupBoxRead.Controls.Add(this.textBoxImieRead);
+            this.groupBoxRead.Controls.Add(this.labelImieRead);
+            this.groupBoxRead.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBoxRead.Location = new System.Drawing.Point(0, 124);
+            this.groupBoxRead.Name = "groupBoxRead";
+            this.groupBoxRead.Size = new System.Drawing.Size(1029, 326);
+            this.groupBoxRead.TabIndex = 1;
+            this.groupBoxRead.TabStop = false;
+            this.groupBoxRead.Text = "Read";
+            // 
+            // numericUpDownWiekRead
+            // 
+            this.numericUpDownWiekRead.Location = new System.Drawing.Point(256, 56);
+            this.numericUpDownWiekRead.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDownWiekRead.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownWiekRead.Name = "numericUpDownWiekRead";
+            this.numericUpDownWiekRead.ReadOnly = true;
+            this.numericUpDownWiekRead.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDownWiekRead.TabIndex = 11;
+            this.numericUpDownWiekRead.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // labelWiekRead
+            // 
+            this.labelWiekRead.AutoSize = true;
+            this.labelWiekRead.Location = new System.Drawing.Point(256, 26);
+            this.labelWiekRead.Name = "labelWiekRead";
+            this.labelWiekRead.Size = new System.Drawing.Size(36, 15);
+            this.labelWiekRead.TabIndex = 10;
+            this.labelWiekRead.Text = "Wiek:";
+            // 
+            // textBoxNazwiskoRead
+            // 
+            this.textBoxNazwiskoRead.Location = new System.Drawing.Point(132, 55);
+            this.textBoxNazwiskoRead.Name = "textBoxNazwiskoRead";
+            this.textBoxNazwiskoRead.Size = new System.Drawing.Size(100, 23);
+            this.textBoxNazwiskoRead.TabIndex = 9;
+            // 
+            // labelNazwiskoRead
+            // 
+            this.labelNazwiskoRead.AutoSize = true;
+            this.labelNazwiskoRead.Location = new System.Drawing.Point(132, 26);
+            this.labelNazwiskoRead.Name = "labelNazwiskoRead";
+            this.labelNazwiskoRead.Size = new System.Drawing.Size(60, 15);
+            this.labelNazwiskoRead.TabIndex = 8;
+            this.labelNazwiskoRead.Text = "Nazwisko:";
+            // 
+            // textBoxImieRead
+            // 
+            this.textBoxImieRead.Location = new System.Drawing.Point(12, 55);
+            this.textBoxImieRead.Name = "textBoxImieRead";
+            this.textBoxImieRead.Size = new System.Drawing.Size(100, 23);
+            this.textBoxImieRead.TabIndex = 7;
+            // 
+            // labelImieRead
+            // 
+            this.labelImieRead.AutoSize = true;
+            this.labelImieRead.Location = new System.Drawing.Point(12, 26);
+            this.labelImieRead.Name = "labelImieRead";
+            this.labelImieRead.Size = new System.Drawing.Size(33, 15);
+            this.labelImieRead.TabIndex = 6;
+            this.labelImieRead.Text = "Imie:";
+            // 
+            // buttonOdczytajWiersz
+            // 
+            this.buttonOdczytajWiersz.Location = new System.Drawing.Point(434, 39);
+            this.buttonOdczytajWiersz.Name = "buttonOdczytajWiersz";
+            this.buttonOdczytajWiersz.Size = new System.Drawing.Size(176, 39);
+            this.buttonOdczytajWiersz.TabIndex = 12;
+            this.buttonOdczytajWiersz.Text = "Jeden wiersz";
+            this.buttonOdczytajWiersz.UseVisualStyleBackColor = true;
+            this.buttonOdczytajWiersz.Click += new System.EventHandler(this.buttonOdczytajWiersz_Click);
+            // 
             // OknoGlowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1029, 617);
+            this.ClientSize = new System.Drawing.Size(1029, 729);
+            this.Controls.Add(this.groupBoxRead);
             this.Controls.Add(this.groupBoxCreate);
             this.Name = "OknoGlowne";
             this.Text = "Form1";
             this.groupBoxCreate.ResumeLayout(false);
             this.groupBoxCreate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiek)).EndInit();
+            this.groupBoxRead.ResumeLayout(false);
+            this.groupBoxRead.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiekRead)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -157,6 +262,14 @@ namespace DaneOsobowe
         private System.Windows.Forms.Label labelWiek;
         private System.Windows.Forms.TextBox textBoxNazwisko;
         private System.Windows.Forms.Label labelNazwisko;
+        private System.Windows.Forms.GroupBox groupBoxRead;
+        private System.Windows.Forms.Button buttonOdczytajWiersz;
+        private System.Windows.Forms.NumericUpDown numericUpDownWiekRead;
+        private System.Windows.Forms.Label labelWiekRead;
+        private System.Windows.Forms.TextBox textBoxNazwiskoRead;
+        private System.Windows.Forms.Label labelNazwiskoRead;
+        private System.Windows.Forms.TextBox textBoxImieRead;
+        private System.Windows.Forms.Label labelImieRead;
     }
 }
 

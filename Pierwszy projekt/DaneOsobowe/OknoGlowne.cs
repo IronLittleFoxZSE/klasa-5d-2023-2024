@@ -32,5 +32,16 @@ namespace DaneOsobowe
             bazaDanychContext.Osoby.Add(osoba);
             bazaDanychContext.SaveChanges();
         }
+
+        private void buttonOdczytajWiersz_Click(object sender, EventArgs e)
+        {
+            /*
+             select top 1 *
+               from Osoby
+              where id = 1
+             */
+            Osoba osoba = bazaDanychContext.Osoby.FirstOrDefault();
+
+        }
     }
 }
