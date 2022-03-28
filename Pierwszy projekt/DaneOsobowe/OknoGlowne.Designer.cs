@@ -38,17 +38,24 @@ namespace DaneOsobowe
             this.textBoxImie = new System.Windows.Forms.TextBox();
             this.labelImie = new System.Windows.Forms.Label();
             this.groupBoxRead = new System.Windows.Forms.GroupBox();
+            this.numericUpDownSzukajId = new System.Windows.Forms.NumericUpDown();
+            this.buttonOdczytajWiersz = new System.Windows.Forms.Button();
             this.numericUpDownWiekRead = new System.Windows.Forms.NumericUpDown();
             this.labelWiekRead = new System.Windows.Forms.Label();
             this.textBoxNazwiskoRead = new System.Windows.Forms.TextBox();
             this.labelNazwiskoRead = new System.Windows.Forms.Label();
             this.textBoxImieRead = new System.Windows.Forms.TextBox();
             this.labelImieRead = new System.Windows.Forms.Label();
-            this.buttonOdczytajWiersz = new System.Windows.Forms.Button();
+            this.labelSzukajWieku = new System.Windows.Forms.Label();
+            this.numericUpDownSzukajWiek = new System.Windows.Forms.NumericUpDown();
+            this.buttonSzukajWiek = new System.Windows.Forms.Button();
+            this.comboBoxWynik = new System.Windows.Forms.ComboBox();
             this.groupBoxCreate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiek)).BeginInit();
             this.groupBoxRead.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSzukajId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiekRead)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSzukajWiek)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxCreate
@@ -144,6 +151,11 @@ namespace DaneOsobowe
             // 
             // groupBoxRead
             // 
+            this.groupBoxRead.Controls.Add(this.comboBoxWynik);
+            this.groupBoxRead.Controls.Add(this.buttonSzukajWiek);
+            this.groupBoxRead.Controls.Add(this.numericUpDownSzukajWiek);
+            this.groupBoxRead.Controls.Add(this.labelSzukajWieku);
+            this.groupBoxRead.Controls.Add(this.numericUpDownSzukajId);
             this.groupBoxRead.Controls.Add(this.buttonOdczytajWiersz);
             this.groupBoxRead.Controls.Add(this.numericUpDownWiekRead);
             this.groupBoxRead.Controls.Add(this.labelWiekRead);
@@ -158,6 +170,39 @@ namespace DaneOsobowe
             this.groupBoxRead.TabIndex = 1;
             this.groupBoxRead.TabStop = false;
             this.groupBoxRead.Text = "Read";
+            // 
+            // numericUpDownSzukajId
+            // 
+            this.numericUpDownSzukajId.Location = new System.Drawing.Point(643, 49);
+            this.numericUpDownSzukajId.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDownSzukajId.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownSzukajId.Name = "numericUpDownSzukajId";
+            this.numericUpDownSzukajId.ReadOnly = true;
+            this.numericUpDownSzukajId.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDownSzukajId.TabIndex = 13;
+            this.numericUpDownSzukajId.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // buttonOdczytajWiersz
+            // 
+            this.buttonOdczytajWiersz.Location = new System.Drawing.Point(434, 39);
+            this.buttonOdczytajWiersz.Name = "buttonOdczytajWiersz";
+            this.buttonOdczytajWiersz.Size = new System.Drawing.Size(176, 39);
+            this.buttonOdczytajWiersz.TabIndex = 12;
+            this.buttonOdczytajWiersz.Text = "Jeden wiersz";
+            this.buttonOdczytajWiersz.UseVisualStyleBackColor = true;
+            this.buttonOdczytajWiersz.Click += new System.EventHandler(this.buttonOdczytajWiersz_Click);
             // 
             // numericUpDownWiekRead
             // 
@@ -223,15 +268,56 @@ namespace DaneOsobowe
             this.labelImieRead.TabIndex = 6;
             this.labelImieRead.Text = "Imie:";
             // 
-            // buttonOdczytajWiersz
+            // labelSzukajWieku
             // 
-            this.buttonOdczytajWiersz.Location = new System.Drawing.Point(434, 39);
-            this.buttonOdczytajWiersz.Name = "buttonOdczytajWiersz";
-            this.buttonOdczytajWiersz.Size = new System.Drawing.Size(176, 39);
-            this.buttonOdczytajWiersz.TabIndex = 12;
-            this.buttonOdczytajWiersz.Text = "Jeden wiersz";
-            this.buttonOdczytajWiersz.UseVisualStyleBackColor = true;
-            this.buttonOdczytajWiersz.Click += new System.EventHandler(this.buttonOdczytajWiersz_Click);
+            this.labelSzukajWieku.AutoSize = true;
+            this.labelSzukajWieku.Location = new System.Drawing.Point(16, 131);
+            this.labelSzukajWieku.Name = "labelSzukajWieku";
+            this.labelSzukajWieku.Size = new System.Drawing.Size(67, 15);
+            this.labelSzukajWieku.TabIndex = 15;
+            this.labelSzukajWieku.Text = "Podaj wiek:";
+            // 
+            // numericUpDownSzukajWiek
+            // 
+            this.numericUpDownSzukajWiek.Location = new System.Drawing.Point(16, 161);
+            this.numericUpDownSzukajWiek.Maximum = new decimal(new int[] {
+            150,
+            0,
+            0,
+            0});
+            this.numericUpDownSzukajWiek.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numericUpDownSzukajWiek.Name = "numericUpDownSzukajWiek";
+            this.numericUpDownSzukajWiek.ReadOnly = true;
+            this.numericUpDownSzukajWiek.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDownSzukajWiek.TabIndex = 16;
+            this.numericUpDownSzukajWiek.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // buttonSzukajWiek
+            // 
+            this.buttonSzukajWiek.Location = new System.Drawing.Point(169, 149);
+            this.buttonSzukajWiek.Name = "buttonSzukajWiek";
+            this.buttonSzukajWiek.Size = new System.Drawing.Size(137, 35);
+            this.buttonSzukajWiek.TabIndex = 17;
+            this.buttonSzukajWiek.Text = "Wszukaj wiek";
+            this.buttonSzukajWiek.UseVisualStyleBackColor = true;
+            this.buttonSzukajWiek.Click += new System.EventHandler(this.buttonSzukajWiek_Click);
+            // 
+            // comboBoxWynik
+            // 
+            this.comboBoxWynik.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxWynik.FormattingEnabled = true;
+            this.comboBoxWynik.Location = new System.Drawing.Point(362, 156);
+            this.comboBoxWynik.Name = "comboBoxWynik";
+            this.comboBoxWynik.Size = new System.Drawing.Size(193, 23);
+            this.comboBoxWynik.TabIndex = 18;
             // 
             // OknoGlowne
             // 
@@ -247,7 +333,9 @@ namespace DaneOsobowe
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiek)).EndInit();
             this.groupBoxRead.ResumeLayout(false);
             this.groupBoxRead.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSzukajId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiekRead)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSzukajWiek)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -270,6 +358,11 @@ namespace DaneOsobowe
         private System.Windows.Forms.Label labelNazwiskoRead;
         private System.Windows.Forms.TextBox textBoxImieRead;
         private System.Windows.Forms.Label labelImieRead;
+        private System.Windows.Forms.NumericUpDown numericUpDownSzukajId;
+        private System.Windows.Forms.Label labelSzukajWieku;
+        private System.Windows.Forms.NumericUpDown numericUpDownSzukajWiek;
+        private System.Windows.Forms.ComboBox comboBoxWynik;
+        private System.Windows.Forms.Button buttonSzukajWiek;
     }
 }
 
