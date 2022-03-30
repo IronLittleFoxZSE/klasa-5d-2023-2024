@@ -19,7 +19,9 @@ namespace DaneOsobowe
         public OknoGlowne()
         {
             InitializeComponent();
+
             bazaDanychContext = new MojaBazaContext();
+            dataGridViewLista.AutoGenerateColumns = false;
         }
 
         private void buttonDodaj_Click(object sender, EventArgs e)
@@ -28,6 +30,13 @@ namespace DaneOsobowe
             osoba.Imie = textBoxImie.Text;
             osoba.Nazwisko = textBoxNazwisko.Text;
             osoba.Wiek = (int)numericUpDownWiek.Value;
+
+            /*osoba = new Osoba()
+            {
+                Imie = textBoxImie.Text,
+                Nazwisko = textBoxNazwisko.Text,
+                Wiek = (int) numericUpDownWiek.Value
+            };*/
 
             bazaDanychContext.Osoby.Add(osoba);
             bazaDanychContext.SaveChanges();
@@ -94,7 +103,7 @@ namespace DaneOsobowe
              */
 
             var kolekcjaOsob = bazaDanychContext.Osoby
-                .Where(oo => oo.Wiek >= (int) numericUpDownSzukajWiek.Value);
+                .Where(oo => oo.Wiek >= (int)numericUpDownSzukajWiek.Value);
 
             /*comboBoxWynik.Items.Clear();
             foreach (Osoba osoba in kolekcjaOsob)
@@ -107,6 +116,49 @@ namespace DaneOsobowe
             comboBoxWynik.DataSource = kolekcjaOsob.ToList();
             comboBoxWynik.DisplayMember = "Nazwisko";
 
+        }
+
+        private void buttonSzukaj_Click(object sender, EventArgs e)
+        {
+            /*
+             select *
+               from Osoby o
+              where o.wiek >= (int)numericUpDownSzukajWiek.Value
+            order by o.wiek desc, o.imie
+
+             */
+
+            var kolekcjaOsob = bazaDanychContext.Osoby
+                .Where(oo => oo.Wiek >= (int)numericUpDownSzukajWiek.Value)
+                //.OrderBy(o=> o.Wiek); // sortowanie rosnąco
+                .OrderByDescending(o => o.Wiek) // sortowanie malejąco
+                .ThenBy(o => o.Imie);
+
+            dataGridViewLista.DataSource = kolekcjaOsob.ToList();
+
+        }
+
+        private void buttonSzukajPelnoletnie_Click(object sender, EventArgs e)
+        {
+            /*
+             select o.Imie.
+                    o.Nazwisko,
+                    o.Wiek, 
+                    o.wiek >= 18 as Pelnoletnosc
+               from Osoby o
+              where o.wiek >= (int)numericUpDownSzukajWiek.Value
+            order by o.wiek desc, o.imie
+
+             */
+
+            var kolekcjaOsob = bazaDanychContext.Osoby
+                .Where(oo => oo.Wiek >= (int)numericUpDownSzukajWiek.Value)
+                //.OrderBy(o=> o.Wiek); // sortowanie rosnąco
+                .OrderByDescending(o => o.Wiek) // sortowanie malejąco
+                .ThenBy(o => o.Imie)
+                .Select(o => new OsobaNaLiscie());
+
+            dataGridViewLista.DataSource = kolekcjaOsob.ToList();
         }
     }
 }
