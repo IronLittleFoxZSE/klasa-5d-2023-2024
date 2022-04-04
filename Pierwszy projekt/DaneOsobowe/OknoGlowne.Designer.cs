@@ -38,8 +38,13 @@ namespace DaneOsobowe
             this.textBoxImie = new System.Windows.Forms.TextBox();
             this.labelImie = new System.Windows.Forms.Label();
             this.groupBoxRead = new System.Windows.Forms.GroupBox();
+            this.buttonSzukajPelnoletnie = new System.Windows.Forms.Button();
             this.buttonSzukaj = new System.Windows.Forms.Button();
             this.dataGridViewLista = new System.Windows.Forms.DataGridView();
+            this.ColumnImie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnWiek = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCzyPelnoletnia = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.comboBoxWynik = new System.Windows.Forms.ComboBox();
             this.buttonSzukajWiek = new System.Windows.Forms.Button();
             this.numericUpDownSzukajWiek = new System.Windows.Forms.NumericUpDown();
@@ -52,11 +57,12 @@ namespace DaneOsobowe
             this.labelNazwiskoRead = new System.Windows.Forms.Label();
             this.textBoxImieRead = new System.Windows.Forms.TextBox();
             this.labelImieRead = new System.Windows.Forms.Label();
-            this.buttonSzukajPelnoletnie = new System.Windows.Forms.Button();
-            this.ColumnImie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnNazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnWiek = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCzyPelnoletnia = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.groupBoxUpdate = new System.Windows.Forms.GroupBox();
+            this.textBoxNazwiskoUpdate = new System.Windows.Forms.TextBox();
+            this.numericUpDownId = new System.Windows.Forms.NumericUpDown();
+            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.labelId = new System.Windows.Forms.Label();
+            this.labelNazwiskoUpdate = new System.Windows.Forms.Label();
             this.groupBoxCreate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiek)).BeginInit();
             this.groupBoxRead.SuspendLayout();
@@ -64,6 +70,8 @@ namespace DaneOsobowe
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSzukajWiek)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSzukajId)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiekRead)).BeginInit();
+            this.groupBoxUpdate.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownId)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxCreate
@@ -177,10 +185,20 @@ namespace DaneOsobowe
             this.groupBoxRead.Dock = System.Windows.Forms.DockStyle.Top;
             this.groupBoxRead.Location = new System.Drawing.Point(0, 124);
             this.groupBoxRead.Name = "groupBoxRead";
-            this.groupBoxRead.Size = new System.Drawing.Size(1029, 390);
+            this.groupBoxRead.Size = new System.Drawing.Size(1029, 368);
             this.groupBoxRead.TabIndex = 1;
             this.groupBoxRead.TabStop = false;
             this.groupBoxRead.Text = "Read";
+            // 
+            // buttonSzukajPelnoletnie
+            // 
+            this.buttonSzukajPelnoletnie.Location = new System.Drawing.Point(632, 281);
+            this.buttonSzukajPelnoletnie.Name = "buttonSzukajPelnoletnie";
+            this.buttonSzukajPelnoletnie.Size = new System.Drawing.Size(219, 64);
+            this.buttonSzukajPelnoletnie.TabIndex = 21;
+            this.buttonSzukajPelnoletnie.Text = "Szukaj pelnoletnie";
+            this.buttonSzukajPelnoletnie.UseVisualStyleBackColor = true;
+            this.buttonSzukajPelnoletnie.Click += new System.EventHandler(this.buttonSzukajPelnoletnie_Click);
             // 
             // buttonSzukaj
             // 
@@ -205,6 +223,35 @@ namespace DaneOsobowe
             this.dataGridViewLista.RowTemplate.Height = 25;
             this.dataGridViewLista.Size = new System.Drawing.Size(545, 150);
             this.dataGridViewLista.TabIndex = 19;
+            // 
+            // ColumnImie
+            // 
+            this.ColumnImie.DataPropertyName = "Imie";
+            this.ColumnImie.HeaderText = "Imie";
+            this.ColumnImie.Name = "ColumnImie";
+            this.ColumnImie.ReadOnly = true;
+            // 
+            // ColumnNazwisko
+            // 
+            this.ColumnNazwisko.DataPropertyName = "Nazwisko";
+            this.ColumnNazwisko.HeaderText = "Nazwisko";
+            this.ColumnNazwisko.Name = "ColumnNazwisko";
+            this.ColumnNazwisko.ReadOnly = true;
+            // 
+            // ColumnWiek
+            // 
+            this.ColumnWiek.DataPropertyName = "Wiek";
+            this.ColumnWiek.HeaderText = "Wiek osoby";
+            this.ColumnWiek.Name = "ColumnWiek";
+            this.ColumnWiek.ReadOnly = true;
+            // 
+            // ColumnCzyPelnoletnia
+            // 
+            this.ColumnCzyPelnoletnia.DataPropertyName = "Pelnoletnosc";
+            this.ColumnCzyPelnoletnia.HeaderText = "Pełnoletność";
+            this.ColumnCzyPelnoletnia.Name = "ColumnCzyPelnoletnia";
+            this.ColumnCzyPelnoletnia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnCzyPelnoletnia.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // comboBoxWynik
             // 
@@ -354,49 +401,69 @@ namespace DaneOsobowe
             this.labelImieRead.TabIndex = 6;
             this.labelImieRead.Text = "Imie:";
             // 
-            // buttonSzukajPelnoletnie
+            // groupBoxUpdate
             // 
-            this.buttonSzukajPelnoletnie.Location = new System.Drawing.Point(632, 281);
-            this.buttonSzukajPelnoletnie.Name = "buttonSzukajPelnoletnie";
-            this.buttonSzukajPelnoletnie.Size = new System.Drawing.Size(219, 64);
-            this.buttonSzukajPelnoletnie.TabIndex = 21;
-            this.buttonSzukajPelnoletnie.Text = "Szukaj pelnoletnie";
-            this.buttonSzukajPelnoletnie.UseVisualStyleBackColor = true;
-            this.buttonSzukajPelnoletnie.Click += new System.EventHandler(this.buttonSzukajPelnoletnie_Click);
+            this.groupBoxUpdate.Controls.Add(this.labelNazwiskoUpdate);
+            this.groupBoxUpdate.Controls.Add(this.labelId);
+            this.groupBoxUpdate.Controls.Add(this.buttonUpdate);
+            this.groupBoxUpdate.Controls.Add(this.numericUpDownId);
+            this.groupBoxUpdate.Controls.Add(this.textBoxNazwiskoUpdate);
+            this.groupBoxUpdate.Dock = System.Windows.Forms.DockStyle.Top;
+            this.groupBoxUpdate.Location = new System.Drawing.Point(0, 492);
+            this.groupBoxUpdate.Name = "groupBoxUpdate";
+            this.groupBoxUpdate.Size = new System.Drawing.Size(1029, 102);
+            this.groupBoxUpdate.TabIndex = 2;
+            this.groupBoxUpdate.TabStop = false;
+            this.groupBoxUpdate.Text = "Update";
             // 
-            // ColumnImie
+            // textBoxNazwiskoUpdate
             // 
-            this.ColumnImie.DataPropertyName = "Imie";
-            this.ColumnImie.HeaderText = "Imie";
-            this.ColumnImie.Name = "ColumnImie";
-            this.ColumnImie.ReadOnly = true;
+            this.textBoxNazwiskoUpdate.Location = new System.Drawing.Point(138, 37);
+            this.textBoxNazwiskoUpdate.Name = "textBoxNazwiskoUpdate";
+            this.textBoxNazwiskoUpdate.Size = new System.Drawing.Size(100, 23);
+            this.textBoxNazwiskoUpdate.TabIndex = 0;
             // 
-            // ColumnNazwisko
+            // numericUpDownId
             // 
-            this.ColumnNazwisko.DataPropertyName = "Nazwisko";
-            this.ColumnNazwisko.HeaderText = "Nazwisko";
-            this.ColumnNazwisko.Name = "ColumnNazwisko";
-            this.ColumnNazwisko.ReadOnly = true;
+            this.numericUpDownId.Location = new System.Drawing.Point(12, 37);
+            this.numericUpDownId.Name = "numericUpDownId";
+            this.numericUpDownId.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDownId.TabIndex = 1;
             // 
-            // ColumnWiek
+            // buttonUpdate
             // 
-            this.ColumnWiek.DataPropertyName = "Wiek";
-            this.ColumnWiek.HeaderText = "Wiek osoby";
-            this.ColumnWiek.Name = "ColumnWiek";
-            this.ColumnWiek.ReadOnly = true;
+            this.buttonUpdate.Location = new System.Drawing.Point(256, 13);
+            this.buttonUpdate.Name = "buttonUpdate";
+            this.buttonUpdate.Size = new System.Drawing.Size(166, 69);
+            this.buttonUpdate.TabIndex = 2;
+            this.buttonUpdate.Text = "Update";
+            this.buttonUpdate.UseVisualStyleBackColor = true;
+            this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
-            // ColumnCzyPelnoletnia
+            // labelId
             // 
-            this.ColumnCzyPelnoletnia.HeaderText = "Pełnoletność";
-            this.ColumnCzyPelnoletnia.Name = "ColumnCzyPelnoletnia";
-            this.ColumnCzyPelnoletnia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnCzyPelnoletnia.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.labelId.AutoSize = true;
+            this.labelId.Location = new System.Drawing.Point(12, 19);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(17, 15);
+            this.labelId.TabIndex = 3;
+            this.labelId.Text = "Id";
+            // 
+            // labelNazwiskoUpdate
+            // 
+            this.labelNazwiskoUpdate.AutoSize = true;
+            this.labelNazwiskoUpdate.Location = new System.Drawing.Point(140, 19);
+            this.labelNazwiskoUpdate.Name = "labelNazwiskoUpdate";
+            this.labelNazwiskoUpdate.Size = new System.Drawing.Size(92, 15);
+            this.labelNazwiskoUpdate.TabIndex = 4;
+            this.labelNazwiskoUpdate.Text = "Nowe nazwisko:";
             // 
             // OknoGlowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 729);
+            this.Controls.Add(this.groupBoxUpdate);
             this.Controls.Add(this.groupBoxRead);
             this.Controls.Add(this.groupBoxCreate);
             this.Name = "OknoGlowne";
@@ -410,6 +477,9 @@ namespace DaneOsobowe
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSzukajWiek)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownSzukajId)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiekRead)).EndInit();
+            this.groupBoxUpdate.ResumeLayout(false);
+            this.groupBoxUpdate.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownId)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -444,6 +514,12 @@ namespace DaneOsobowe
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNazwisko;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWiek;
         private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnCzyPelnoletnia;
+        private System.Windows.Forms.GroupBox groupBoxUpdate;
+        private System.Windows.Forms.Label labelNazwiskoUpdate;
+        private System.Windows.Forms.Label labelId;
+        private System.Windows.Forms.Button buttonUpdate;
+        private System.Windows.Forms.NumericUpDown numericUpDownId;
+        private System.Windows.Forms.TextBox textBoxNazwiskoUpdate;
     }
 }
 

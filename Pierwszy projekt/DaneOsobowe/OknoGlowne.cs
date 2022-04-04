@@ -35,7 +35,7 @@ namespace DaneOsobowe
             {
                 Imie = textBoxImie.Text,
                 Nazwisko = textBoxNazwisko.Text,
-                Wiek = (int) numericUpDownWiek.Value
+                Wiek = (int)numericUpDownWiek.Value
             };*/
 
             bazaDanychContext.Osoby.Add(osoba);
@@ -134,6 +134,7 @@ namespace DaneOsobowe
                 .OrderByDescending(o => o.Wiek) // sortowanie malejąco
                 .ThenBy(o => o.Imie);
 
+
             dataGridViewLista.DataSource = kolekcjaOsob.ToList();
 
         }
@@ -156,9 +157,59 @@ namespace DaneOsobowe
                 //.OrderBy(o=> o.Wiek); // sortowanie rosnąco
                 .OrderByDescending(o => o.Wiek) // sortowanie malejąco
                 .ThenBy(o => o.Imie)
-                .Select(o => new OsobaNaLiscie());
+                .Select(o => new OsobaNaLiscie()
+                {
+                    Imie = o.Imie,
+                    Nazwisko = o.Nazwisko,
+                    Wiek = o.Wiek,
+                    Pelnoletnosc = o.Wiek >= 18
+                });
 
             dataGridViewLista.DataSource = kolekcjaOsob.ToList();
+        }
+
+        private void buttonUpdate_Click(object sender, EventArgs e)
+        {
+            /*
+             update Osoby
+                set Nazwisko = textBoxNazwiskoUpdate.Text
+              where Id = numericUpDownId.Value
+
+            select *
+              from Osoby
+             where Id = numericUpDownId.Value
+             */
+
+            Osoba szukanaOsoba = bazaDanychContext.Osoby
+                .FirstOrDefault(o => o.Id == (int)numericUpDownId.Value);
+
+            if (szukanaOsoba != null)
+            {
+                szukanaOsoba.Nazwisko = textBoxNazwiskoUpdate.Text;
+
+                bazaDanychContext.SaveChanges();
+            }
+            else
+            {
+                MessageBox.Show("Nie znaleziono w bazie osoby");
+            }
+
+            return;
+            /*
+             update Osoby
+                set Nazwisko = textBoxNazwiskoUpdate.Text
+              where Id > numericUpDownId.Value
+            */
+
+            var szukanaOsoby = bazaDanychContext.Osoby
+                .Where(o => o.Id > (int)numericUpDownId.Value);
+
+            foreach (Osoba osoba in szukanaOsoby)
+            {
+                osoba.Nazwisko = textBoxNazwiskoUpdate.Text;
+            }
+
+            bazaDanychContext.SaveChanges();
         }
     }
 }
