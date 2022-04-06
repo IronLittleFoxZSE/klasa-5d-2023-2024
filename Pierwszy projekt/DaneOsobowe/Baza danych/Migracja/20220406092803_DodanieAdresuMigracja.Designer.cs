@@ -3,14 +3,16 @@ using System;
 using DaneOsobowe.Baza_danych.Context;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DaneOsobowe.Bazadanych.Migracja
 {
     [DbContext(typeof(MojaBazaContext))]
-    partial class MojaBazaContextModelSnapshot : ModelSnapshot
+    [Migration("20220406092803_DodanieAdresuMigracja")]
+    partial class DodanieAdresuMigracja
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

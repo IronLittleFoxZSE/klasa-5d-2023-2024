@@ -58,11 +58,15 @@ namespace DaneOsobowe
             this.textBoxImieRead = new System.Windows.Forms.TextBox();
             this.labelImieRead = new System.Windows.Forms.Label();
             this.groupBoxUpdate = new System.Windows.Forms.GroupBox();
-            this.textBoxNazwiskoUpdate = new System.Windows.Forms.TextBox();
-            this.numericUpDownId = new System.Windows.Forms.NumericUpDown();
-            this.buttonUpdate = new System.Windows.Forms.Button();
-            this.labelId = new System.Windows.Forms.Label();
             this.labelNazwiskoUpdate = new System.Windows.Forms.Label();
+            this.labelId = new System.Windows.Forms.Label();
+            this.buttonUpdate = new System.Windows.Forms.Button();
+            this.numericUpDownId = new System.Windows.Forms.NumericUpDown();
+            this.textBoxNazwiskoUpdate = new System.Windows.Forms.TextBox();
+            this.groupBoxDelete = new System.Windows.Forms.GroupBox();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.numericUpDownDeleteId = new System.Windows.Forms.NumericUpDown();
+            this.labelDelete = new System.Windows.Forms.Label();
             this.groupBoxCreate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiek)).BeginInit();
             this.groupBoxRead.SuspendLayout();
@@ -72,6 +76,8 @@ namespace DaneOsobowe
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiekRead)).BeginInit();
             this.groupBoxUpdate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownId)).BeginInit();
+            this.groupBoxDelete.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDeleteId)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBoxCreate
@@ -416,19 +422,23 @@ namespace DaneOsobowe
             this.groupBoxUpdate.TabStop = false;
             this.groupBoxUpdate.Text = "Update";
             // 
-            // textBoxNazwiskoUpdate
+            // labelNazwiskoUpdate
             // 
-            this.textBoxNazwiskoUpdate.Location = new System.Drawing.Point(138, 37);
-            this.textBoxNazwiskoUpdate.Name = "textBoxNazwiskoUpdate";
-            this.textBoxNazwiskoUpdate.Size = new System.Drawing.Size(100, 23);
-            this.textBoxNazwiskoUpdate.TabIndex = 0;
+            this.labelNazwiskoUpdate.AutoSize = true;
+            this.labelNazwiskoUpdate.Location = new System.Drawing.Point(140, 19);
+            this.labelNazwiskoUpdate.Name = "labelNazwiskoUpdate";
+            this.labelNazwiskoUpdate.Size = new System.Drawing.Size(92, 15);
+            this.labelNazwiskoUpdate.TabIndex = 4;
+            this.labelNazwiskoUpdate.Text = "Nowe nazwisko:";
             // 
-            // numericUpDownId
+            // labelId
             // 
-            this.numericUpDownId.Location = new System.Drawing.Point(12, 37);
-            this.numericUpDownId.Name = "numericUpDownId";
-            this.numericUpDownId.Size = new System.Drawing.Size(120, 23);
-            this.numericUpDownId.TabIndex = 1;
+            this.labelId.AutoSize = true;
+            this.labelId.Location = new System.Drawing.Point(12, 19);
+            this.labelId.Name = "labelId";
+            this.labelId.Size = new System.Drawing.Size(17, 15);
+            this.labelId.TabIndex = 3;
+            this.labelId.Text = "Id";
             // 
             // buttonUpdate
             // 
@@ -440,29 +450,65 @@ namespace DaneOsobowe
             this.buttonUpdate.UseVisualStyleBackColor = true;
             this.buttonUpdate.Click += new System.EventHandler(this.buttonUpdate_Click);
             // 
-            // labelId
+            // numericUpDownId
             // 
-            this.labelId.AutoSize = true;
-            this.labelId.Location = new System.Drawing.Point(12, 19);
-            this.labelId.Name = "labelId";
-            this.labelId.Size = new System.Drawing.Size(17, 15);
-            this.labelId.TabIndex = 3;
-            this.labelId.Text = "Id";
+            this.numericUpDownId.Location = new System.Drawing.Point(12, 37);
+            this.numericUpDownId.Name = "numericUpDownId";
+            this.numericUpDownId.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDownId.TabIndex = 1;
             // 
-            // labelNazwiskoUpdate
+            // textBoxNazwiskoUpdate
             // 
-            this.labelNazwiskoUpdate.AutoSize = true;
-            this.labelNazwiskoUpdate.Location = new System.Drawing.Point(140, 19);
-            this.labelNazwiskoUpdate.Name = "labelNazwiskoUpdate";
-            this.labelNazwiskoUpdate.Size = new System.Drawing.Size(92, 15);
-            this.labelNazwiskoUpdate.TabIndex = 4;
-            this.labelNazwiskoUpdate.Text = "Nowe nazwisko:";
+            this.textBoxNazwiskoUpdate.Location = new System.Drawing.Point(138, 37);
+            this.textBoxNazwiskoUpdate.Name = "textBoxNazwiskoUpdate";
+            this.textBoxNazwiskoUpdate.Size = new System.Drawing.Size(100, 23);
+            this.textBoxNazwiskoUpdate.TabIndex = 0;
+            // 
+            // groupBoxDelete
+            // 
+            this.groupBoxDelete.Controls.Add(this.labelDelete);
+            this.groupBoxDelete.Controls.Add(this.numericUpDownDeleteId);
+            this.groupBoxDelete.Controls.Add(this.buttonDelete);
+            this.groupBoxDelete.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupBoxDelete.Location = new System.Drawing.Point(0, 594);
+            this.groupBoxDelete.Name = "groupBoxDelete";
+            this.groupBoxDelete.Size = new System.Drawing.Size(1029, 135);
+            this.groupBoxDelete.TabIndex = 3;
+            this.groupBoxDelete.TabStop = false;
+            this.groupBoxDelete.Text = "Delete";
+            // 
+            // buttonDelete
+            // 
+            this.buttonDelete.Location = new System.Drawing.Point(165, 32);
+            this.buttonDelete.Name = "buttonDelete";
+            this.buttonDelete.Size = new System.Drawing.Size(125, 63);
+            this.buttonDelete.TabIndex = 0;
+            this.buttonDelete.Text = "Skasuj";
+            this.buttonDelete.UseVisualStyleBackColor = true;
+            this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
+            // 
+            // numericUpDownDeleteId
+            // 
+            this.numericUpDownDeleteId.Location = new System.Drawing.Point(12, 57);
+            this.numericUpDownDeleteId.Name = "numericUpDownDeleteId";
+            this.numericUpDownDeleteId.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDownDeleteId.TabIndex = 1;
+            // 
+            // labelDelete
+            // 
+            this.labelDelete.AutoSize = true;
+            this.labelDelete.Location = new System.Drawing.Point(12, 32);
+            this.labelDelete.Name = "labelDelete";
+            this.labelDelete.Size = new System.Drawing.Size(20, 15);
+            this.labelDelete.TabIndex = 2;
+            this.labelDelete.Text = "Id:";
             // 
             // OknoGlowne
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1029, 729);
+            this.Controls.Add(this.groupBoxDelete);
             this.Controls.Add(this.groupBoxUpdate);
             this.Controls.Add(this.groupBoxRead);
             this.Controls.Add(this.groupBoxCreate);
@@ -480,6 +526,9 @@ namespace DaneOsobowe
             this.groupBoxUpdate.ResumeLayout(false);
             this.groupBoxUpdate.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownId)).EndInit();
+            this.groupBoxDelete.ResumeLayout(false);
+            this.groupBoxDelete.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownDeleteId)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -520,6 +569,10 @@ namespace DaneOsobowe
         private System.Windows.Forms.Button buttonUpdate;
         private System.Windows.Forms.NumericUpDown numericUpDownId;
         private System.Windows.Forms.TextBox textBoxNazwiskoUpdate;
+        private System.Windows.Forms.GroupBox groupBoxDelete;
+        private System.Windows.Forms.Label labelDelete;
+        private System.Windows.Forms.NumericUpDown numericUpDownDeleteId;
+        private System.Windows.Forms.Button buttonDelete;
     }
 }
 

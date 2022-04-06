@@ -211,5 +211,25 @@ namespace DaneOsobowe
 
             bazaDanychContext.SaveChanges();
         }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+            /*
+             delete from Osoby
+              where id == numericUpDownDeleteId.value
+             */
+
+            Osoba osobaDoSkasowania = bazaDanychContext.Osoby
+                .FirstOrDefault(o => o.Id == (int) numericUpDownDeleteId.Value);
+            if (osobaDoSkasowania != null)
+            {
+                bazaDanychContext.Osoby.Remove(osobaDoSkasowania);
+                bazaDanychContext.SaveChanges();
+            }
+            else
+            {
+                MessageBox.Show("Nie znaleziono w bazie osoby");
+            }
+        }
     }
 }

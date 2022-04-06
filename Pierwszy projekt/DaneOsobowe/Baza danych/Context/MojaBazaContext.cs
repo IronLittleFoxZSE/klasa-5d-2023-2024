@@ -16,5 +16,6 @@ namespace DaneOsobowe.Baza_danych.Context
         }
 
         public DbSet<Osoba> Osoby { get; set; }
+        public DbSet<Adres> Adresy { get; set; }  
     }
 }
