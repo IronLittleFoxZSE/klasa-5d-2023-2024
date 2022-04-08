@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DaneOsobowe.Baza_danych.Context
 {
+    
     class MojaBazaContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -19,3 +20,7 @@ namespace DaneOsobowe.Baza_danych.Context
         public DbSet<Adres> Adresy { get; set; }  
     }
 }
+
+//add-migration "nazwa migracji" -OutputDir "scieżka do zapisu migracji"
+//add-migration "DodanieTabelkiAdresyMigracja" -OutputDir "Baza danych/Migracja"
+//update-database

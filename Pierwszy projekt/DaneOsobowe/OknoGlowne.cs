@@ -22,6 +22,27 @@ namespace DaneOsobowe
 
             bazaDanychContext = new MojaBazaContext();
             dataGridViewLista.AutoGenerateColumns = false;
+
+            //DodanieAdresowDoBazy();
+        }
+
+        private void DodanieAdresowDoBazy()
+        {
+            Adres adres = new Adres();
+            adres.Miasto = "Kielce";
+            adres.Ulica = "Majowa";
+            adres.NrDomu = "5";
+            bazaDanychContext.Adresy.Add(adres);
+
+            adres = new Adres()
+            {
+                Miasto = "Morawica",
+                Ulica = "Leśna",
+                NrDomu = "123"
+            };
+            bazaDanychContext.Adresy.Add(adres);
+
+            bazaDanychContext.SaveChanges();
         }
 
         private void buttonDodaj_Click(object sender, EventArgs e)
