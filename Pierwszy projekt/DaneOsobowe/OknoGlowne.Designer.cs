@@ -41,10 +41,6 @@ namespace DaneOsobowe
             this.buttonSzukajPelnoletnie = new System.Windows.Forms.Button();
             this.buttonSzukaj = new System.Windows.Forms.Button();
             this.dataGridViewLista = new System.Windows.Forms.DataGridView();
-            this.ColumnImie = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnNazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnWiek = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ColumnCzyPelnoletnia = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.comboBoxWynik = new System.Windows.Forms.ComboBox();
             this.buttonSzukajWiek = new System.Windows.Forms.Button();
             this.numericUpDownSzukajWiek = new System.Windows.Forms.NumericUpDown();
@@ -64,9 +60,15 @@ namespace DaneOsobowe
             this.numericUpDownId = new System.Windows.Forms.NumericUpDown();
             this.textBoxNazwiskoUpdate = new System.Windows.Forms.TextBox();
             this.groupBoxDelete = new System.Windows.Forms.GroupBox();
-            this.buttonDelete = new System.Windows.Forms.Button();
-            this.numericUpDownDeleteId = new System.Windows.Forms.NumericUpDown();
             this.labelDelete = new System.Windows.Forms.Label();
+            this.numericUpDownDeleteId = new System.Windows.Forms.NumericUpDown();
+            this.buttonDelete = new System.Windows.Forms.Button();
+            this.ColumnImie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnWiek = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnCzyPelnoletnia = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ColumnMiasto = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnUlica = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxCreate.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownWiek)).BeginInit();
             this.groupBoxRead.SuspendLayout();
@@ -198,7 +200,7 @@ namespace DaneOsobowe
             // 
             // buttonSzukajPelnoletnie
             // 
-            this.buttonSzukajPelnoletnie.Location = new System.Drawing.Point(632, 281);
+            this.buttonSzukajPelnoletnie.Location = new System.Drawing.Point(757, 281);
             this.buttonSzukajPelnoletnie.Name = "buttonSzukajPelnoletnie";
             this.buttonSzukajPelnoletnie.Size = new System.Drawing.Size(219, 64);
             this.buttonSzukajPelnoletnie.TabIndex = 21;
@@ -208,7 +210,7 @@ namespace DaneOsobowe
             // 
             // buttonSzukaj
             // 
-            this.buttonSzukaj.Location = new System.Drawing.Point(632, 195);
+            this.buttonSzukaj.Location = new System.Drawing.Point(825, 167);
             this.buttonSzukaj.Name = "buttonSzukaj";
             this.buttonSzukaj.Size = new System.Drawing.Size(107, 58);
             this.buttonSzukaj.TabIndex = 20;
@@ -223,41 +225,14 @@ namespace DaneOsobowe
             this.ColumnImie,
             this.ColumnNazwisko,
             this.ColumnWiek,
-            this.ColumnCzyPelnoletnia});
+            this.ColumnCzyPelnoletnia,
+            this.ColumnMiasto,
+            this.ColumnUlica});
             this.dataGridViewLista.Location = new System.Drawing.Point(6, 195);
             this.dataGridViewLista.Name = "dataGridViewLista";
             this.dataGridViewLista.RowTemplate.Height = 25;
-            this.dataGridViewLista.Size = new System.Drawing.Size(545, 150);
+            this.dataGridViewLista.Size = new System.Drawing.Size(684, 150);
             this.dataGridViewLista.TabIndex = 19;
-            // 
-            // ColumnImie
-            // 
-            this.ColumnImie.DataPropertyName = "Imie";
-            this.ColumnImie.HeaderText = "Imie";
-            this.ColumnImie.Name = "ColumnImie";
-            this.ColumnImie.ReadOnly = true;
-            // 
-            // ColumnNazwisko
-            // 
-            this.ColumnNazwisko.DataPropertyName = "Nazwisko";
-            this.ColumnNazwisko.HeaderText = "Nazwisko";
-            this.ColumnNazwisko.Name = "ColumnNazwisko";
-            this.ColumnNazwisko.ReadOnly = true;
-            // 
-            // ColumnWiek
-            // 
-            this.ColumnWiek.DataPropertyName = "Wiek";
-            this.ColumnWiek.HeaderText = "Wiek osoby";
-            this.ColumnWiek.Name = "ColumnWiek";
-            this.ColumnWiek.ReadOnly = true;
-            // 
-            // ColumnCzyPelnoletnia
-            // 
-            this.ColumnCzyPelnoletnia.DataPropertyName = "Pelnoletnosc";
-            this.ColumnCzyPelnoletnia.HeaderText = "Pełnoletność";
-            this.ColumnCzyPelnoletnia.Name = "ColumnCzyPelnoletnia";
-            this.ColumnCzyPelnoletnia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ColumnCzyPelnoletnia.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             // 
             // comboBoxWynik
             // 
@@ -477,6 +452,22 @@ namespace DaneOsobowe
             this.groupBoxDelete.TabStop = false;
             this.groupBoxDelete.Text = "Delete";
             // 
+            // labelDelete
+            // 
+            this.labelDelete.AutoSize = true;
+            this.labelDelete.Location = new System.Drawing.Point(12, 32);
+            this.labelDelete.Name = "labelDelete";
+            this.labelDelete.Size = new System.Drawing.Size(20, 15);
+            this.labelDelete.TabIndex = 2;
+            this.labelDelete.Text = "Id:";
+            // 
+            // numericUpDownDeleteId
+            // 
+            this.numericUpDownDeleteId.Location = new System.Drawing.Point(12, 57);
+            this.numericUpDownDeleteId.Name = "numericUpDownDeleteId";
+            this.numericUpDownDeleteId.Size = new System.Drawing.Size(120, 23);
+            this.numericUpDownDeleteId.TabIndex = 1;
+            // 
             // buttonDelete
             // 
             this.buttonDelete.Location = new System.Drawing.Point(165, 32);
@@ -487,21 +478,46 @@ namespace DaneOsobowe
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
-            // numericUpDownDeleteId
+            // ColumnImie
             // 
-            this.numericUpDownDeleteId.Location = new System.Drawing.Point(12, 57);
-            this.numericUpDownDeleteId.Name = "numericUpDownDeleteId";
-            this.numericUpDownDeleteId.Size = new System.Drawing.Size(120, 23);
-            this.numericUpDownDeleteId.TabIndex = 1;
+            this.ColumnImie.DataPropertyName = "Imie";
+            this.ColumnImie.HeaderText = "Imie";
+            this.ColumnImie.Name = "ColumnImie";
+            this.ColumnImie.ReadOnly = true;
             // 
-            // labelDelete
+            // ColumnNazwisko
             // 
-            this.labelDelete.AutoSize = true;
-            this.labelDelete.Location = new System.Drawing.Point(12, 32);
-            this.labelDelete.Name = "labelDelete";
-            this.labelDelete.Size = new System.Drawing.Size(20, 15);
-            this.labelDelete.TabIndex = 2;
-            this.labelDelete.Text = "Id:";
+            this.ColumnNazwisko.DataPropertyName = "Nazwisko";
+            this.ColumnNazwisko.HeaderText = "Nazwisko";
+            this.ColumnNazwisko.Name = "ColumnNazwisko";
+            this.ColumnNazwisko.ReadOnly = true;
+            // 
+            // ColumnWiek
+            // 
+            this.ColumnWiek.DataPropertyName = "Wiek";
+            this.ColumnWiek.HeaderText = "Wiek osoby";
+            this.ColumnWiek.Name = "ColumnWiek";
+            this.ColumnWiek.ReadOnly = true;
+            // 
+            // ColumnCzyPelnoletnia
+            // 
+            this.ColumnCzyPelnoletnia.DataPropertyName = "Pelnoletnosc";
+            this.ColumnCzyPelnoletnia.HeaderText = "Pełnoletność";
+            this.ColumnCzyPelnoletnia.Name = "ColumnCzyPelnoletnia";
+            this.ColumnCzyPelnoletnia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.ColumnCzyPelnoletnia.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            // 
+            // ColumnMiasto
+            // 
+            this.ColumnMiasto.DataPropertyName = "Miasto";
+            this.ColumnMiasto.HeaderText = "Miasto";
+            this.ColumnMiasto.Name = "ColumnMiasto";
+            // 
+            // ColumnUlica
+            // 
+            this.ColumnUlica.DataPropertyName = "Ulica";
+            this.ColumnUlica.HeaderText = "Ulica";
+            this.ColumnUlica.Name = "ColumnUlica";
             // 
             // OknoGlowne
             // 
@@ -559,10 +575,6 @@ namespace DaneOsobowe
         private System.Windows.Forms.Button buttonSzukaj;
         private System.Windows.Forms.DataGridView dataGridViewLista;
         private System.Windows.Forms.Button buttonSzukajPelnoletnie;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnImie;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNazwisko;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWiek;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnCzyPelnoletnia;
         private System.Windows.Forms.GroupBox groupBoxUpdate;
         private System.Windows.Forms.Label labelNazwiskoUpdate;
         private System.Windows.Forms.Label labelId;
@@ -573,6 +585,12 @@ namespace DaneOsobowe
         private System.Windows.Forms.Label labelDelete;
         private System.Windows.Forms.NumericUpDown numericUpDownDeleteId;
         private System.Windows.Forms.Button buttonDelete;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnImie;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNazwisko;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnWiek;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn ColumnCzyPelnoletnia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnMiasto;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnUlica;
     }
 }
 

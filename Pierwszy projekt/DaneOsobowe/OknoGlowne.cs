@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using DaneOsobowe.Baza_danych.Context;
 using DaneOsobowe.Baza_danych.Model;
+using Microsoft.EntityFrameworkCore;
 
 namespace DaneOsobowe
 {
@@ -24,6 +25,18 @@ namespace DaneOsobowe
             dataGridViewLista.AutoGenerateColumns = false;
 
             //DodanieAdresowDoBazy();
+            //PowiazOsobyAdresy();
+        }
+
+        private void PowiazOsobyAdresy()
+        {
+            var kolekcjaOsob = bazaDanychContext.Osoby;
+            foreach (Osoba osoba in kolekcjaOsob)
+            {
+                osoba.AdresId = 2;
+            }
+
+            bazaDanychContext.SaveChanges();
         }
 
         private void DodanieAdresowDoBazy()
@@ -166,14 +179,18 @@ namespace DaneOsobowe
              select o.Imie.
                     o.Nazwisko,
                     o.Wiek, 
-                    o.wiek >= 18 as Pelnoletnosc
+                    o.wiek >= 18 as Pelnoletnosc,
+                    a.Miasto,
+                    a.Ulica + ' ' + a.NrDomu as Ulica
                from Osoby o
+               join Adresy a on a.Id = o.AdresId
               where o.wiek >= (int)numericUpDownSzukajWiek.Value
             order by o.wiek desc, o.imie
 
              */
 
             var kolekcjaOsob = bazaDanychContext.Osoby
+                .Include(o => o.Adres)
                 .Where(oo => oo.Wiek >= (int)numericUpDownSzukajWiek.Value)
                 //.OrderBy(o=> o.Wiek); // sortowanie rosnąco
                 .OrderByDescending(o => o.Wiek) // sortowanie malejąco
@@ -183,7 +200,9 @@ namespace DaneOsobowe
                     Imie = o.Imie,
                     Nazwisko = o.Nazwisko,
                     Wiek = o.Wiek,
-                    Pelnoletnosc = o.Wiek >= 18
+                    Pelnoletnosc = o.Wiek >= 18,
+                    Miasto = o.Adres.Miasto,
+                    Ulica = o.Adres.Ulica + " " + o.Adres.NrDomu
                 });
 
             dataGridViewLista.DataSource = kolekcjaOsob.ToList();
@@ -241,7 +260,7 @@ namespace DaneOsobowe
              */
 
             Osoba osobaDoSkasowania = bazaDanychContext.Osoby
-                .FirstOrDefault(o => o.Id == (int) numericUpDownDeleteId.Value);
+                .FirstOrDefault(o => o.Id == (int)numericUpDownDeleteId.Value);
             if (osobaDoSkasowania != null)
             {
                 bazaDanychContext.Osoby.Remove(osobaDoSkasowania);
