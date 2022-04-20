@@ -8,7 +8,7 @@ namespace ProjektUczniowie.Baza_danych.Model
 {
     class Klasa
     {
-        public TYPE Type { get; set; }
-
+        public int Id { get; set; }
+        public string NazwaKlasy { get; set; }
     }
 }

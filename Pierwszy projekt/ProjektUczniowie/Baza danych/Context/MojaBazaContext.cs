@@ -12,8 +12,8 @@ namespace ProjektUczniowie.Baza_danych.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlite("FileName=projektUczniowieBaza3d.db");
 
+            optionsBuilder.UseSqlite("FileName=projektUczniowieBaza3d.db");
             base.OnConfiguring(optionsBuilder);
         }
 
