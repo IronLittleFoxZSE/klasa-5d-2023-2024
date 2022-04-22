@@ -168,6 +168,7 @@ namespace ProjektUczniowie
             this.buttonOperacjeDodajKlase.TabIndex = 3;
             this.buttonOperacjeDodajKlase.Text = "Dodaj klasę";
             this.buttonOperacjeDodajKlase.UseVisualStyleBackColor = true;
+            this.buttonOperacjeDodajKlase.Click += new System.EventHandler(this.buttonOperacjeDodajKlase_Click);
             // 
             // buttonOperacjeUsun
             // 
