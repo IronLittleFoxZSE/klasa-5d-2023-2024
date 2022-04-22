@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using ProjektUczniowie.Baza_danych.Context;
+using ProjektUczniowie.Baza_danych.Model;
 
 namespace ProjektUczniowie
 {
@@ -24,6 +25,17 @@ namespace ProjektUczniowie
 
         private void buttonOperacjeDodajKlase_Click(object sender, EventArgs e)
         {
+            OknoDodajKlase oknoDodajKlase = new OknoDodajKlase();
+            if (oknoDodajKlase.ShowDialog() == DialogResult.OK)
+            {
+                Klasa nowaKlasa = new Klasa()
+                {
+                    NazwaKlasy = oknoDodajKlase.NazwaKlasy
+                };
+
+                bazaContext.Klasy.Add(nowaKlasa);
+                bazaContext.SaveChanges();
+            }
 
         }
     }
