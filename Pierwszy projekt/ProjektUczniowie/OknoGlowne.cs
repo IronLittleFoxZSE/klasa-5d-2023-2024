@@ -15,12 +15,14 @@ namespace ProjektUczniowie
     public partial class OknoGlowne : Form
     {
         private MojaBazaContext bazaContext;
+        private List<Klasa> listaKlas;
 
         public OknoGlowne()
         {
             InitializeComponent();
 
             bazaContext = new MojaBazaContext();
+            ZaladujListeKlas();
         }
 
         private void buttonOperacjeDodajKlase_Click(object sender, EventArgs e)
@@ -35,8 +37,41 @@ namespace ProjektUczniowie
 
                 bazaContext.Klasy.Add(nowaKlasa);
                 bazaContext.SaveChanges();
+                ZaladujListeKlas();
             }
+        }
 
+        private void ZaladujListeKlas()
+        {
+            listaKlas = bazaContext.Klasy.ToList();
+            listaKlas.Insert(0, new Klasa()
+                {
+                    Id = -1,
+                    NazwaKlasy = "<wszystkie>"
+                });
+            comboBoxFiltryKlasa.DataSource = listaKlas;
+            comboBoxFiltryKlasa.DisplayMember = "NazwaKlasy";
+        }
+
+        private void buttonOperacjeDodaj_Click(object sender, EventArgs e)
+        {
+            OknoSzczegolyUczen oknoSzczegolyUczen = new OknoSzczegolyUczen();
+            oknoSzczegolyUczen.OpisOkna = "Dodaj ucznia";
+            oknoSzczegolyUczen.OpisPrzyciskuOk = "Dodaj";
+
+            List<Klasa> listaDlaOkna = listaKlas.ToList();
+            listaDlaOkna.RemoveAt(0);
+
+            oknoSzczegolyUczen.ListaKlas = listaDlaOkna;
+            if (oknoSzczegolyUczen.ShowDialog() == DialogResult.OK)
+            {
+                Uczen nowyUczen = new Uczen()
+                {
+
+                };
+                bazaContext.Uczniowie.Add(nowyUczen);
+                bazaContext.SaveChanges();
+            }
         }
     }
 }

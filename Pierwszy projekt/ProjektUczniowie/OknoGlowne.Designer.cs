@@ -196,6 +196,7 @@ namespace ProjektUczniowie
             this.buttonOperacjeDodaj.TabIndex = 0;
             this.buttonOperacjeDodaj.Text = "Dodaj";
             this.buttonOperacjeDodaj.UseVisualStyleBackColor = true;
+            this.buttonOperacjeDodaj.Click += new System.EventHandler(this.buttonOperacjeDodaj_Click);
             // 
             // groupBoxLista
             // 

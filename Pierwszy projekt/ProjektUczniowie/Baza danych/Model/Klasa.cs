@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjektUczniowie.Baza_danych.Model
 {
-    class Klasa
+    public class Klasa
     {
         public int Id { get; set; }
         public string NazwaKlasy { get; set; }
