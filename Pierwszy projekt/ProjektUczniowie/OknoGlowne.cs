@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using Microsoft.EntityFrameworkCore;
 using ProjektUczniowie.Baza_danych.Context;
 using ProjektUczniowie.Baza_danych.Model;
 
@@ -23,6 +24,7 @@ namespace ProjektUczniowie
 
             bazaContext = new MojaBazaContext();
             ZaladujListeKlas();
+            dataGridViewLista.AutoGenerateColumns = false;
         }
 
         private void buttonOperacjeDodajKlase_Click(object sender, EventArgs e)
@@ -67,11 +69,41 @@ namespace ProjektUczniowie
             {
                 Uczen nowyUczen = new Uczen()
                 {
-
+                    Imie = oknoSzczegolyUczen.Imie,
+                    Nazwisko = oknoSzczegolyUczen.Nazwisko,
+                    RokUrodzenia = oknoSzczegolyUczen.RokUrodzenia,
+                    KlasaId = oknoSzczegolyUczen.WybranaKlasa.Id
                 };
                 bazaContext.Uczniowie.Add(nowyUczen);
                 bazaContext.SaveChanges();
             }
+        }
+
+        private void buttonFiltrySzukaj_Click(object sender, EventArgs e)
+        {
+            /*
+             select u.Imie,
+                    u.Nazwisko,
+                    u.RokUrodzenia,
+                    k.NazwaKlasy
+               from Uczniowie u
+               join Klasy k on k.Id = u.KlasaId
+              where k.Id = comboBoxFiltryKlasa.SelectedItem.Id
+             */
+
+            var listaDocelowa = bazaContext.Uczniowie
+                .Include(u => u.Klasa)
+                .Where(u=> u.Klasa.Id == (comboBoxFiltryKlasa.SelectedItem as Klasa).Id)
+                .Select(u => new UczenGrid()
+                {
+                    Imie = u.Imie,
+                    Nazwisko = u.Nazwisko,
+                    RokUrodzenia = u.RokUrodzenia,
+                    NazwaKlasy = u.Klasa.NazwaKlasy
+                });
+
+
+            dataGridViewLista.DataSource = listaDocelowa.ToList();
         }
     }
 }

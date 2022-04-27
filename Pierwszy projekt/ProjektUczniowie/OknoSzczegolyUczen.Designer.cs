@@ -54,6 +54,11 @@ namespace ProjektUczniowie
             // numericUpDownRok
             // 
             this.numericUpDownRok.Location = new System.Drawing.Point(373, 27);
+            this.numericUpDownRok.Maximum = new decimal(new int[] {
+            2999,
+            0,
+            0,
+            0});
             this.numericUpDownRok.Name = "numericUpDownRok";
             this.numericUpDownRok.Size = new System.Drawing.Size(120, 23);
             this.numericUpDownRok.TabIndex = 15;

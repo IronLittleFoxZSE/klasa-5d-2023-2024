@@ -46,6 +46,10 @@ namespace ProjektUczniowie
             this.buttonOperacjeDodaj = new System.Windows.Forms.Button();
             this.groupBoxLista = new System.Windows.Forms.GroupBox();
             this.dataGridViewLista = new System.Windows.Forms.DataGridView();
+            this.ColumnImie = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnNazwisko = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnKlasa = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ColumnRokUrodzenia = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBoxFiltry.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownFiltryRok)).BeginInit();
             this.groupBoxOperacje.SuspendLayout();
@@ -80,6 +84,7 @@ namespace ProjektUczniowie
             this.buttonFiltrySzukaj.TabIndex = 8;
             this.buttonFiltrySzukaj.Text = "Szukaj";
             this.buttonFiltrySzukaj.UseVisualStyleBackColor = true;
+            this.buttonFiltrySzukaj.Click += new System.EventHandler(this.buttonFiltrySzukaj_Click);
             // 
             // labelFiltryNazwisko
             // 
@@ -93,12 +98,18 @@ namespace ProjektUczniowie
             // numericUpDownFiltryRok
             // 
             this.numericUpDownFiltryRok.Location = new System.Drawing.Point(373, 37);
+            this.numericUpDownFiltryRok.Maximum = new decimal(new int[] {
+            2999,
+            0,
+            0,
+            0});
             this.numericUpDownFiltryRok.Name = "numericUpDownFiltryRok";
             this.numericUpDownFiltryRok.Size = new System.Drawing.Size(120, 23);
             this.numericUpDownFiltryRok.TabIndex = 7;
             // 
             // comboBoxFiltryKlasa
             // 
+            this.comboBoxFiltryKlasa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxFiltryKlasa.FormattingEnabled = true;
             this.comboBoxFiltryKlasa.Location = new System.Drawing.Point(246, 37);
             this.comboBoxFiltryKlasa.Name = "comboBoxFiltryKlasa";
@@ -212,12 +223,45 @@ namespace ProjektUczniowie
             // dataGridViewLista
             // 
             this.dataGridViewLista.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewLista.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnImie,
+            this.ColumnNazwisko,
+            this.ColumnKlasa,
+            this.ColumnRokUrodzenia});
             this.dataGridViewLista.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dataGridViewLista.Location = new System.Drawing.Point(3, 19);
             this.dataGridViewLista.Name = "dataGridViewLista";
             this.dataGridViewLista.RowTemplate.Height = 25;
             this.dataGridViewLista.Size = new System.Drawing.Size(529, 338);
             this.dataGridViewLista.TabIndex = 0;
+            // 
+            // ColumnImie
+            // 
+            this.ColumnImie.DataPropertyName = "Imie";
+            this.ColumnImie.HeaderText = "Imie";
+            this.ColumnImie.Name = "ColumnImie";
+            this.ColumnImie.ReadOnly = true;
+            // 
+            // ColumnNazwisko
+            // 
+            this.ColumnNazwisko.DataPropertyName = "Nazwisko";
+            this.ColumnNazwisko.HeaderText = "Nazwisko";
+            this.ColumnNazwisko.Name = "ColumnNazwisko";
+            this.ColumnNazwisko.ReadOnly = true;
+            // 
+            // ColumnKlasa
+            // 
+            this.ColumnKlasa.DataPropertyName = "NazwaKlasy";
+            this.ColumnKlasa.HeaderText = "Klasa";
+            this.ColumnKlasa.Name = "ColumnKlasa";
+            this.ColumnKlasa.ReadOnly = true;
+            // 
+            // ColumnRokUrodzenia
+            // 
+            this.ColumnRokUrodzenia.DataPropertyName = "RokUrodzenia";
+            this.ColumnRokUrodzenia.HeaderText = "Rok urodzenia";
+            this.ColumnRokUrodzenia.Name = "ColumnRokUrodzenia";
+            this.ColumnRokUrodzenia.ReadOnly = true;
             // 
             // OknoGlowne
             // 
@@ -259,6 +303,10 @@ namespace ProjektUczniowie
         private System.Windows.Forms.Button buttonOperacjeDodaj;
         private System.Windows.Forms.GroupBox groupBoxLista;
         private System.Windows.Forms.DataGridView dataGridViewLista;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnImie;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnNazwisko;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnKlasa;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnRokUrodzenia;
     }
 }
 

@@ -38,6 +38,38 @@ namespace ProjektUczniowie
             }
         }
 
+        public string Imie
+        {
+            get
+            {
+                return textBoxImie.Text;
+            }
+        }
+
+        public string Nazwisko
+        {
+            get
+            {
+                return textBoxNazwisko.Text;
+            }
+        }
+
+        public int RokUrodzenia
+        {
+            get
+            {
+                return (int)numericUpDownRok.Value;
+            }
+        }
+
+        public Klasa WybranaKlasa
+        {
+            get
+            {
+                return comboBoxKlasa.SelectedItem as Klasa;
+            }
+        }
+
         public OknoSzczegolyUczen()
         {
             InitializeComponent();
