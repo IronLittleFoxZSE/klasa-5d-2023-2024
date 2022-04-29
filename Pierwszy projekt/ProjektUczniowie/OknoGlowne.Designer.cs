@@ -189,6 +189,7 @@ namespace ProjektUczniowie
             this.buttonOperacjeUsun.TabIndex = 2;
             this.buttonOperacjeUsun.Text = "Usuń";
             this.buttonOperacjeUsun.UseVisualStyleBackColor = true;
+            this.buttonOperacjeUsun.Click += new System.EventHandler(this.buttonOperacjeUsun_Click);
             // 
             // buttonOperacjeEdytuj
             // 

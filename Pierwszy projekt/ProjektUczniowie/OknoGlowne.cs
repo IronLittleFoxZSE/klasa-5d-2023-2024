@@ -88,12 +88,26 @@ namespace ProjektUczniowie
                     k.NazwaKlasy
                from Uczniowie u
                join Klasy k on k.Id = u.KlasaId
-              where k.Id = comboBoxFiltryKlasa.SelectedItem.Id
+              where 1 = 1
+                and (comboBoxFiltryKlasa.SelectedItem.Id == -1
+                    or k.Id = comboBoxFiltryKlasa.SelectedItem.Id)
+                and (string.IsNullOrEmpty(textBoxFiltryImie.Text)
+                    --or u.Imie = textBoxFiltryImie.Text
+                     or u.Imie like '%' + textBoxFiltryImie.Text + '%'
+            )
              */
+
+            int wybraneIdKlasy = (comboBoxFiltryKlasa.SelectedItem as Klasa).Id;
 
             var listaDocelowa = bazaContext.Uczniowie
                 .Include(u => u.Klasa)
-                .Where(u=> u.Klasa.Id == (comboBoxFiltryKlasa.SelectedItem as Klasa).Id)
+                .Where(u=> wybraneIdKlasy == -1 || u.Klasa.Id == wybraneIdKlasy)
+                .Where(u=> string.IsNullOrEmpty(textBoxFiltryImie.Text.Trim())
+                               || u.Imie.Contains(textBoxFiltryImie.Text))
+                .Where(u => string.IsNullOrEmpty(textBoxFiltryNazwisko.Text.Trim())
+                            || u.Nazwisko.Contains(textBoxFiltryNazwisko.Text))
+                .Where(u => string.IsNullOrEmpty(numericUpDownFiltryRok.Text.Trim())
+                            || u.RokUrodzenia == (int)numericUpDownFiltryRok.Value)
                 .Select(u => new UczenGrid()
                 {
                     Imie = u.Imie,
@@ -104,6 +118,21 @@ namespace ProjektUczniowie
 
 
             dataGridViewLista.DataSource = listaDocelowa.ToList();
+        }
+
+        private void buttonOperacjeUsun_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Czy chesz usunąć aktualny rekord?",
+                    "Usuwanie",
+                    MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                UczenGrid aktualnyWiersz = dataGridViewLista.CurrentRow
+                                           ?.DataBoundItem as UczenGrid;
+                if (aktualnyWiersz != null)
+                {
+
+                }
+            }
         }
     }
 }
