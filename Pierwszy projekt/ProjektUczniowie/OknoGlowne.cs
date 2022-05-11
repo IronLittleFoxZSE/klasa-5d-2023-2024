@@ -110,10 +110,12 @@ namespace ProjektUczniowie
                             || u.RokUrodzenia == (int)numericUpDownFiltryRok.Value)
                 .Select(u => new UczenGrid()
                 {
+                    Id = u.Id,
                     Imie = u.Imie,
                     Nazwisko = u.Nazwisko,
                     RokUrodzenia = u.RokUrodzenia,
-                    NazwaKlasy = u.Klasa.NazwaKlasy
+                    NazwaKlasy = u.Klasa.NazwaKlasy,
+                    Klasa = u.Klasa
                 });
 
 
@@ -130,7 +132,61 @@ namespace ProjektUczniowie
                                            ?.DataBoundItem as UczenGrid;
                 if (aktualnyWiersz != null)
                 {
+                    /*
+                     select *
+                       from Uczniowie u
+                      where u.Id = aktualnyWiersz.Id
+                     
+                     */
+                    Uczen szukanyUczen = bazaContext.Uczniowie.Find(aktualnyWiersz.Id);
+                    if (szukanyUczen != null)
+                    {
+                        bazaContext.Uczniowie.Remove(szukanyUczen);
+                        bazaContext.SaveChanges();
+                        MessageBox.Show("Kasowanie zakończone sukcesem");
+                        buttonFiltrySzukaj.PerformClick();
+                    }
+                }
+            }
+        }
 
+        private void buttonOperacjeEdytuj_Click(object sender, EventArgs e)
+        {
+            OknoSzczegolyUczen oknoSzczegolyUczen = new OknoSzczegolyUczen();
+            oknoSzczegolyUczen.OpisOkna = "Edytuj ucznia";
+            oknoSzczegolyUczen.OpisPrzyciskuOk = "Zapisz zmiany";
+
+            List<Klasa> listaDlaOkna = listaKlas.ToList();
+            listaDlaOkna.RemoveAt(0);
+
+            oknoSzczegolyUczen.ListaKlas = listaDlaOkna;
+
+            UczenGrid aktualnyWiersz = dataGridViewLista.CurrentRow?.DataBoundItem as UczenGrid;
+
+            if (aktualnyWiersz == null)
+                return;
+
+            oknoSzczegolyUczen.Imie = aktualnyWiersz.Imie;
+            oknoSzczegolyUczen.Nazwisko = aktualnyWiersz.Nazwisko;
+            oknoSzczegolyUczen.RokUrodzenia = aktualnyWiersz.RokUrodzenia;
+            oknoSzczegolyUczen.WybranaKlasa = aktualnyWiersz.Klasa;
+
+            if (oknoSzczegolyUczen.ShowDialog() == DialogResult.OK)
+            {
+                Uczen uczenDoModyfikacji = bazaContext.Uczniowie.Find(aktualnyWiersz.Id);
+                if (uczenDoModyfikacji != null)
+                {
+                    uczenDoModyfikacji.Imie = oknoSzczegolyUczen.Imie;
+                    uczenDoModyfikacji.Nazwisko = oknoSzczegolyUczen.Nazwisko;
+                    uczenDoModyfikacji.RokUrodzenia = oknoSzczegolyUczen.RokUrodzenia;
+                    uczenDoModyfikacji.KlasaId = oknoSzczegolyUczen.WybranaKlasa.Id;
+                    bazaContext.SaveChanges();
+
+                    aktualnyWiersz.Imie = oknoSzczegolyUczen.Imie;
+                    aktualnyWiersz.Nazwisko = oknoSzczegolyUczen.Nazwisko;
+                    aktualnyWiersz.RokUrodzenia = oknoSzczegolyUczen.RokUrodzenia;
+                    aktualnyWiersz.Klasa = oknoSzczegolyUczen.WybranaKlasa;
+                    dataGridViewLista.Refresh();
                 }
             }
         }

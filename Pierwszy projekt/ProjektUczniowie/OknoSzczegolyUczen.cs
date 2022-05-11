@@ -44,6 +44,10 @@ namespace ProjektUczniowie
             {
                 return textBoxImie.Text;
             }
+            set
+            {
+                textBoxImie.Text = value;
+            }
         }
 
         public string Nazwisko
@@ -51,6 +55,10 @@ namespace ProjektUczniowie
             get
             {
                 return textBoxNazwisko.Text;
+            }
+            set
+            {
+                textBoxNazwisko.Text = value;
             }
         }
 
@@ -60,6 +68,10 @@ namespace ProjektUczniowie
             {
                 return (int)numericUpDownRok.Value;
             }
+            set
+            {
+                numericUpDownRok.Value = value;
+            }
         }
 
         public Klasa WybranaKlasa
@@ -67,6 +79,10 @@ namespace ProjektUczniowie
             get
             {
                 return comboBoxKlasa.SelectedItem as Klasa;
+            }
+            set
+            {
+                comboBoxKlasa.SelectedItem = value;
             }
         }
 

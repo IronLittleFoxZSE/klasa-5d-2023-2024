@@ -199,6 +199,7 @@ namespace ProjektUczniowie
             this.buttonOperacjeEdytuj.TabIndex = 1;
             this.buttonOperacjeEdytuj.Text = "Edytuj";
             this.buttonOperacjeEdytuj.UseVisualStyleBackColor = true;
+            this.buttonOperacjeEdytuj.Click += new System.EventHandler(this.buttonOperacjeEdytuj_Click);
             // 
             // buttonOperacjeDodaj
             // 
