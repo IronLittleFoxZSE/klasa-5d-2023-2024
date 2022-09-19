@@ -15,7 +15,7 @@ namespace Przelicznik.Database.Repository
         public ConverterDbRepository()
         {
             converterDbContext = new ConverterDbContext();
-            InitDatabase();
+            //InitDatabase();
         }
 
         private void InitDatabase()
@@ -111,6 +111,19 @@ namespace Przelicznik.Database.Repository
             converterDbContext.UnitConverters.Add(unitConverter);
             converterDbContext.SaveChanges();
             return unitConverter;
+        }
+
+        #endregion
+
+        #region Read
+
+        public List<UnitType> ReadAllUnitType()
+        {
+            /*
+                select *
+                  from UnitTypes
+             */
+            return converterDbContext.UnitTypes.ToList();
         }
 
         #endregion
