@@ -36,16 +36,16 @@ namespace Przelicznik
             this.groupBoxTargetUnit = new System.Windows.Forms.GroupBox();
             this.comboBoxTargetUnit = new System.Windows.Forms.ComboBox();
             this.groupBoxValue = new System.Windows.Forms.GroupBox();
-            this.groupBoxResult = new System.Windows.Forms.GroupBox();
-            this.numericUpDownValue = new System.Windows.Forms.NumericUpDown();
             this.buttonConvertValue = new System.Windows.Forms.Button();
+            this.numericUpDownValue = new System.Windows.Forms.NumericUpDown();
+            this.groupBoxResult = new System.Windows.Forms.GroupBox();
             this.labelResult = new System.Windows.Forms.Label();
             this.groupBoxUnitType.SuspendLayout();
             this.groupBoxSourceUnit.SuspendLayout();
             this.groupBoxTargetUnit.SuspendLayout();
             this.groupBoxValue.SuspendLayout();
-            this.groupBoxResult.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValue)).BeginInit();
+            this.groupBoxResult.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBoxUnitType
@@ -63,11 +63,13 @@ namespace Przelicznik
             // 
             this.comboBoxUnitType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxUnitType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxUnitType.FormattingEnabled = true;
             this.comboBoxUnitType.Location = new System.Drawing.Point(6, 22);
             this.comboBoxUnitType.Name = "comboBoxUnitType";
             this.comboBoxUnitType.Size = new System.Drawing.Size(719, 23);
             this.comboBoxUnitType.TabIndex = 0;
+            this.comboBoxUnitType.SelectedIndexChanged += new System.EventHandler(this.comboBoxUnitType_SelectedIndexChanged);
             // 
             // groupBoxSourceUnit
             // 
@@ -84,6 +86,7 @@ namespace Przelicznik
             // 
             this.comboBoxSourceUnit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxSourceUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxSourceUnit.FormattingEnabled = true;
             this.comboBoxSourceUnit.Location = new System.Drawing.Point(6, 22);
             this.comboBoxSourceUnit.Name = "comboBoxSourceUnit";
@@ -105,6 +108,7 @@ namespace Przelicznik
             // 
             this.comboBoxTargetUnit.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.comboBoxTargetUnit.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxTargetUnit.FormattingEnabled = true;
             this.comboBoxTargetUnit.Location = new System.Drawing.Point(6, 22);
             this.comboBoxTargetUnit.Name = "comboBoxTargetUnit";
@@ -123,6 +127,31 @@ namespace Przelicznik
             this.groupBoxValue.TabStop = false;
             this.groupBoxValue.Text = "Wartość:";
             // 
+            // buttonConvertValue
+            // 
+            this.buttonConvertValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.buttonConvertValue.Location = new System.Drawing.Point(546, 19);
+            this.buttonConvertValue.Name = "buttonConvertValue";
+            this.buttonConvertValue.Size = new System.Drawing.Size(152, 50);
+            this.buttonConvertValue.TabIndex = 1;
+            this.buttonConvertValue.Text = "Przelicz";
+            this.buttonConvertValue.UseVisualStyleBackColor = true;
+            this.buttonConvertValue.Click += new System.EventHandler(this.buttonConvertValue_Click);
+            // 
+            // numericUpDownValue
+            // 
+            this.numericUpDownValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.numericUpDownValue.Location = new System.Drawing.Point(12, 35);
+            this.numericUpDownValue.Maximum = new decimal(new int[] {
+            1000000,
+            0,
+            0,
+            0});
+            this.numericUpDownValue.Name = "numericUpDownValue";
+            this.numericUpDownValue.Size = new System.Drawing.Size(284, 23);
+            this.numericUpDownValue.TabIndex = 0;
+            // 
             // groupBoxResult
             // 
             this.groupBoxResult.Controls.Add(this.labelResult);
@@ -133,25 +162,6 @@ namespace Przelicznik
             this.groupBoxResult.TabIndex = 4;
             this.groupBoxResult.TabStop = false;
             this.groupBoxResult.Text = "Wynik:";
-            // 
-            // numericUpDownValue
-            // 
-            this.numericUpDownValue.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.numericUpDownValue.Location = new System.Drawing.Point(12, 35);
-            this.numericUpDownValue.Name = "numericUpDownValue";
-            this.numericUpDownValue.Size = new System.Drawing.Size(284, 23);
-            this.numericUpDownValue.TabIndex = 0;
-            // 
-            // buttonConvertValue
-            // 
-            this.buttonConvertValue.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.buttonConvertValue.Location = new System.Drawing.Point(546, 19);
-            this.buttonConvertValue.Name = "buttonConvertValue";
-            this.buttonConvertValue.Size = new System.Drawing.Size(152, 50);
-            this.buttonConvertValue.TabIndex = 1;
-            this.buttonConvertValue.Text = "Przelicz";
-            this.buttonConvertValue.UseVisualStyleBackColor = true;
             // 
             // labelResult
             // 
@@ -178,9 +188,9 @@ namespace Przelicznik
             this.groupBoxSourceUnit.ResumeLayout(false);
             this.groupBoxTargetUnit.ResumeLayout(false);
             this.groupBoxValue.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValue)).EndInit();
             this.groupBoxResult.ResumeLayout(false);
             this.groupBoxResult.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numericUpDownValue)).EndInit();
             this.ResumeLayout(false);
 
         }

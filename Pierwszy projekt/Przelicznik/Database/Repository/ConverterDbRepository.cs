@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Przelicznik.Database.Repository
 {
-    class ConverterDbRepository
+    class ConverterDbRepository : IConverterRepository
     {
         private ConverterDbContext converterDbContext;
 
@@ -124,6 +124,30 @@ namespace Przelicznik.Database.Repository
                   from UnitTypes
              */
             return converterDbContext.UnitTypes.ToList();
+        }
+
+        public List<Unit> ReadChosenUnit(int idUnitType)
+        {
+            /*
+               select *
+                 from Units u
+                where u.UnitTypeId = idUnitType
+             */
+            return converterDbContext.Units.Where((Unit u) => u.UnitTypeId == idUnitType).ToList();
+        }
+
+        public UnitConverter ReadUnitConverter(int sourceUnitId, int targetUnitId)
+        {
+            /*
+             select * 
+              from UnitConverters uc
+            where uc.SourceUnitId = sourceUnitId
+              and uc.TargetUnitId = targetUnitId
+             
+             */
+            return converterDbContext.UnitConverters
+                .FirstOrDefault(uc => uc.SourceUnitId == sourceUnitId
+                                && uc.TargetUnitId == targetUnitId);
         }
 
         #endregion
