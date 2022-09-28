@@ -1,0 +1,33 @@
+﻿<Window x:Class="ContainersWPF.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ContainersWPF"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Canvas>
+        <Button Content="Wrap panel" 
+                Canvas.Left="108" 
+                Canvas.Top="149" 
+                Height="68" 
+                Width="139"
+                Name="buttonWrapPanel"
+                Click="buttonWrapPanel_Click"/>
+        <Button Content="Stack panel" 
+            Canvas.Left="299" 
+            Canvas.Top="144" 
+            Height="68" 
+            Width="139"
+            x:Name="buttonStackPanel"
+            Click="buttonStackPanel_Click"/>
+
+        <Button Content="Dock panel" 
+            Canvas.Left="476" 
+            Canvas.Top="139" 
+            Height="68" 
+            Width="139"
+            x:Name="buttonDockPanel"
+            Click="buttonDockPanel_Click"/>
+    </Canvas>
+</Window>

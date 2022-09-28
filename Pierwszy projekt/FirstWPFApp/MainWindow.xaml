@@ -1,0 +1,27 @@
+﻿<Window x:Class="FirstWPFApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:FirstWPFApp"
+        mc:Ignorable="d"
+        Title="Pierwsza aplikacja" Height="450" Width="800" ResizeMode="NoResize">
+    <Canvas>
+        <Label Content="Podaj imię:" 
+               Canvas.Left="138" 
+               Canvas.Top="66"/>
+        <TextBox Canvas.Left="138" 
+                 Canvas.Top="97" 
+                 Text="" 
+                 TextWrapping="Wrap" 
+                 Width="120"
+                 Name="textBoxName"/>
+        <Button Content="Kliknij mnie"
+                Canvas.Left="377" 
+                Canvas.Top="74" 
+                Height="55" 
+                Width="149"
+                Click="Button_Click"/>
+        
+    </Canvas>
+</Window>
