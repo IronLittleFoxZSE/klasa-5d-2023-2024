@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:ContainersWPF"
         mc:Ignorable="d"
         Title="WindowDockPanel" Height="450" Width="800">
-    <DockPanel LastChildFill="False">
+    <DockPanel LastChildFill="false">
         <Button Content="Przycisk 1"/>
         <Button Content="Przycisk 2"
                 DockPanel.Dock="Right"/>

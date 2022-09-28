@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:ContainersWPF"
         mc:Ignorable="d"
-        Title="WindowWrapPanel" Height="297" Width="718">
+        Title="WindowWrapPanel" Height="297" Width="781">
     <WrapPanel Orientation="Vertical">
         <Button Content="Pierwszy przycisk"/>
         <Label Content="Tekst w labelu"/>

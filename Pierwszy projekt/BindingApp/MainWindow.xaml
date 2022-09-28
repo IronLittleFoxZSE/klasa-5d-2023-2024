@@ -1,0 +1,33 @@
+﻿<Window x:Class="BindingApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:BindingApp"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800" Name="thisWindow">
+    <StackPanel>
+        <WrapPanel>
+            <TextBlock Text="Value:"/>
+            <TextBlock x:Name="textBlokValue"/>
+            <Button Name="buttonValue" Content="text"/>
+        </WrapPanel>
+        <TextBox Name="textBoxValue" TextChanged="textBoxValue_TextChanged" />
+
+        <TextBlock Text="Wersja z bindowaniem:" FontWeight="Bold" FontSize="20"/>
+
+        <WrapPanel>
+            <TextBlock Text="Value:"/>
+            <TextBlock Text="{Binding ElementName=textBoxBindingValue, Path=Text}"/>
+        </WrapPanel>
+        <TextBox Name="textBoxBindingValue"/>
+
+        <TextBlock Text="Tytuł okna:" FontWeight="Bold" FontSize="20"/>
+        <TextBox Text="{Binding ElementName=thisWindow, Path=Title, UpdateSourceTrigger=PropertyChanged}"/>
+
+        <TextBlock Text="Komunikat:" FontWeight="Bold" FontSize="20"/>
+        <TextBox Name="textBoxCom" Height="106"/>
+        <Button Content="Wyświetl kominikat" Click="Button_Click"/>
+
+    </StackPanel>
+</Window>

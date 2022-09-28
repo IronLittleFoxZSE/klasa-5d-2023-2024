@@ -29,5 +29,12 @@
             Width="139"
             x:Name="buttonDockPanel"
             Click="buttonDockPanel_Click"/>
+        <Button Content="Grid" 
+            Canvas.Left="108" 
+            Canvas.Top="302" 
+            Height="68" 
+            Width="139"
+            x:Name="buttonGrid"
+            Click="buttonGrid_Click"/>
     </Canvas>
 </Window>
