@@ -20,6 +20,8 @@ namespace BindingApp
     /// </summary>
     public partial class MainWindow : Window
     {
+        public string Message { get; set; }
+
         public MainWindow()
         {
             InitializeComponent();
@@ -33,7 +35,7 @@ namespace BindingApp
 
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(textBoxCom.Text);
+            MessageBox.Show(Message);
         }
     }
 }
