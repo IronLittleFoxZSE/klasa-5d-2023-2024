@@ -26,9 +26,14 @@
         <TextBox Text="{Binding ElementName=thisWindow, Path=Title, UpdateSourceTrigger=PropertyChanged}"/>
 
         <TextBlock Text="Komunikat:" FontWeight="Bold" FontSize="20"/>
-        <TextBox Name="textBoxCom" Margin="10" 
+        <TextBox Margin="10" 
                  Text="{Binding ElementName=thisWindow, Path=Message}"/>
         <Button Content="Wyświetl kominikat" Click="Button_Click"/>
+
+        <TextBlock Text="Liczby pseudolosowe:" FontWeight="Bold" FontSize="20"/>
+        <TextBlock Margin="10" 
+                   Text="{Binding ElementName=thisWindow, Path=RandomNumber}"/>
+        <Button Content="Losuj" Click="Button_Click_1"/>
 
     </StackPanel>
 </Window>
