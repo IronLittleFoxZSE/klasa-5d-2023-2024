@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,36 +14,36 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.ComponentModel;
 
-namespace BindingApp
+namespace ComboBoxProject
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
-        public string Message { get; set; }
-
-        private string _randomNumber;
-        public string RandomNumber { 
+        private ObservableCollection<string> _listOfItems;
+        public ObservableCollection<string> ListOfItems
+        {
             get
             {
-                return _randomNumber;
+                return _listOfItems;
             }
             set
             {
-                _randomNumber = value;
-                OnPropertyChanged(nameof(RandomNumber));
+                _listOfItems = value;
+                OnPropertyChanged(nameof(ListOfItems));
             }
         }
 
         public MainWindow()
         {
             InitializeComponent();
+            ListOfItems = new ObservableCollection<string>();
+            ListOfItems.Add("Pozycja bindowania 0");
+            ListOfItems.Add("Pozycja bindowania 1");
+            ListOfItems.Add("Pozycja bindowania 2");
         }
-
-        #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -50,24 +52,11 @@ namespace BindingApp
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        #endregion
-
-        private void textBoxValue_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            textBlokValue.Text = textBoxValue.Text;
-            buttonValue.Content = textBoxValue.Text;
-        }
-
         private void Button_Click(object sender, RoutedEventArgs e)
         {
-            MessageBox.Show(Message);
-        }
-        // to jest RandomNumber i nie chę go zmieniać
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            int randomNumber = new Random().Next();
-            RandomNumber = randomNumber.ToString();
-            //OnPropertyChanged(nameof(RandomNumber));
+            ListOfItems.Add("Pozycja bindowania 11");
+            ListOfItems.Add("Pozycja bindowania 12");
+            //OnPropertyChanged(nameof(ListOfItems));
         }
     }
 }
