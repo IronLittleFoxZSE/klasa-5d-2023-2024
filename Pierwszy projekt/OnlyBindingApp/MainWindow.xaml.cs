@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using UtilitiesWpf;
 
 namespace OnlyBindingApp
 {
@@ -27,21 +28,31 @@ namespace OnlyBindingApp
         public string HelloMessage
         {
             get { return _helloMessage; }
-            set 
-            { 
+            set
+            {
                 _helloMessage = value;
                 OnPropertyChanged(nameof(HelloMessage));
             }
         }
 
         private ICommand _mycommandClick;
-
         public ICommand MyCommandClick
         {
-            get { return _mycommandClick; }
-            set 
-            { 
-                _mycommandClick = value; 
+            get
+            {
+                /*if (_mycommandClick == null)
+                    _mycommandClick = new RelayCommand<Object>(ShowMessage, EnableButton);*/
+                if (_mycommandClick == null)
+                {
+                    _mycommandClick = new RelayCommand<Object>(
+                       (Object o) =>
+                       {
+                           HelloMessage = $"Witaj {YourName} w tej aplikacji";
+                       },
+                       (Object o) => /*return*/ !string.IsNullOrWhiteSpace(YourName)
+                    );
+                }
+                return _mycommandClick;
             }
         }
 
@@ -63,6 +74,16 @@ namespace OnlyBindingApp
             HelloMessage = $"Witaj {YourName} w tej aplikacji";
         }
         */
+        private void ShowMessage(Object o)
+        {
+             HelloMessage = $"Witaj {YourName} w tej aplikacji";
+        }
+
+        private bool EnableButton(Object o)
+        {
+            return !string.IsNullOrWhiteSpace(YourName);
+        }
+
 
     }
 }

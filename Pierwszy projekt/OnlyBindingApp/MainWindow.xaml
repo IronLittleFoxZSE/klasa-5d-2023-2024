@@ -9,8 +9,9 @@
         Name="thisWindow">
     <StackPanel>
         <TextBlock>Podaj imie:</TextBlock>
-        <TextBox Text="{Binding ElementName=thisWindow, Path=YourName}"/>
-        <Button Content="Przywitaj się" Command="{Binding ElementName=thisWindow, Path=MyCommandClick}"/>
+        <TextBox Text="{Binding ElementName=thisWindow, Path=YourName, UpdateSourceTrigger=PropertyChanged}"/>
+        <Button Content="Przywitaj się" 
+                Command="{Binding ElementName=thisWindow, Path=MyCommandClick}"/>
         <TextBlock Text="{Binding ElementName=thisWindow, Path=HelloMessage}"/>
     </StackPanel>
 </Window>
