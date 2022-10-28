@@ -45,9 +45,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ContainersWPF", "Containers
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "BindingApp", "BindingApp\BindingApp.csproj", "{AA0EC9C7-E47C-4DDC-973D-563BA2A0BD2F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UtilitiesWpf", "UtilitiesWpf\UtilitiesWpf.csproj", "{109E8737-66A7-488C-97CB-D1D6221E9ADE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UtilitiesWpf", "UtilitiesWpf\UtilitiesWpf.csproj", "{109E8737-66A7-488C-97CB-D1D6221E9ADE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ComboBoxProject", "ComboBoxProject\ComboBoxProject.csproj", "{4D148524-95BE-4A42-A409-B561443F5795}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "ComboBoxProject", "ComboBoxProject\ComboBoxProject.csproj", "{4D148524-95BE-4A42-A409-B561443F5795}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "OnlyBindingApp", "OnlyBindingApp\OnlyBindingApp.csproj", "{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -299,6 +301,18 @@ Global
 		{4D148524-95BE-4A42-A409-B561443F5795}.Release|x64.Build.0 = Release|Any CPU
 		{4D148524-95BE-4A42-A409-B561443F5795}.Release|x86.ActiveCfg = Release|Any CPU
 		{4D148524-95BE-4A42-A409-B561443F5795}.Release|x86.Build.0 = Release|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Debug|x64.Build.0 = Debug|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Debug|x86.Build.0 = Debug|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Release|x64.ActiveCfg = Release|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Release|x64.Build.0 = Release|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Release|x86.ActiveCfg = Release|Any CPU
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -324,6 +338,7 @@ Global
 		{AA0EC9C7-E47C-4DDC-973D-563BA2A0BD2F} = {574997CA-E5DA-4581-A9C4-E654ACFCC515}
 		{109E8737-66A7-488C-97CB-D1D6221E9ADE} = {574997CA-E5DA-4581-A9C4-E654ACFCC515}
 		{4D148524-95BE-4A42-A409-B561443F5795} = {574997CA-E5DA-4581-A9C4-E654ACFCC515}
+		{5B94EB29-73E2-40DE-AA0B-0AE60F4032CA} = {574997CA-E5DA-4581-A9C4-E654ACFCC515}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00AFA39A-3A7B-43E6-9DB5-5E4880830AF3}

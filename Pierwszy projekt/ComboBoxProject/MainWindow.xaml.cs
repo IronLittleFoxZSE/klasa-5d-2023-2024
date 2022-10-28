@@ -36,13 +36,38 @@ namespace ComboBoxProject
             }
         }
 
+        public List<OwnColor> ListOfOwnColors { get; set; }
+
         public MainWindow()
         {
+            ListOfOwnColors = new List<OwnColor>();
+            ListOfOwnColors.Add(new OwnColor()
+            {
+                NameOfColor_Pol = "Zielony",
+                NameOfColor_Eng = "Green",
+                OwnOrientation = Orientation.Horizontal
+            });
+
+            ListOfOwnColors.Add(new OwnColor()
+            {
+                NameOfColor_Pol = "Złoty",
+                NameOfColor_Eng = "Gold",
+                OwnOrientation = Orientation.Vertical
+            });
+            ListOfOwnColors.Add(new OwnColor()
+            {
+                NameOfColor_Pol = "Czerwony",
+                NameOfColor_Eng = "Red",
+                OwnOrientation = Orientation.Horizontal
+            });
+
             InitializeComponent();
             ListOfItems = new ObservableCollection<string>();
             ListOfItems.Add("Pozycja bindowania 0");
             ListOfItems.Add("Pozycja bindowania 1");
             ListOfItems.Add("Pozycja bindowania 2");
+
+            
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
