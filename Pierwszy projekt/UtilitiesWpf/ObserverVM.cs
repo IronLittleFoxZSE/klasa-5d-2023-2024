@@ -4,11 +4,11 @@ using System.Windows;
 
 namespace UtilitiesWpf
 {
-    public class ObserverWindow: Window, INotifyPropertyChanged
+    public class ObserverVM: INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        private void OnPropertyChanged(string propertyName)
+        protected void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
