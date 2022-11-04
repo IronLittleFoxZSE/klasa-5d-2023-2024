@@ -1,0 +1,32 @@
+﻿<Window x:Class="ConvertersWpfApp.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:ConvertersWpfApp"
+        xmlns:viewModel ="clr-namespace:ConvertersWpfApp.ViewModel"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="261" Width="517">
+    <Window.DataContext>
+        <viewModel:LogicVM/>
+    </Window.DataContext>
+    <Window.Resources>
+        <BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
+    </Window.Resources>
+    <StackPanel>
+        <TextBlock FontSize="20"
+                   Text="Kontrolka do ukrycia"
+                   Visibility="{Binding IsVisible}"/>
+        <Button Content="Ukryj"
+                Command="{Binding MyVisibleFirstCommand}"/>
+        <TextBlock FontSize="20"
+                   Text="Kontrolka do ukrycia poprzez bool"
+                   Visibility="{Binding IsVisibleBool, Converter={StaticResource BooleanToVisibilityConverter}}"/>
+        <Button Content="Ukryj"
+                Command="{Binding MyVisibleSecondCommand}"/>
+        <TextBlock FontSize="20"
+                   Text="{Binding IsChecked}"/>
+        <CheckBox Content="Kliknij mnie"
+                  IsChecked="{Binding IsChecked}"/>
+    </StackPanel>
+</Window>
