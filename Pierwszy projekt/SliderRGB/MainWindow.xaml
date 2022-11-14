@@ -32,6 +32,13 @@
                     Value="{Binding BlueComponent}"/>
             <TextBlock Text="{Binding BlueComponent}" FontSize="20"/>
         </WrapPanel>
-        <Button Content="Ustaw kolor czerwony"/>
+        <Button Content="Ustaw kolor czerwony" Command="{Binding SetRedColorCommand}"/>
+        <Rectangle Width="100" Height="100">
+            <Rectangle.Fill>
+                <MultiBinding Converter="">
+                    <Binding  Path="{Binding RedComponent}"/>
+                </MultiBinding>
+            </Rectangle.Fill>
+        </Rectangle>
     </StackPanel>
 </Window>
