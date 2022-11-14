@@ -1,0 +1,59 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows.Input;
+using UtilitiesWpf;
+
+namespace SliderRGB.ViewModel
+{
+    class PickColorVM : ObserverVM
+    {
+        private double _redComponent;
+        public double RedComponent
+        {
+            get { return _redComponent; }
+            set 
+            { 
+                _redComponent = value;
+                OnPropertyChanged(nameof(RedComponent));
+            }
+        }
+
+        private double _greenComponent;
+        public double GreenComponent
+        {
+            get { return _greenComponent; }
+            set 
+            { 
+                _greenComponent = value;
+                OnPropertyChanged(nameof(GreenComponent));
+            }
+        }
+
+        private double _blueComponent;
+        public double BlueComponent
+        {
+            get { return _blueComponent; }
+            set 
+            { 
+                _blueComponent = value;
+                OnPropertyChanged(nameof(BlueComponent));
+            }
+        }
+
+        private ICommand _setRedColorCommand;
+        public ICommand SetRedColorCommand
+        {
+            get
+            {
+                if (_setRedColorCommand == null)
+                {
+                    _setRedColorCommand = new RelayCommand<Object>();
+                }
+                return _setRedColorCommand; 
+            }
+        }
+    }
+}
