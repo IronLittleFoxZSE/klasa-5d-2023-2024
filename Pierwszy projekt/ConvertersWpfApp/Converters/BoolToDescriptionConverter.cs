@@ -27,6 +27,16 @@ namespace ConvertersWpfApp.Converters
         //z widoku do kodu
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
+            /*if (value is string)
+            {
+                string convertedString = (string)value;
+                if (convertedString == "Kontrolka zaznaczona")
+                    return true;
+                else if (convertedString == "Kontrolka niezaznaczona")
+                    return false;
+            }
+            return Binding.DoNothing;*/
+
             throw new NotImplementedException();
         }
     }

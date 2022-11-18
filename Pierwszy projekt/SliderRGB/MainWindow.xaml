@@ -36,7 +36,9 @@
         <Rectangle Width="100" Height="100">
             <Rectangle.Fill>
                 <MultiBinding Converter="">
-                    <Binding  Path="{Binding RedComponent}"/>
+                    <Binding Path="RedComponent"/>
+                    <Binding Path="GreenComponent"/>
+                    <Binding Path="BlueComponent"/>
                 </MultiBinding>
             </Rectangle.Fill>
         </Rectangle>
