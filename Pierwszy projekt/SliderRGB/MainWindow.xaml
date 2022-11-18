@@ -4,12 +4,16 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SliderRGB" 
-        xmlns:viewmodel="clr-namespace:SliderRGB.ViewModel"
+        xmlns:viewmodel="clr-namespace:SliderRGB.ViewModel" 
+        xmlns:converters="clr-namespace:SliderRGB.Converters"
         mc:Ignorable="d"
         Title="SliderRGB" Height="450" Width="800">
     <Window.DataContext>
         <viewmodel:PickColorVM/>
     </Window.DataContext>
+    <Window.Resources>
+        <converters:RGBComponentsToColorConverter x:Key="RGBComponentsToColorConverter"/>
+    </Window.Resources>
     <StackPanel>
         <WrapPanel>
             <TextBlock Text="Red" FontSize="20" FontWeight="Bold" Width="100"/>
@@ -35,12 +39,21 @@
         <Button Content="Ustaw kolor czerwony" Command="{Binding SetRedColorCommand}"/>
         <Rectangle Width="100" Height="100">
             <Rectangle.Fill>
-                <MultiBinding Converter="">
+                <MultiBinding Converter="{StaticResource RGBComponentsToColorConverter}">
                     <Binding Path="RedComponent"/>
                     <Binding Path="GreenComponent"/>
                     <Binding Path="BlueComponent"/>
                 </MultiBinding>
             </Rectangle.Fill>
         </Rectangle>
+        <TextBox>
+            <!--<TextBox.Text>
+                <MultiBinding Converter="{StaticResource }">
+                    <Binding Path="RedComponent"/>
+                    <Binding Path="GreenComponent"/>
+                    <Binding Path="BlueComponent"/>
+                </MultiBinding>
+            </TextBox.Text>-->
+        </TextBox>
     </StackPanel>
 </Window>

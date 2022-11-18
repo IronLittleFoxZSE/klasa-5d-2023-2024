@@ -17,13 +17,12 @@ namespace SliderRGB.Converters
             if (values == null || values.Length != 3)
                 return Binding.DoNothing;
 
-            byte red = (byte) values[0];
-            byte green = (byte)values[1];
-            byte blue = (byte)values[2];
+            byte red = System.Convert.ToByte((double) values[0]);
+            byte green = System.Convert.ToByte((double) values[1]);
+            byte blue = System.Convert.ToByte((double) values[2]);
 
             Color color = Color.FromRgb(red, green, blue);
             return new SolidColorBrush(color);
-
         }
 
         //z widoku do kodu
