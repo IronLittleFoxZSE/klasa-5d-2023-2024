@@ -43,13 +43,19 @@ namespace SliderRGB.Converters
             if (value == null)
                 return new object[] { Binding.DoNothing, Binding.DoNothing, Binding.DoNothing };
 
+            //to walidacja powinna sprawdzić
+            //ToUpper().Trim();
             string hexStr = value.ToString().ToUpper().Trim();
 
             //tej walidacji nie powinno być w tym miejscu
             if (hexStr.Length != 6)
                 return new object[] { Binding.DoNothing, Binding.DoNothing, Binding.DoNothing };
 
+            double red = hexTodoubleDictionary[hexStr[0].ToString()] * 16 + hexTodoubleDictionary[hexStr[1].ToString()];
+            double green = hexTodoubleDictionary[hexStr[2].ToString()] * 16 + hexTodoubleDictionary[hexStr[3].ToString()];
+            double blue = hexTodoubleDictionary[hexStr[4].ToString()] * 16 + hexTodoubleDictionary[hexStr[5].ToString()];
 
+            return new object[] { red, green, blue};
         }
     }
 }
