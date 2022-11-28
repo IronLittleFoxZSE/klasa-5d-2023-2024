@@ -10,7 +10,7 @@ namespace CalculatorWPF.ViewModels
 {
     class CalculatorOnpVM : ObserverVM
     {
-        private bool operatorCommandFlag = true;
+        private bool canExecuteArithmeticOperationsCommandFlag = false;
 
         private string _showValue;
         public string ShowValue
@@ -36,7 +36,7 @@ namespace CalculatorWPF.ViewModels
                         (object o) =>
                         {
                             ShowValue += o.ToString();
-                            operatorCommandFlag = false;
+                            canExecuteArithmeticOperationsCommandFlag = true;
                         });
                 return _numberCommand;
             }
@@ -52,9 +52,9 @@ namespace CalculatorWPF.ViewModels
                         (object o) =>
                         {
                             ShowValue += " " + o.ToString() + " ";
-                            operatorCommandFlag = true;
+                            canExecuteArithmeticOperationsCommandFlag = false;
                         },
-                        (object o) => !operatorCommandFlag
+                        (object o) => canExecuteArithmeticOperationsCommandFlag
                         );
                 return _arithmeticOperationsCommand;
             }
@@ -69,7 +69,7 @@ namespace CalculatorWPF.ViewModels
                     _equalCommand = new RelayCommand<object>(
                         (object o) =>
                         {
-                           
+
                         });
                 return _equalCommand;
             }
@@ -85,7 +85,7 @@ namespace CalculatorWPF.ViewModels
                         (object o) =>
                         {
                             ShowValue = "";
-                            operatorCommandFlag = true;
+                            canExecuteArithmeticOperationsCommandFlag = false;
                         });
                 return _clearCommand;
             }
@@ -100,8 +100,33 @@ namespace CalculatorWPF.ViewModels
                     _backCommand = new RelayCommand<object>(
                         (object o) =>
                         {
-                            
-                        });
+                            if (string.IsNullOrEmpty(ShowValue))
+                            {
+                                return;
+                            }
+
+                            if (!canExecuteArithmeticOperationsCommandFlag)
+                            //if (ShowValue[ShowValue.Length - 1] == ' ')
+                            //if (ShowValue[^1] == ' ')
+                            {
+                                //kasujemy trzy znaki
+                                ShowValue = ShowValue.Remove(ShowValue.Length - 3, 3);
+                            }
+                            else
+                            {
+                                //kasujemy jeden znak
+                                ShowValue = ShowValue.Remove(ShowValue.Length - 1, 1);
+                            }
+
+                            if (string.IsNullOrEmpty(ShowValue) || ShowValue[^1] == ' ')
+                                canExecuteArithmeticOperationsCommandFlag = false;
+                            else
+                                canExecuteArithmeticOperationsCommandFlag = true;
+
+
+                        }/*,
+                        (Object o) => !string.IsNullOrEmpty(ShowValue)
+                        */);
                 return _backCommand;
             }
         }
