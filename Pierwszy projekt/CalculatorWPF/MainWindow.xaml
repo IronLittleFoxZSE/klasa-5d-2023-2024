@@ -4,7 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CalculatorWPF" 
-        xmlns:viewmodels="clr-namespace:CalculatorWPF.ViewModels"
+        xmlns:viewmodels="clr-namespace:CalculatorWPF.ViewModels" 
+        xmlns:b="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
         Title="Nasz kalkulator" Height="450" Width="800">
     <Window.Resources>
@@ -27,14 +28,29 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
 
+        <Style x:Key="backButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource baseButtonStyle}">
+            <Setter Property="Background" Value="Aquamarine"/>
+            <Setter Property="FontStyle" Value="Italic"/>
+            <!--<Setter Property="FontWeight" Value="Bold"/>-->
+        </Style>
+
         <Style TargetType="{x:Type TextBox}">
             <Setter Property="FontSize" Value="20"/>
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
     </Window.Resources>
+    
     <Window.DataContext>
         <viewmodels:CalculatorVM/>
     </Window.DataContext>
+    
+    <!--zdarzenia dla całego okna czyli znacznika Window-->
+    <b:Interaction.Triggers>
+        <b:EventTrigger EventName="KeyDown">
+            <b:InvokeCommandAction Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
+        </b:EventTrigger>
+    </b:Interaction.Triggers>
+    
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -159,8 +175,12 @@
         <Button Content="="
                 Grid.Column="3"
                 Grid.Row="4"
-                Grid.ColumnSpan="2"
                 Style="{StaticResource arithmeticOperationsButtonStyle}"
                 Command="{Binding EqualCommand}"/>
+        <Button Content="B"
+                Grid.Column="4"
+                Grid.Row="4"
+                Style="{StaticResource backButtonStyle}"
+                Command="{Binding BackCommand}"/>
     </Grid>
 </Window>

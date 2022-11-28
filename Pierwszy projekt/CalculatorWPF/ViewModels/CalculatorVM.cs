@@ -21,11 +21,11 @@ namespace CalculatorWPF.ViewModels
 
         public string ShowValue
         {
-            get 
-            { 
-                return _showValue; 
+            get
+            {
+                return _showValue;
             }
-            set 
+            set
             {
                 _showValue = value;
                 OnPropertyChanged(nameof(ShowValue));
@@ -36,11 +36,11 @@ namespace CalculatorWPF.ViewModels
 
         public ICommand NumberCommand
         {
-            get 
+            get
             {
                 if (_numberCommand == null)
                     _numberCommand = new RelayCommand<object>(
-                        (object o)=>
+                        (object o) =>
                         {
                             int value = int.Parse(o.ToString());
 
@@ -60,7 +60,7 @@ namespace CalculatorWPF.ViewModels
 
                             ShowValue = currentValue.ToString();
                         });
-                return _numberCommand; 
+                return _numberCommand;
             }
         }
 
@@ -72,7 +72,7 @@ namespace CalculatorWPF.ViewModels
             {
                 if (_arithmeticOperationsCommand == null)
                     _arithmeticOperationsCommand = new RelayCommand<object>(
-                        (object o)=>
+                        (object o) =>
                         {
                             string selectOperator = o.ToString();
 
@@ -100,11 +100,11 @@ namespace CalculatorWPF.ViewModels
 
         public ICommand EqualCommand
         {
-            get 
+            get
             {
                 if (_equalCommand == null)
                     _equalCommand = new RelayCommand<object>(
-                        (object o)=>
+                        (object o) =>
                         {
                             previewValue = CalculatePreviewOperation();
                             ShowValue = previewValue.ToString();
@@ -112,27 +112,95 @@ namespace CalculatorWPF.ViewModels
                             operatorCommandFlag = true;
                             operatorEqualFlag = true;
                         });
-                return _equalCommand; 
+                return _equalCommand;
             }
         }
 
         private ICommand _clearCommand;
-
         public ICommand ClearCommand
         {
-            get 
+            get
             {
                 if (_clearCommand == null)
                     _clearCommand = new RelayCommand<object>(
-                        (object o)=>
+                        (object o) =>
                         {
                             currentValue = 0;
                             ShowValue = currentValue.ToString();
                             operatorCommandFlag = false;
+                            operatorEqualFlag = false;
                             previewValue = 0;
                             previewOperator = "+";
                         });
                 return _clearCommand;
+            }
+        }
+
+        private ICommand _backCommand;
+        public ICommand BackCommand
+        {
+            get
+            {
+                if (_backCommand == null)
+                    _backCommand = new RelayCommand<object>(
+                        (object o) =>
+                        {
+                            if (operatorCommandFlag || operatorEqualFlag)
+                                return;
+                            currentValue = currentValue / 10;
+                            ShowValue = currentValue.ToString();
+                        },
+                        (object o) =>
+                        {
+                            if (operatorCommandFlag || operatorEqualFlag)
+                                return false;
+                            else
+                                return true;
+                        });
+                return _backCommand;
+            }
+        }
+
+        private ICommand _keyDownCommand;
+        public ICommand KeyDownCommand
+        {
+            get
+            {
+                if (_keyDownCommand == null)
+                    _keyDownCommand = new RelayCommand<object>(
+                        (object o) =>
+                        {
+                            KeyEventArgs eventArgs = o as KeyEventArgs;
+                            if (eventArgs is not null)
+                            {
+                                if (eventArgs.Key >= Key.NumPad0 && eventArgs.Key <= Key.NumPad9)
+                                    NumberCommand.Execute(((int)eventArgs.Key - 74).ToString());
+
+                                if (eventArgs.KeyboardDevice.Modifiers == ModifierKeys.None
+                                    && eventArgs.Key >= Key.D0 
+                                    && eventArgs.Key <= Key.D9)
+                                    NumberCommand.Execute(((int)eventArgs.Key - 34).ToString());
+
+                                switch (eventArgs.Key)
+                                {
+                                    case Key.Add:
+                                        ArithmeticOperationsCommand.Execute("+");
+                                        break;
+                                    case Key.Subtract:
+                                        ArithmeticOperationsCommand.Execute("-");
+                                        break;
+                                    case Key.Multiply:
+                                        ArithmeticOperationsCommand.Execute("*");
+                                        break;
+                                    case Key.Divide:
+                                        ArithmeticOperationsCommand.Execute("/");
+                                        break;
+                                        
+                                };
+                            }
+
+                        });
+                return _keyDownCommand;
             }
         }
 
