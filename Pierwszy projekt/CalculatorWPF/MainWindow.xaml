@@ -12,6 +12,7 @@
         <Style x:Key="baseButtonStyle" TargetType="{x:Type Button}">
             <Setter Property="Margin" Value="10"/>
             <Setter Property="FontSize" Value="50"/>
+            <Setter Property="Focusable" Value="False"/>
         </Style>
 
         <Style x:Key="numericButtonStyle" TargetType="{x:Type Button}" BasedOn="{StaticResource baseButtonStyle}">
@@ -39,18 +40,18 @@
             <Setter Property="FontWeight" Value="Bold"/>
         </Style>
     </Window.Resources>
-    
+
     <Window.DataContext>
-        <viewmodels:CalculatorVM/>
+        <viewmodels:CalculatorOnpVM/>
     </Window.DataContext>
-    
+
     <!--zdarzenia dla całego okna czyli znacznika Window-->
     <b:Interaction.Triggers>
         <b:EventTrigger EventName="KeyDown">
             <b:InvokeCommandAction Command="{Binding KeyDownCommand}" PassEventArgsToCommand="True"/>
         </b:EventTrigger>
     </b:Interaction.Triggers>
-    
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -75,7 +76,7 @@
                  Text="{Binding ShowValue, Mode=OneWay}" 
                  TextAlignment="Right" 
                  FontSize="48"
-                 />
+                 Focusable="False"/>
         <Button Content="1"
                 Grid.Column="0"
                 Grid.Row="1"

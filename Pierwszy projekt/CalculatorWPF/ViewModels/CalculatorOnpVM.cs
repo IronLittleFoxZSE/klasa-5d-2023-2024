@@ -8,14 +8,9 @@ using UtilitiesWpf;
 
 namespace CalculatorWPF.ViewModels
 {
-    class CalculatorVM : ObserverVM
+    class CalculatorOnpVM : ObserverVM
     {
-        private long previewValue = 0;
-        private long currentValue = 0;
-        private string previewOperator = "+";
-
-        private bool operatorCommandFlag = false;
-        private bool operatorEqualFlag = false;
+        private bool operatorCommandFlag = true;
 
         private string _showValue;
         public string ShowValue
@@ -40,23 +35,8 @@ namespace CalculatorWPF.ViewModels
                     _numberCommand = new RelayCommand<object>(
                         (object o) =>
                         {
-                            int value = int.Parse(o.ToString());
-
-                            if (operatorCommandFlag)
-                            {
-                                currentValue = 0;
-                                operatorCommandFlag = false;
-                            }
-                            if (operatorEqualFlag)
-                            {
-                                previewValue = 0;
-                                previewOperator = "+";
-                                operatorEqualFlag = false;
-                            }
-
-                            currentValue = currentValue * 10 + value;
-
-                            ShowValue = currentValue.ToString();
+                            ShowValue += o.ToString();
+                            operatorCommandFlag = false;
                         });
                 return _numberCommand;
             }
@@ -71,24 +51,11 @@ namespace CalculatorWPF.ViewModels
                     _arithmeticOperationsCommand = new RelayCommand<object>(
                         (object o) =>
                         {
-                            string selectOperator = o.ToString();
-
-                            if (operatorEqualFlag)
-                            {
-                                currentValue = 0;
-                                previewOperator = "+";
-                                operatorEqualFlag = false;
-                            }
-
-                            currentValue = CalculatePreviewOperation();
-
-                            ShowValue = currentValue.ToString();
-
-                            previewValue = currentValue;
-                            previewOperator = selectOperator;
-
+                            ShowValue += " " + o.ToString() + " ";
                             operatorCommandFlag = true;
-                        });
+                        },
+                        (object o) => !operatorCommandFlag
+                        );
                 return _arithmeticOperationsCommand;
             }
         }
@@ -102,11 +69,7 @@ namespace CalculatorWPF.ViewModels
                     _equalCommand = new RelayCommand<object>(
                         (object o) =>
                         {
-                            previewValue = CalculatePreviewOperation();
-                            ShowValue = previewValue.ToString();
-
-                            operatorCommandFlag = true;
-                            operatorEqualFlag = true;
+                           
                         });
                 return _equalCommand;
             }
@@ -121,12 +84,8 @@ namespace CalculatorWPF.ViewModels
                     _clearCommand = new RelayCommand<object>(
                         (object o) =>
                         {
-                            currentValue = 0;
-                            ShowValue = currentValue.ToString();
-                            operatorCommandFlag = false;
-                            operatorEqualFlag = false;
-                            previewValue = 0;
-                            previewOperator = "+";
+                            ShowValue = "";
+                            operatorCommandFlag = true;
                         });
                 return _clearCommand;
             }
@@ -141,17 +100,7 @@ namespace CalculatorWPF.ViewModels
                     _backCommand = new RelayCommand<object>(
                         (object o) =>
                         {
-                            if (operatorCommandFlag || operatorEqualFlag)
-                                return;
-                            currentValue = currentValue / 10;
-                            ShowValue = currentValue.ToString();
-                        },
-                        (object o) =>
-                        {
-                            if (operatorCommandFlag || operatorEqualFlag)
-                                return false;
-                            else
-                                return true;
+                            
                         });
                 return _backCommand;
             }
@@ -173,7 +122,7 @@ namespace CalculatorWPF.ViewModels
                                     NumberCommand.Execute(((int)eventArgs.Key - 74).ToString());
 
                                 if (eventArgs.KeyboardDevice.Modifiers == ModifierKeys.None
-                                    && eventArgs.Key >= Key.D0 
+                                    && eventArgs.Key >= Key.D0
                                     && eventArgs.Key <= Key.D9)
                                     NumberCommand.Execute(((int)eventArgs.Key - 34).ToString());
 
@@ -209,27 +158,6 @@ namespace CalculatorWPF.ViewModels
                         });
                 return _keyDownCommand;
             }
-        }
-
-        public CalculatorVM()
-        {
-            ShowValue = currentValue.ToString();
-        }
-
-        private long CalculatePreviewOperation()
-        {
-            if (previewOperator == "+")
-                return previewValue + currentValue;
-            else if (previewOperator == "-")
-                return previewValue - currentValue;
-            else if (previewOperator == "*")
-                return previewValue * currentValue;
-            else if (previewOperator == "/")
-                return previewValue / currentValue;
-            else if (previewOperator == "%")
-                return previewValue % currentValue;
-
-            return 0;
         }
     }
 }
