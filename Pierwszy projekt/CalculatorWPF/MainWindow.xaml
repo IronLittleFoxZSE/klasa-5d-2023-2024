@@ -1,4 +1,8 @@
-﻿<Window x:Class="CalculatorWPF.MainWindow"
+﻿ <!--1. Dodanie przycisków nawiasów '(' i ')'. Zadbać o widok.
+2. Oprogramowanie tych przycisków w obu VM
+3. Zmiana generatora onp do tych dwóch operatorów
+4. Dodanie combobox'a z wyborem VM.-->
+    <Window x:Class="CalculatorWPF.MainWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
