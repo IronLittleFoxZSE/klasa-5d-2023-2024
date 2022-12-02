@@ -189,14 +189,33 @@ namespace CalculatorWPF.ViewModels
 
         private string CalculateOnp(string onpStr)
         {
-            return onpStr;
+            List<string> listOfElements = onpStr.Split(" ").ToList();
+            Stack<int> stackOfNumbers = new Stack<int>();
+
+            foreach (string element in listOfElements)
+            {
+                if (int.TryParse(element, out int number))
+                {
+                    stackOfNumbers.Push(number);
+                }
+                else
+                {
+                    int firstNumber = stackOfNumbers.Pop();
+                    int secondNumber = stackOfNumbers.Pop();
+
+                    int result = Calculate(secondNumber, firstNumber, element);
+
+                    stackOfNumbers.Push(result);
+                }
+            }
+
+            return stackOfNumbers.Pop().ToString();
         }
 
         private string GenerateOnp(string showValue)
         {
             string onpStr = "";
 
-            
             List<string> outputList = new List<string>();
             Stack<string> operatorsStack = new Stack<string>();
             Dictionary<string, int> operatorPriorityDictonary = new Dictionary<string, int>();
@@ -223,6 +242,15 @@ namespace CalculatorWPF.ViewModels
                 else
                 {
                     //mamy operator
+
+                    //zdejmujemy operatory ze stosu
+
+                    /*while (operatorsStack.Count != 0
+                        && operatorPriorityDictonary[operatorsStack.Peek()] >= operatorPriorityDictonary[element])
+                    {
+                        outputList.Add(operatorsStack.Pop());
+                    }*/
+                    
                     while(true)
                     {
                         if (operatorsStack.Count == 0)
@@ -230,7 +258,8 @@ namespace CalculatorWPF.ViewModels
 
                         string operatorOnTopInStack = operatorsStack.Peek();
 
-                        if(operatorOnTopInStack ma wyższy lub równy priorytet niż element)
+                        //if(operatorOnTopInStack ma wyższy lub równy priorytet niż element)
+                        if (operatorPriorityDictonary[operatorOnTopInStack] >= operatorPriorityDictonary[element])
                         {
                             operatorOnTopInStack = operatorsStack.Pop();
                             outputList.Add(operatorOnTopInStack);
@@ -252,6 +281,22 @@ namespace CalculatorWPF.ViewModels
 
             onpStr = string.Join(" ", outputList);
             return onpStr;
+        }
+
+        private int Calculate(int leftNumber, int rightNumber, string operatorToDo)
+        {
+            if (operatorToDo == "+")
+                return leftNumber + rightNumber;
+            else if (operatorToDo == "-")
+                return leftNumber - rightNumber;
+            else if (operatorToDo == "*")
+                return leftNumber * rightNumber;
+            else if (operatorToDo == "/")
+                return leftNumber / rightNumber;
+            else if (operatorToDo == "%")
+                return leftNumber % rightNumber;
+
+            return 0;
         }
     }
 }
