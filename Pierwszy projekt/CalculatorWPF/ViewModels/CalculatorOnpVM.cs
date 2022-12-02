@@ -69,7 +69,9 @@ namespace CalculatorWPF.ViewModels
                     _equalCommand = new RelayCommand<object>(
                         (object o) =>
                         {
+                            string onpStr = GenerateOnp(ShowValue);
 
+                            ShowValue = CalculateOnp(onpStr);
                         });
                 return _equalCommand;
             }
@@ -183,6 +185,73 @@ namespace CalculatorWPF.ViewModels
                         });
                 return _keyDownCommand;
             }
+        }
+
+        private string CalculateOnp(string onpStr)
+        {
+            return onpStr;
+        }
+
+        private string GenerateOnp(string showValue)
+        {
+            string onpStr = "";
+
+            
+            List<string> outputList = new List<string>();
+            Stack<string> operatorsStack = new Stack<string>();
+            Dictionary<string, int> operatorPriorityDictonary = new Dictionary<string, int>();
+            operatorPriorityDictonary.Add("+", 10);
+            operatorPriorityDictonary.Add("-", 10);
+            operatorPriorityDictonary.Add("*", 20);
+            operatorPriorityDictonary.Add("/", 20);
+            operatorPriorityDictonary.Add("%", 20);
+
+            //dodkowe operatory
+            //operatorPriorityDictonary.Add("^", 30);
+            //operatorPriorityDictonary.Add("(", int.MinValue);
+
+            List<string> listOfElements = showValue.Split(" ").ToList();
+
+            //konwersja showValue na ONP
+            foreach (string element in listOfElements)
+            {
+                if (int.TryParse(element, out _))
+                {
+                    //dodajemy na listę wyjściową liczbę
+                    outputList.Add(element);
+                }
+                else
+                {
+                    //mamy operator
+                    while(true)
+                    {
+                        if (operatorsStack.Count == 0)
+                            break;
+
+                        string operatorOnTopInStack = operatorsStack.Peek();
+
+                        if(operatorOnTopInStack ma wyższy lub równy priorytet niż element)
+                        {
+                            operatorOnTopInStack = operatorsStack.Pop();
+                            outputList.Add(operatorOnTopInStack);
+                        }
+                        else
+                        {
+                            break;
+                        }
+                    }
+                    operatorsStack.Push(element);
+                }
+            }
+
+            while(operatorsStack.Count != 0)
+            {
+                string operatorOnTopInStack = operatorsStack.Pop();
+                outputList.Add(operatorOnTopInStack);
+            }
+
+            onpStr = string.Join(" ", outputList);
+            return onpStr;
         }
     }
 }
