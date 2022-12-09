@@ -8,9 +8,39 @@ using UtilitiesWpf;
 
 namespace CalculatorWPF.ViewModels
 {
-    class CalculatorOnpVM : ObserverVM
+    enum Command
     {
-        private bool canExecuteArithmeticOperationsCommandFlag = false;
+        Number,
+        ArithmeticOperations,
+        OpenParenthesis,
+        CloseParenthesis,
+        Function
+    }
+
+    class CalculatorOnpVM : ObserverVM, ICalculatorOnpVM
+    {
+        private Stack<Command> stackOfCommands = new Stack<Command>();
+        private Dictionary<Command, int> howManyCharsInCommand = new Dictionary<Command, int>()
+        {
+            {Command.ArithmeticOperations, 3 }, {Command.CloseParenthesis, 2},
+            {Command.OpenParenthesis, 2}, {Command.Number, 1}, {Command.Function, 3}
+        };
+
+        Dictionary<string, int> operatorPriorityDictonary = new Dictionary<string, int>()
+        {
+            { "+", 10 }, { "-", 10 }, { "*", 20 }, { "/", 20 }, { "%", 20 },
+
+            //specjalne operatory
+            { "(", int.MinValue }, { "neg", int.MinValue }
+        };
+
+        List<string> funtionList = new List<string>() { "neg" };
+
+        private int countOfNonCloseParenthesis = 0;
+
+        public bool IsParenthesisAvailable { get; set; } = true;
+
+        public string NameOfViewModel { get; set; } = "Kalkulator ONP";
 
         private string _showValue;
         public string ShowValue
@@ -36,8 +66,12 @@ namespace CalculatorWPF.ViewModels
                         (object o) =>
                         {
                             ShowValue += o.ToString();
-                            canExecuteArithmeticOperationsCommandFlag = true;
-                        });
+                            stackOfCommands.Push(Command.Number);
+                        },
+                        o => stackOfCommands.Count == 0
+                             || stackOfCommands.Peek() == Command.Number
+                             || stackOfCommands.Peek() == Command.OpenParenthesis
+                             || stackOfCommands.Peek() == Command.ArithmeticOperations);
                 return _numberCommand;
             }
         }
@@ -52,11 +86,57 @@ namespace CalculatorWPF.ViewModels
                         (object o) =>
                         {
                             ShowValue += " " + o.ToString() + " ";
-                            canExecuteArithmeticOperationsCommandFlag = false;
+                            stackOfCommands.Push(Command.ArithmeticOperations);
                         },
-                        (object o) => canExecuteArithmeticOperationsCommandFlag
+                        o => stackOfCommands.Count != 0
+                             && (stackOfCommands.Peek() == Command.Number
+                                 || stackOfCommands.Peek() == Command.CloseParenthesis)
                         );
                 return _arithmeticOperationsCommand;
+            }
+        }
+
+        private ICommand _openParenthesisOperationsCommand;
+        public ICommand OpenParenthesisOperationsCommand
+        {
+            get
+            {
+                if (_openParenthesisOperationsCommand == null)
+                    _openParenthesisOperationsCommand = new RelayCommand<object>(
+                        (object o) =>
+                        {
+                            ShowValue += o.ToString() + " ";
+                            stackOfCommands.Push(Command.OpenParenthesis);
+                            countOfNonCloseParenthesis++;
+                        },
+                        o => stackOfCommands.Count == 0
+                             || stackOfCommands.Peek() == Command.ArithmeticOperations
+                             || stackOfCommands.Peek() == Command.OpenParenthesis
+                        );
+                return _openParenthesisOperationsCommand;
+            }
+        }
+
+        private ICommand _closeParenthesisOperationsCommand;
+        public ICommand CloseParenthesisOperationsCommand
+        {
+            get
+            {
+                if (_closeParenthesisOperationsCommand == null)
+                    _closeParenthesisOperationsCommand = new RelayCommand<object>(
+                        (object o) =>
+                        {
+                            ShowValue += " " + o.ToString();
+                            stackOfCommands.Push(Command.CloseParenthesis);
+                            countOfNonCloseParenthesis--;
+                        },
+                        o => stackOfCommands.Count != 0
+                             && (stackOfCommands.Peek() == Command.Number
+                                 || stackOfCommands.Peek() == Command.CloseParenthesis)
+                             && countOfNonCloseParenthesis != 0
+
+                        );
+                return _closeParenthesisOperationsCommand;
             }
         }
 
@@ -69,11 +149,33 @@ namespace CalculatorWPF.ViewModels
                     _equalCommand = new RelayCommand<object>(
                         (object o) =>
                         {
-                            string onpStr = GenerateOnp(ShowValue);
-
-                            ShowValue = CalculateOnp(onpStr);
-                        });
+                            ShowValue = CalculateOnp(GenerateOnp(ShowValue));
+                        },
+                        o => stackOfCommands.Count != 0
+                             && (stackOfCommands.Peek() == Command.Number
+                                 || stackOfCommands.Peek() == Command.CloseParenthesis)
+                             && countOfNonCloseParenthesis == 0);
                 return _equalCommand;
+            }
+        }
+
+        private ICommand _functionCommand;
+        public ICommand FunctionCommand
+        {
+            get
+            {
+                if (_functionCommand == null)
+                    _functionCommand = new RelayCommand<object>(
+                        (object o) =>
+                        {
+                            ShowValue += o.ToString() + " ";
+                            stackOfCommands.Push(Command.Function);
+                            OpenParenthesisOperationsCommand.Execute("(");
+                        },
+                        o => stackOfCommands.Count == 0
+                             || stackOfCommands.Peek() == Command.ArithmeticOperations
+                             || stackOfCommands.Peek() == Command.OpenParenthesis);
+                return _functionCommand;
             }
         }
 
@@ -87,7 +189,8 @@ namespace CalculatorWPF.ViewModels
                         (object o) =>
                         {
                             ShowValue = "";
-                            canExecuteArithmeticOperationsCommandFlag = false;
+                            stackOfCommands.Clear();
+                            countOfNonCloseParenthesis = 0;
                         });
                 return _clearCommand;
             }
@@ -107,28 +210,17 @@ namespace CalculatorWPF.ViewModels
                                 return;
                             }
 
-                            if (!canExecuteArithmeticOperationsCommandFlag)
-                            //if (ShowValue[ShowValue.Length - 1] == ' ')
-                            //if (ShowValue[^1] == ' ')
-                            {
-                                //kasujemy trzy znaki
-                                ShowValue = ShowValue.Remove(ShowValue.Length - 3, 3);
-                            }
-                            else
-                            {
-                                //kasujemy jeden znak
-                                ShowValue = ShowValue.Remove(ShowValue.Length - 1, 1);
-                            }
+                            Command lastCommand = stackOfCommands.Pop();
+                            if (lastCommand == Command.CloseParenthesis)
+                                countOfNonCloseParenthesis++;
+                            int countToDelete = howManyCharsInCommand[lastCommand];
+                            ShowValue = ShowValue.Remove(ShowValue.Length - countToDelete, countToDelete);
 
-                            if (string.IsNullOrEmpty(ShowValue) || ShowValue[^1] == ' ')
-                                canExecuteArithmeticOperationsCommandFlag = false;
-                            else
-                                canExecuteArithmeticOperationsCommandFlag = true;
-
-
-                        }/*,
-                        (Object o) => !string.IsNullOrEmpty(ShowValue)
-                        */);
+                            if (stackOfCommands.Count != 0 && stackOfCommands.Peek() == Command.Function)
+                                BackCommand.Execute(null);
+                        },
+                        o => stackOfCommands.Count != 0
+                        );
                 return _backCommand;
             }
         }
@@ -145,40 +237,50 @@ namespace CalculatorWPF.ViewModels
                             KeyEventArgs eventArgs = o as KeyEventArgs;
                             if (eventArgs is not null)
                             {
-                                if (eventArgs.Key >= Key.NumPad0 && eventArgs.Key <= Key.NumPad9)
+                                if (eventArgs.Key >= Key.NumPad0 && eventArgs.Key <= Key.NumPad9
+                                    && NumberCommand.CanExecute(null))
                                     NumberCommand.Execute(((int)eventArgs.Key - 74).ToString());
 
                                 if (eventArgs.KeyboardDevice.Modifiers == ModifierKeys.None
                                     && eventArgs.Key >= Key.D0
-                                    && eventArgs.Key <= Key.D9)
+                                    && eventArgs.Key <= Key.D9
+                                    && NumberCommand.CanExecute(null))
                                     NumberCommand.Execute(((int)eventArgs.Key - 34).ToString());
 
                                 switch (eventArgs.Key)
                                 {
                                     case Key.Add:
-                                        ArithmeticOperationsCommand.Execute("+");
+                                        if (ArithmeticOperationsCommand.CanExecute(null))
+                                            ArithmeticOperationsCommand.Execute("+");
                                         break;
                                     case Key.Subtract:
-                                        ArithmeticOperationsCommand.Execute("-");
+                                        if (ArithmeticOperationsCommand.CanExecute(null))
+                                            ArithmeticOperationsCommand.Execute("-");
                                         break;
                                     case Key.Multiply:
-                                        ArithmeticOperationsCommand.Execute("*");
+                                        if (ArithmeticOperationsCommand.CanExecute(null))
+                                            ArithmeticOperationsCommand.Execute("*");
                                         break;
                                     case Key.Divide:
-                                        ArithmeticOperationsCommand.Execute("/");
+                                        if (ArithmeticOperationsCommand.CanExecute(null))
+                                            ArithmeticOperationsCommand.Execute("/");
                                         break;
                                     case Key.D5:
-                                        if (eventArgs.KeyboardDevice.Modifiers == ModifierKeys.Shift)
+                                        if (eventArgs.KeyboardDevice.Modifiers == ModifierKeys.Shift
+                                            && ArithmeticOperationsCommand.CanExecute(null))
                                             ArithmeticOperationsCommand.Execute("%");
                                         break;
                                     case Key.Return:
-                                        EqualCommand.Execute(null);
+                                        if (EqualCommand.CanExecute(null))
+                                            EqualCommand.Execute(null);
                                         break;
                                     case Key.Back:
-                                        BackCommand.Execute(null);
+                                        if (BackCommand.CanExecute(null))
+                                            BackCommand.Execute(null);
                                         break;
                                     case Key.Delete:
-                                        ClearCommand.Execute(null);
+                                        if (ClearCommand.CanExecute(null))
+                                            ClearCommand.Execute(null);
                                         break;
                                 };
                             }
@@ -200,10 +302,13 @@ namespace CalculatorWPF.ViewModels
                 }
                 else
                 {
-                    int firstNumber = stackOfNumbers.Pop();
-                    int secondNumber = stackOfNumbers.Pop();
+                    int rightNumber = stackOfNumbers.Pop();
 
-                    int result = Calculate(secondNumber, firstNumber, element);
+                    int leftNumber = 0;
+                    if (!funtionList.Contains(element))
+                        leftNumber = stackOfNumbers.Pop();
+
+                    int result = Calculate(leftNumber, rightNumber, element);
 
                     stackOfNumbers.Push(result);
                 }
@@ -214,20 +319,8 @@ namespace CalculatorWPF.ViewModels
 
         private string GenerateOnp(string showValue)
         {
-            string onpStr = "";
-
             List<string> outputList = new List<string>();
             Stack<string> operatorsStack = new Stack<string>();
-            Dictionary<string, int> operatorPriorityDictonary = new Dictionary<string, int>();
-            operatorPriorityDictonary.Add("+", 10);
-            operatorPriorityDictonary.Add("-", 10);
-            operatorPriorityDictonary.Add("*", 20);
-            operatorPriorityDictonary.Add("/", 20);
-            operatorPriorityDictonary.Add("%", 20);
-
-            //dodkowe operatory
-            //operatorPriorityDictonary.Add("^", 30);
-            //operatorPriorityDictonary.Add("(", int.MinValue);
 
             List<string> listOfElements = showValue.Split(" ").ToList();
 
@@ -236,22 +329,29 @@ namespace CalculatorWPF.ViewModels
             {
                 if (int.TryParse(element, out _))
                 {
-                    //dodajemy na listę wyjściową liczbę
+                    //dodajemy na listę wyjściową liczbę lub funkcję
                     outputList.Add(element);
+                }
+                else if (element == "(" || funtionList.Contains(element))
+                {
+                    operatorsStack.Push(element);
+                }
+                else if (element == ")")
+                {
+                    string operatorOnTopInStack;
+                    while ((operatorOnTopInStack = operatorsStack.Pop()) != "(")
+                    {
+                        outputList.Add(operatorOnTopInStack);
+                    }
+                    if (operatorsStack.Count != 0
+                        && funtionList.Contains(operatorsStack.Peek()))
+                    {
+                        outputList.Add(operatorsStack.Pop());
+                    }
                 }
                 else
                 {
-                    //mamy operator
-
-                    //zdejmujemy operatory ze stosu
-
-                    /*while (operatorsStack.Count != 0
-                        && operatorPriorityDictonary[operatorsStack.Peek()] >= operatorPriorityDictonary[element])
-                    {
-                        outputList.Add(operatorsStack.Pop());
-                    }*/
-                    
-                    while(true)
+                    while (true)
                     {
                         if (operatorsStack.Count == 0)
                             break;
@@ -273,14 +373,13 @@ namespace CalculatorWPF.ViewModels
                 }
             }
 
-            while(operatorsStack.Count != 0)
+            while (operatorsStack.Count != 0)
             {
                 string operatorOnTopInStack = operatorsStack.Pop();
                 outputList.Add(operatorOnTopInStack);
             }
 
-            onpStr = string.Join(" ", outputList);
-            return onpStr;
+            return string.Join(" ", outputList);
         }
 
         private int Calculate(int leftNumber, int rightNumber, string operatorToDo)
@@ -295,6 +394,8 @@ namespace CalculatorWPF.ViewModels
                 return leftNumber / rightNumber;
             else if (operatorToDo == "%")
                 return leftNumber % rightNumber;
+            else if (operatorToDo == "neg")
+                return -rightNumber;
 
             return 0;
         }

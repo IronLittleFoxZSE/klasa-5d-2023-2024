@@ -5,12 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:LoginWpfApp"
         xmlns:ph="clr-namespace:LoginWpfApp.ViewUtils" 
-        xmlns:viewmodel="clr-namespace:LoginWpfApp.ViewModel"
+        xmlns:viewmodel="clr-namespace:LoginWpfApp.ViewModel" 
+        xmlns:converters="clr-namespace:LoginWpfApp.Converters"
         mc:Ignorable="d"
-        Title="Logowanie" Height="289" Width="490">
+        Title="Logowanie" Height="366" Width="507">
     <Window.DataContext>
         <viewmodel:LoginVM/>
     </Window.DataContext>
+    <Window.Resources>
+        <converters:BooleanWidthInvertToVisibilityConverter x:Key="BooleanWidthInvertToVisibilityConverter"/>
+    </Window.Resources>
     <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center">
         <TextBlock Text="Logowanie/Rejestracja"
                    FontSize="30"
@@ -22,11 +26,19 @@
         <TextBlock Text="Hasło:"
                    Margin="0 10"/>
         <PasswordBox ph:PasswordHelper.Attach="True"
-                     ph:PasswordHelper.Password="{Binding Password, Mode=TwoWay}" />
+                     ph:PasswordHelper.Password="{Binding Password, Mode=TwoWay}" 
+                     Visibility="{Binding ElementName=checkBoxShowHidePassowrd, Path=IsChecked, Converter={StaticResource BooleanWidthInvertToVisibilityConverter}, ConverterParameter='T'}"
+                     />
+        <TextBox Text="{Binding Password}" 
+                 Visibility="{Binding ElementName=checkBoxShowHidePassowrd, Path=IsChecked, Converter={StaticResource BooleanWidthInvertToVisibilityConverter}, ConverterParameter='N'}">
+        </TextBox>
+        <CheckBox Content="Pokaż/ukryj hasło" 
+                  Name="checkBoxShowHidePassowrd"
+                  Margin="0 10 0 0"/>
         <WrapPanel HorizontalAlignment="Center">
-            <Button  Content="Zaloguj"
-                     Margin="20"
-                     Command="{Binding LoginCommand}"/>
+            <Button Content="Zaloguj"
+                    Margin="20"
+                    Command="{Binding LoginCommand}"/>
             <Button Content="Zarajestruj"
                     Margin="20"
                     Command="{Binding RegistrationCommand}"/>

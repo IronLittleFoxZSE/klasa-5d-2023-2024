@@ -8,7 +8,7 @@ using UtilitiesWpf;
 
 namespace CalculatorWPF.ViewModels
 {
-    class CalculatorVM : ObserverVM
+    class CalculatorVM : ObserverVM, ICalculatorOnpVM
     {
         private long previewValue = 0;
         private long currentValue = 0;
@@ -16,6 +16,10 @@ namespace CalculatorWPF.ViewModels
 
         private bool operatorCommandFlag = false;
         private bool operatorEqualFlag = false;
+
+        public bool IsParenthesisAvailable { get; set; } = false;
+
+        public string NameOfViewModel { get; set; } = "Kalkulator zwykły";
 
         private string _showValue;
         public string ShowValue
@@ -211,9 +215,15 @@ namespace CalculatorWPF.ViewModels
             }
         }
 
+        public ICommand CloseParenthesisOperationsCommand => null;
+
+        public ICommand FunctionCommand => null;
+
+        public ICommand OpenParenthesisOperationsCommand => null;
+
         public CalculatorVM()
         {
-            ShowValue = currentValue.ToString();
+            ShowValue = currentValue.ToString();            
         }
 
         private long CalculatePreviewOperation()
