@@ -14,8 +14,4 @@
     <ProjectReference Include="..\UtilitiesWpf\UtilitiesWpf.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="UserControl\" />
-  </ItemGroup>
-
 </Project>

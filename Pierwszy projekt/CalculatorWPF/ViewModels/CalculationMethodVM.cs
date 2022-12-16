@@ -9,98 +9,37 @@ using UtilitiesWpf;
 
 namespace CalculatorWPF.ViewModels
 {
-    class CalculationMethodVM : ObserverVM, ICalculatorOnpVM
+    class CalculationMethodVM : ObserverVM
     {
-
         public CalculationMethodVM()
         {
             ChoseVM = new CalculatorOnpVM();
-            ListOfViewModel = new List<ICalculatorOnpVM>();
+            ListOfViewModel = new List<ICalculatorVM>();
             ListOfViewModel.Add(ChoseVM);
             ListOfViewModel.Add(new CalculatorVM());
         }
 
-        private ICalculatorOnpVM _choseVM;
-        public ICalculatorOnpVM ChoseVM
+        private ICalculatorVM _choseVM;
+        public ICalculatorVM ChoseVM
         {
             get { return _choseVM; }
             set 
             { 
                 _choseVM = value;
-                ClearCommand.Execute(null);
+                _choseVM.ClearCommand.Execute(null);
                 OnPropertyChanged(nameof(ChoseVM));
                 OnPropertyChanged(nameof(KeyDownCommand));
             }
         }
 
-        private List<ICalculatorOnpVM> _listOfViewModel;
-        public List<ICalculatorOnpVM> ListOfViewModel
+        private List<ICalculatorVM> _listOfViewModel;
+        public List<ICalculatorVM> ListOfViewModel
         {
             get { return _listOfViewModel; }
             set 
             { 
                 _listOfViewModel = value;
                 OnPropertyChanged(nameof(ListOfViewModel));
-            }
-        }
-
-        public ICommand ArithmeticOperationsCommand
-        {
-            get
-            {
-                return ChoseVM.ArithmeticOperationsCommand;
-            }
-        }
-
-        public ICommand BackCommand
-        {
-            get
-            {
-                return ChoseVM.BackCommand;
-            }
-        }
-
-        public ICommand ClearCommand
-        {
-            get
-            {
-                return ChoseVM.ClearCommand;
-            }
-        }
-
-        public ICommand CloseParenthesisOperationsCommand
-        {
-            get
-            {
-                return ChoseVM.CloseParenthesisOperationsCommand;
-            }
-        }
-
-        public ICommand EqualCommand
-        {
-            get
-            {
-                return ChoseVM.EqualCommand;
-            }
-        }
-
-        public ICommand FunctionCommand
-        {
-            get
-            {
-                return ChoseVM.FunctionCommand;
-            }
-        }
-
-        public bool IsParenthesisAvailable
-        {
-            get
-            {
-                return ChoseVM.IsParenthesisAvailable;
-            }
-            set
-            {
-                ChoseVM.IsParenthesisAvailable = value;
             }
         }
 
@@ -111,37 +50,5 @@ namespace CalculatorWPF.ViewModels
                 return ChoseVM.KeyDownCommand;
             }
         }
-
-        public ICommand NumberCommand
-        {
-            get
-            {
-                return ChoseVM.NumberCommand;
-            }
-        }
-
-        public ICommand OpenParenthesisOperationsCommand
-        {
-            get
-            {
-                return ChoseVM.OpenParenthesisOperationsCommand;
-            }
-        }
-
-        public string ShowValue
-        {
-            get
-            {
-                return ChoseVM.ShowValue;
-            }
-            set
-            {
-                ChoseVM.ShowValue = value;
-                OnPropertyChanged(nameof(ShowValue));
-            }
-        }
-
-        public string NameOfViewModel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
-
     }
 }

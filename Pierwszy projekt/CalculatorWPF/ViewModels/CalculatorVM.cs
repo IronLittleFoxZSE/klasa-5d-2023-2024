@@ -8,7 +8,7 @@ using UtilitiesWpf;
 
 namespace CalculatorWPF.ViewModels
 {
-    class CalculatorVM : ObserverVM, ICalculatorOnpVM
+    class CalculatorVM : ObserverVM, ICalculatorVM
     {
         private long previewValue = 0;
         private long currentValue = 0;

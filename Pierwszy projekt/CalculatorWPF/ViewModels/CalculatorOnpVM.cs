@@ -29,7 +29,7 @@ namespace CalculatorWPF.ViewModels
         public BindingType BindingType { get; set; }
     }
 
-    class CalculatorOnpVM : ObserverVM, ICalculatorOnpVM
+    class CalculatorOnpVM : ObserverVM, ICalculatorVM
     {
         private Stack<Command> stackOfCommands = new Stack<Command>();
         private Dictionary<Command, int> howManyCharsInCommand = new Dictionary<Command, int>()
