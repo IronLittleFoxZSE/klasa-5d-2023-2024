@@ -63,14 +63,14 @@ namespace LoginWpfApp.ViewModel
                                 new List<ISpecyficValidation<string>>()
                                 {
                                 new ValidateStringEmpty(),
-                                new ValidateStringLength(5)
+                                //new ValidateStringLength(5)
                                 }));
                             validate.AddValidator(new Validator<string>(Password, "Hasło",
                                 new List<ISpecyficValidation<string>>()
                                 {
                                 new ValidateStringEmpty(),
-                                new ValidateStringLength(8),
-                                new ValidateStringRequiredCharacters(new (){'0', '1', '2', '3', '4', '5', '6', '7', '8', '9' })
+                                //new ValidateStringLength(8),
+                               // new ValidateStringRequiredCharacters(new (){'0', '1', '2', '3', '4', '5', '6', '7', '8', '9' })
                                 }));
                             validate.AddValidator(new Validator<List<string>>(new List<string>() { Login, Password },
                                 "Błąd logowania",

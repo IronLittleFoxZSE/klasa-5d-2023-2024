@@ -17,6 +17,18 @@ namespace CalculatorWPF.ViewModels
         Function
     }
 
+    enum BindingType
+    {
+        Left,
+        Right
+    }
+
+    class OperatorInfo
+    {
+        public int Priority { get; set; }
+        public BindingType BindingType { get; set; }
+    }
+
     class CalculatorOnpVM : ObserverVM, ICalculatorOnpVM
     {
         private Stack<Command> stackOfCommands = new Stack<Command>();
@@ -26,12 +38,18 @@ namespace CalculatorWPF.ViewModels
             {Command.OpenParenthesis, 2}, {Command.Number, 1}, {Command.Function, 3}
         };
 
-        Dictionary<string, int> operatorPriorityDictonary = new Dictionary<string, int>()
+        Dictionary<string, OperatorInfo> operatorInfoDictonary = new Dictionary<string, OperatorInfo>()
         {
-            { "+", 10 }, { "-", 10 }, { "*", 20 }, { "/", 20 }, { "%", 20 },
+            { "+", new OperatorInfo(){Priority = 10, BindingType=BindingType.Left } },
+            { "-", new OperatorInfo(){Priority = 10, BindingType=BindingType.Left } },
+            { "*", new OperatorInfo(){Priority = 20, BindingType=BindingType.Left } },
+            { "/", new OperatorInfo(){Priority = 20, BindingType=BindingType.Left } },
+            { "%", new OperatorInfo(){Priority = 20, BindingType=BindingType.Left } },
+            { "^", new OperatorInfo(){Priority = 30, BindingType=BindingType.Right } },
 
             //specjalne operatory
-            { "(", int.MinValue }, { "neg", int.MinValue }
+            { "(", new OperatorInfo(){Priority = int.MinValue, BindingType=BindingType.Left } },
+            { "neg", new OperatorInfo(){Priority = int.MinValue, BindingType=BindingType.Left }}
         };
 
         List<string> funtionList = new List<string>() { "neg" };
@@ -289,6 +307,7 @@ namespace CalculatorWPF.ViewModels
             }
         }
 
+
         private string CalculateOnp(string onpStr)
         {
             List<string> listOfElements = onpStr.Split(" ").ToList();
@@ -359,7 +378,10 @@ namespace CalculatorWPF.ViewModels
                         string operatorOnTopInStack = operatorsStack.Peek();
 
                         //if(operatorOnTopInStack ma wyższy lub równy priorytet niż element)
-                        if (operatorPriorityDictonary[operatorOnTopInStack] >= operatorPriorityDictonary[element])
+                        if ((operatorInfoDictonary[element].BindingType == BindingType.Right
+                             && operatorInfoDictonary[operatorOnTopInStack].Priority > operatorInfoDictonary[element].Priority)
+                           || (operatorInfoDictonary[element].BindingType == BindingType.Left
+                               && operatorInfoDictonary[operatorOnTopInStack].Priority > operatorInfoDictonary[element].Priority))
                         {
                             operatorOnTopInStack = operatorsStack.Pop();
                             outputList.Add(operatorOnTopInStack);
@@ -396,6 +418,8 @@ namespace CalculatorWPF.ViewModels
                 return leftNumber % rightNumber;
             else if (operatorToDo == "neg")
                 return -rightNumber;
+            else if (operatorToDo == "^")
+                return (int)Math.Pow(leftNumber, rightNumber);
 
             return 0;
         }

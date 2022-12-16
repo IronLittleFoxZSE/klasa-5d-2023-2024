@@ -177,7 +177,7 @@ namespace CalculatorWPF.ViewModels
                                     NumberCommand.Execute(((int)eventArgs.Key - 74).ToString());
 
                                 if (eventArgs.KeyboardDevice.Modifiers == ModifierKeys.None
-                                    && eventArgs.Key >= Key.D0 
+                                    && eventArgs.Key >= Key.D0
                                     && eventArgs.Key <= Key.D9)
                                     NumberCommand.Execute(((int)eventArgs.Key - 34).ToString());
 
@@ -217,13 +217,36 @@ namespace CalculatorWPF.ViewModels
 
         public ICommand CloseParenthesisOperationsCommand => null;
 
-        public ICommand FunctionCommand => null;
+        private ICommand _functionCommand;
+        public ICommand FunctionCommand
+        {
+            get
+            {
+                if (_functionCommand == null)
+                    _functionCommand = new RelayCommand<object>(
+                        (object o) =>
+                        {
+                            if (operatorEqualFlag)
+                            {
+                                previewValue *= -1;
+                                ShowValue = previewValue.ToString();
+                            }
+                            else
+                            {
+                                currentValue = currentValue * -1;
+                                ShowValue = currentValue.ToString();
+                            }
+
+                        });
+                return _functionCommand;
+            }
+        }
 
         public ICommand OpenParenthesisOperationsCommand => null;
 
         public CalculatorVM()
         {
-            ShowValue = currentValue.ToString();            
+            ShowValue = currentValue.ToString();
         }
 
         private long CalculatePreviewOperation()
@@ -238,6 +261,8 @@ namespace CalculatorWPF.ViewModels
                 return previewValue / currentValue;
             else if (previewOperator == "%")
                 return previewValue % currentValue;
+            else if (previewOperator == "^")
+                return (int)Math.Pow(previewValue, currentValue);
 
             return 0;
         }

@@ -29,6 +29,7 @@ namespace CalculatorWPF.ViewModels
                 _choseVM = value;
                 ClearCommand.Execute(null);
                 OnPropertyChanged(nameof(ChoseVM));
+                OnPropertyChanged(nameof(KeyDownCommand));
             }
         }
 
@@ -141,5 +142,6 @@ namespace CalculatorWPF.ViewModels
         }
 
         public string NameOfViewModel { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+
     }
 }
