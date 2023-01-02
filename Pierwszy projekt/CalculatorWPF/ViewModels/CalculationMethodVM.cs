@@ -17,6 +17,7 @@ namespace CalculatorWPF.ViewModels
             ListOfViewModel = new List<ICalculatorVM>();
             ListOfViewModel.Add(ChoseVM);
             ListOfViewModel.Add(new CalculatorVM());
+            ListOfViewModel.Add(new CodeLockVM());
         }
 
         private ICalculatorVM _choseVM;

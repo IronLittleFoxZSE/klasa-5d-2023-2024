@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace CalculatorWPF.ViewModels
 {
-    interface ICalculatorVM : INotifyPropertyChanged
+    interface ICalculatorVM
     {
         ICommand ArithmeticOperationsCommand { get; }
         ICommand BackCommand { get; }
