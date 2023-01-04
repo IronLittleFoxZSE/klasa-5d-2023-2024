@@ -16,6 +16,9 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel>
+            <StackPanel.DataContext>
+                <viewmodels:CurrentTimeViewModel/>
+            </StackPanel.DataContext>
             <TextBlock Text="Aktualna godzina:"/>
             <TextBlock Text="{Binding CurrentTime}"
                        FontSize="60"
@@ -26,11 +29,23 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1">
+            <StackPanel.DataContext>
+                <viewmodels:StopWatchViewModel/>
+            </StackPanel.DataContext>
             <TextBlock Text="Czas stopera:"/>
             <TextBlock FontSize="60"
-                       TextAlignment="Center"/>
-            <Button Content="Start" Margin="0 10"/>
-            <Button Content="Stop" Margin="0 10"/>
+                       TextAlignment="Center"
+                       Text="{Binding TimeStorage}"/>
+            <Button Content="Start" Margin="0 10"
+                    Command="{Binding StartCommand}"/>
+            <Button Content="Stop" Margin="0 10"
+                    Command="{Binding StopCommand}"/>
+
+            <TextBlock FontSize="60"
+                       TextAlignment="Center"
+                       Text="{Binding Number}"/>
+            <Button Content="Stop" Margin="0 10"
+                    Command="{Binding NumberCommand}"/>
         </StackPanel>
 
     </Grid>
