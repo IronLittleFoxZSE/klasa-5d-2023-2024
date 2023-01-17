@@ -6,9 +6,9 @@
         xmlns:local="clr-namespace:PhotoViewerWpfApp"
         mc:Ignorable="d"
         Title="Photo viewer" Height="450" Width="800">
-    <Window.DataContext>
+    <!--<Window.DataContext>
         <local:PhotoViewerViewModel/>
-    </Window.DataContext>
+    </Window.DataContext>-->
     <DockPanel>
         <Button DockPanel.Dock="Bottom" 
                 Content="Otwórz plik"

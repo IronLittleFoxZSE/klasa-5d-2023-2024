@@ -1,12 +1,4 @@
-﻿using Microsoft.Win32;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Input;
+﻿using System.Windows.Input;
 using UtilitiesWpf;
 
 namespace PhotoViewerWpfApp
@@ -25,6 +17,8 @@ namespace PhotoViewerWpfApp
         }
 
         private ICommand loadFromFileCommand;
+        private readonly ViewDialogs viewDialogs;
+
         public ICommand LoadFromFileCommand
         {
             get
@@ -33,21 +27,18 @@ namespace PhotoViewerWpfApp
                     loadFromFileCommand = new RelayCommand<object>(
                         x =>
                         {
-                            OpenFileDialog openFileDialog = new OpenFileDialog();
-                            openFileDialog.Filter = "Obrazy JPG|*.jpg;*.jpeg|Obrazy PNG|*.png";
-                            if (openFileDialog.ShowDialog() == true)
-                            {
-                                ImagePath = openFileDialog.FileName;
-                            }
-                            else
-                            {
-                                MessageBox.Show("Nie wybrano pliku");
-                            }
+                            string path = viewDialogs.GetPathToPicture();
+                            if (path != null)
+                                ImagePath = path;
                         }
                         );
                 return loadFromFileCommand;
             }
         }
 
+        public PhotoViewerViewModel(ViewDialogs viewDialogs)
+        {
+            this.viewDialogs = viewDialogs;
+        }
     }
 }
