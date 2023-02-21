@@ -2,14 +2,15 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml" 
              xmlns:listofcontactsapp="clr-namespace:ListOfContactsApp"
-             x:Class="ListOfContactsApp.MainPage">
+             x:Class="ListOfContactsApp.MainPage"
+             x:Name="thisPage">
     <ContentPage.BindingContext>
         <listofcontactsapp:MainViewModel/>
     </ContentPage.BindingContext>
     <StackLayout>
         <Label Text="Lista kontaktów:"
                FontSize="20"
-               TextColor="Chartreuse"
+               TextColor="DeepSkyBlue"
                BackgroundColor="Bisque"/>
         <ListView ItemsSource="{Binding CollectionOfContacts}"
                   HasUnevenRows="True" >
@@ -21,6 +22,9 @@
                             <Label Text="{Binding GivenName}"/>
                             <Label Text="Telefon:"/>
                             <Label Text="{Binding Phones[0].PhoneNumber}"/>
+                            <Button Text="Zadzwoń" 
+                                    Command="{Binding Source={x:Reference thisPage},Path=BindingContext.PhoneCallCommand}"
+                                    CommandParameter="{Binding}"/>
                         </StackLayout>
                     </ViewCell>
                 </DataTemplate>

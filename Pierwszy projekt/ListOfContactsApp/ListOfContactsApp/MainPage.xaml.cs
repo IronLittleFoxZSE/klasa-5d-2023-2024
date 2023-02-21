@@ -13,7 +13,6 @@ namespace ListOfContactsApp
         public MainPage()
         {
             InitializeComponent();
-
         }
     }
 }
