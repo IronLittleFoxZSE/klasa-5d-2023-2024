@@ -11,15 +11,17 @@
         <Label Text="SMS:"/>
         <Editor AutoSize="TextChanges" 
                 Placeholder="Treść SMS"
-                />
-        <Button Text="Wyślij SMS"/>
+                Text="{Binding SmsText}"/>
+        <Button Text="Wyślij SMS"
+                Command="{Binding SendSmsCommand}"/>
 
         <Label Text="Lista kontaktów:"
                FontSize="20"
                TextColor="DeepSkyBlue"
                BackgroundColor="Bisque"/>
         <ListView ItemsSource="{Binding CollectionOfContacts}"
-                  HasUnevenRows="True" >
+                  HasUnevenRows="True"
+                  SelectedItem="{Binding SelectedContact}">
             <ListView.ItemTemplate>
                 <DataTemplate>
                     <ViewCell>

@@ -10,6 +10,18 @@ namespace ListOfContactsApp
 {
     class MainViewModel : BindableObject
     {
+
+        private Contact selectedContact;
+        public Contact SelectedContact
+        {
+            get { return selectedContact; }
+            set
+            {
+                selectedContact = value;
+                OnPropertyChanged(nameof(SelectedContact));
+            }
+        }
+
         private string smsText;
         public string SmsText
         {
@@ -28,9 +40,24 @@ namespace ListOfContactsApp
             {
                 if (sendSmsCommand == null)
                     sendSmsCommand = new Command<object>(
-                        o =>
+                        async o =>
                         {
-
+                            try
+                            {
+                                string phoneNumber = "";
+                                if (SelectedContact != null)
+                                    phoneNumber = SelectedContact.Phones[0].PhoneNumber;
+                                var message = new SmsMessage(smsText, phoneNumber);
+                                await Sms.ComposeAsync(message);
+                            }
+                            catch (FeatureNotSupportedException ex)
+                            {
+                                // Sms is not supported on this device.
+                            }
+                            catch (Exception ex)
+                            {
+                                // Other error has occurred.
+                            }
                         }
                         );
                 return sendSmsCommand;
