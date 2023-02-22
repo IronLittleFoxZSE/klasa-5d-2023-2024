@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Properties width OnPropertyChanged</Title>
+      <Shortcut>propfullOnPropertyChanged</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[private $typeOfField$ $fieldName$;
+        public $typeOfField$ $propertiesName$
+        {
+            get { return $fieldName$; }
+            set
+            {
+                $fieldName$ = value;
+                OnPropertyChanged(nameof($propertiesName$));
+            }
+        }]]>
+      </Code>
+	  <Declarations>
+		<Literal>
+		  <ID>typeOfField</ID>
+		  <ToolTip>Type of field</ToolTip>
+		  <Default>int</Default>
+		</Literal>
+		<Literal>
+		  <ID>fieldName</ID>
+		  <ToolTip>Name of field</ToolTip>
+		  <Default>fieldName</Default>
+		</Literal>
+		<Literal>
+		  <ID>propertiesName</ID>
+		  <ToolTip>Name of properties</ToolTip>
+		  <Default>PropertiesName</Default>
+		</Literal>
+	  </Declarations>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>

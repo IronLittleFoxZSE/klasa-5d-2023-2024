@@ -8,8 +8,36 @@ using Xamarin.Forms;
 
 namespace ListOfContactsApp
 {
-    class MainViewModel
+    class MainViewModel : BindableObject
     {
+        private string smsText;
+        public string SmsText
+        {
+            get { return smsText; }
+            set
+            {
+                smsText = value;
+                OnPropertyChanged();
+            }
+        }
+
+        private ICommand sendSmsCommand;
+        public ICommand SendSmsCommand
+        {
+            get
+            {
+                if (sendSmsCommand == null)
+                    sendSmsCommand = new Command<object>(
+                        o =>
+                        {
+
+                        }
+                        );
+                return sendSmsCommand;
+            }
+        }
+
+
         public ObservableCollection<Contact> CollectionOfContacts { get; set; }
 
         private ICommand phoneCallCommand;
@@ -21,7 +49,14 @@ namespace ListOfContactsApp
                     phoneCallCommand = new Command<Contact>(
                         contact =>
                         {
+                            try
+                            {
+                                PhoneDialer.Open(contact.Phones[0].PhoneNumber);
+                            }
+                            catch (Exception)
+                            {
 
+                            }
                         }
                         );
                 return phoneCallCommand;

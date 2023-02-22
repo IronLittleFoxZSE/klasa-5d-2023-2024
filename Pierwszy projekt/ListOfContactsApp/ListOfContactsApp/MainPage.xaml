@@ -8,6 +8,12 @@
         <listofcontactsapp:MainViewModel/>
     </ContentPage.BindingContext>
     <StackLayout>
+        <Label Text="SMS:"/>
+        <Editor AutoSize="TextChanges" 
+                Placeholder="Treść SMS"
+                />
+        <Button Text="Wyślij SMS"/>
+
         <Label Text="Lista kontaktów:"
                FontSize="20"
                TextColor="DeepSkyBlue"

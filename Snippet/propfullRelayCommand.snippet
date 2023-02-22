@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<CodeSnippets xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+  <CodeSnippet Format="1.0.0">
+    <Header>
+      <Title>Properties width RelayCommand</Title>
+      <Shortcut>propfullRelayCommand</Shortcut>
+    </Header>
+    <Snippet>
+      <Code Language="CSharp">
+        <![CDATA[private ICommand $fieldCommandName$;
+        public ICommand $propertiesCommandName$
+        {
+            get
+            {
+                if ($fieldCommandName$ == null)
+                    $fieldCommandName$ = new RelayCommand<object>(
+                        o =>
+                        {
+                            
+                        }
+                        );
+                return $fieldCommandName$;
+            }
+        }]]>
+      </Code>
+	  <Declarations>
+		<Literal>
+		  <ID>fieldCommandName</ID>
+		  <ToolTip>Name of field</ToolTip>
+		  <Default>fieldNameCommand</Default>
+		</Literal>
+		<Literal>
+		  <ID>propertiesCommandName</ID>
+		  <ToolTip>Name of properties</ToolTip>
+		  <Default>PropertiesNameCommand</Default>
+		</Literal>
+	  </Declarations>
+	  <Imports>
+        <Import>
+          <Namespace>System.Windows.Input</Namespace>
+        </Import>
+      </Imports>
+    </Snippet>
+  </CodeSnippet>
+</CodeSnippets>
