@@ -64,7 +64,6 @@ namespace ListOfContactsApp
             }
         }
 
-
         public ObservableCollection<Contact> CollectionOfContacts { get; set; }
 
         private ICommand phoneCallCommand;

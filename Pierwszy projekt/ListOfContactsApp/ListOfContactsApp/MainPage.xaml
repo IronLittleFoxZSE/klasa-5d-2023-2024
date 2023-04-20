@@ -19,6 +19,14 @@
                FontSize="20"
                TextColor="DeepSkyBlue"
                BackgroundColor="Bisque"/>
+        <Button Text="Cos" IsVisible="true">
+            <Button.Triggers>
+                <DataTrigger TargetType="Button"
+                    Binding="{Binding CollectionOfContacts.Count}" Value="0">
+                    <Setter Property="IsVisible" Value="false"></Setter>
+                </DataTrigger>
+            </Button.Triggers>
+        </Button>
         <ListView ItemsSource="{Binding CollectionOfContacts}"
                   HasUnevenRows="True"
                   SelectedItem="{Binding SelectedContact}">
