@@ -10,7 +10,7 @@
     Width="579"
     Height="243"
     mc:Ignorable="d">
-    <StackPanel>,
+    <StackPanel>
         <TextBlock>Podaj imie:</TextBlock>
         <TextBox Text="{Binding ElementName=thisWindow, Path=YourName, UpdateSourceTrigger=PropertyChanged}" />
         <Button Command="{Binding ElementName=thisWindow, Path=MyCommandClick}" Content="Przywitaj się" />
