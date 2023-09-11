@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.31624.102
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Pierwszy projekt", "Pierwszy projekt\Pierwszy projekt.csproj", "{0E002ABA-A992-40D4-9FC1-19C36CA22C61}"
 EndProject
@@ -103,7 +103,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TabbedPageApp.iOS", "Tabbed
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TabbedPageApp", "TabbedPageApp\TabbedPageApp\TabbedPageApp.csproj", "{244C8BF5-F654-42E2-904C-BF9E0D96DF8E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LottoWpfApp", "LottoWpfApp\LottoWpfApp.csproj", "{3530CC53-D49D-48B3-A7BC-ABFEA6B7CD89}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "LottoWpfApp", "LottoWpfApp\LottoWpfApp.csproj", "{3530CC53-D49D-48B3-A7BC-ABFEA6B7CD89}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Egzamin", "Egzamin", "{AA25F6C9-586B-42BD-B3F5-C0AC35F92784}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "2023 styczeń 1", "2023 styczeń 1", "{3CC225B4-8AEF-43F3-BE64-435709FF4708}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Konsolowa", "Konsolowa", "{33820EE0-390D-4E2C-BFA1-BAE80BB9BBA7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ConsolApp", "ConsolApp\ConsolApp.csproj", "{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -1017,6 +1025,26 @@ Global
 		{3530CC53-D49D-48B3-A7BC-ABFEA6B7CD89}.Release|x64.Build.0 = Release|Any CPU
 		{3530CC53-D49D-48B3-A7BC-ABFEA6B7CD89}.Release|x86.ActiveCfg = Release|Any CPU
 		{3530CC53-D49D-48B3-A7BC-ABFEA6B7CD89}.Release|x86.Build.0 = Release|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Debug|iPhone.ActiveCfg = Debug|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Debug|iPhone.Build.0 = Debug|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Debug|iPhoneSimulator.ActiveCfg = Debug|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Debug|iPhoneSimulator.Build.0 = Debug|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Debug|x64.Build.0 = Debug|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Debug|x86.Build.0 = Debug|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Release|iPhone.ActiveCfg = Release|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Release|iPhone.Build.0 = Release|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Release|iPhoneSimulator.ActiveCfg = Release|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Release|iPhoneSimulator.Build.0 = Release|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Release|x64.ActiveCfg = Release|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Release|x64.Build.0 = Release|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Release|x86.ActiveCfg = Release|Any CPU
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -1069,6 +1097,9 @@ Global
 		{501FA8CF-0BBD-444D-A0F9-886A64E334DE} = {58FC7216-59B6-4855-BC3E-4DE26B4812F6}
 		{244C8BF5-F654-42E2-904C-BF9E0D96DF8E} = {58FC7216-59B6-4855-BC3E-4DE26B4812F6}
 		{3530CC53-D49D-48B3-A7BC-ABFEA6B7CD89} = {574997CA-E5DA-4581-A9C4-E654ACFCC515}
+		{3CC225B4-8AEF-43F3-BE64-435709FF4708} = {AA25F6C9-586B-42BD-B3F5-C0AC35F92784}
+		{33820EE0-390D-4E2C-BFA1-BAE80BB9BBA7} = {3CC225B4-8AEF-43F3-BE64-435709FF4708}
+		{AEDA88A3-E8FF-4C8C-86CE-5352BDFA06C1} = {33820EE0-390D-4E2C-BFA1-BAE80BB9BBA7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {00AFA39A-3A7B-43E6-9DB5-5E4880830AF3}
