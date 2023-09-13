@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PracownikHasloApp"
         mc:Ignorable="d"
-        Title="Dodaj pracownika PESEL" Height="450" Width="800">
+        Title="Dodaj pracownika PESEL" Height="450" Width="800"
+        Background="LightSteelBlue">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
@@ -21,13 +22,13 @@
                   Margin="30">
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
                     <ColumnDefinition Width="*"/>
                 </Grid.ColumnDefinitions>
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
-                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
+                    <RowDefinition Height="Auto"/>
                 </Grid.RowDefinitions>
                 <TextBlock Text="Imię"
                            Grid.Column="0"
@@ -61,7 +62,31 @@
                   Grid.Column="1"
                   Grid.Row="0"
                   Margin="30">
-
+            <StackPanel>
+                <WrapPanel>
+                    <TextBlock Text="Ile znaków?"/>
+                    <TextBox Width="150"/>
+                </WrapPanel>
+                <CheckBox Content="Małe i wielkie litery"
+                          Margin="20 5 0 0"/>
+                <CheckBox Content="Cyfry"
+                          Margin="20 5 0 0"/>
+                <CheckBox Content="Znaki specjalne"
+                          Margin="20 5 0 0"/>
+                <Button Content="Generuj hasło" 
+                        HorizontalAlignment="Center"
+                        Background="SteelBlue"
+                        Foreground="White"/>
+            </StackPanel>
         </GroupBox>
+        <Button Content="Zatwierdź"
+                Grid.Column="0"
+                Grid.Row="1"
+                Grid.ColumnSpan="2"
+                VerticalAlignment="Center"
+                HorizontalAlignment="Center"
+                Width="150"
+                Background="SteelBlue"
+                Foreground="White"/>
     </Grid>
 </Window>
