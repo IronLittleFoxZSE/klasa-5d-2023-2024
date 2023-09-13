@@ -36,21 +36,24 @@
                            Margin="20"/>
                 <TextBox Grid.Column="1"
                          Grid.Row="0"
-                         Margin="20"/>
+                         Margin="20"
+                         Name="textBoxName"/>
                 <TextBlock Text="Nazwisko"
                            Grid.Column="0"
                            Grid.Row="1"
                            Margin="20"/>
                 <TextBox Grid.Column="1"
                          Grid.Row="1"
-                         Margin="20"/>
+                         Margin="20"
+                         Name="textBoxSurname"/>
                 <TextBlock Text="Stanowisko"
                            Grid.Column="0"
                            Grid.Row="2"
                            Margin="20"/>
                 <ComboBox Grid.Column="1"
                           Grid.Row="2"
-                          Margin="20">
+                          Margin="20"
+                          Name="comboBoxJob">
                     <ComboBoxItem>Kierownik</ComboBoxItem>
                     <ComboBoxItem>Starszy programista</ComboBoxItem>
                     <ComboBoxItem>Młodszy programista</ComboBoxItem>
@@ -65,18 +68,23 @@
             <StackPanel>
                 <WrapPanel>
                     <TextBlock Text="Ile znaków?"/>
-                    <TextBox Width="150"/>
+                    <TextBox Width="150"
+                             Name="textBoxPasswordLength"/>
                 </WrapPanel>
                 <CheckBox Content="Małe i wielkie litery"
-                          Margin="20 5 0 0"/>
+                          Margin="20 5 0 0"
+                          Name="checkBoxCapitalLetter"/>
                 <CheckBox Content="Cyfry"
-                          Margin="20 5 0 0"/>
+                          Margin="20 5 0 0"
+                          Name="checkBoxDigit"/>
                 <CheckBox Content="Znaki specjalne"
-                          Margin="20 5 0 0"/>
+                          Margin="20 5 0 0"
+                          Name="checkBoxSpecialChar"/>
                 <Button Content="Generuj hasło" 
                         HorizontalAlignment="Center"
                         Background="SteelBlue"
-                        Foreground="White"/>
+                        Foreground="White"
+                        Click="ButtonGeneratePassword_Click"/>
             </StackPanel>
         </GroupBox>
         <Button Content="Zatwierdź"
@@ -87,6 +95,7 @@
                 HorizontalAlignment="Center"
                 Width="150"
                 Background="SteelBlue"
-                Foreground="White"/>
+                Foreground="White"
+                Click="ButtonConfirm_Click"/>
     </Grid>
 </Window>
