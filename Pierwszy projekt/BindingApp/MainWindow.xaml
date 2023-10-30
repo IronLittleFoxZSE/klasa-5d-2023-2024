@@ -21,7 +21,6 @@
             <TextBlock Text="{Binding ElementName=textBoxBindingValue, Path=Text}"/>
         </WrapPanel>
         <TextBox Name="textBoxBindingValue"/>
-
         <TextBlock Text="Tytuł okna:" FontWeight="Bold" FontSize="20"/>
         <TextBox Text="{Binding ElementName=thisWindow, Path=Title, UpdateSourceTrigger=PropertyChanged}"/>
 

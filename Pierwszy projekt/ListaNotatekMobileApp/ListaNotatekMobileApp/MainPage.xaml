@@ -1,0 +1,26 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ListaNotatekMobileApp.MainPage"
+             x:Name="thisPage"
+             Title="">
+
+    <StackLayout BindingContext="{x:Reference thisPage}">
+        <StackLayout Orientation="Horizontal">
+            <Entry Placeholder="Nowy element"
+                   HorizontalOptions="FillAndExpand"
+                   x:Name="entryNewNote"/>
+            <Button Text="DODAJ"
+                    HorizontalOptions="End"
+                    Command="{Binding AddNoteCommand}"/>
+        </StackLayout>
+        <ListView ItemsSource="{Binding SimpleTextNotesCollection}">
+            <ListView.ItemTemplate>
+                <DataTemplate>
+                    <TextCell Text="{Binding}"/>
+                </DataTemplate>
+            </ListView.ItemTemplate>
+        </ListView>
+    </StackLayout>
+
+</ContentPage>
