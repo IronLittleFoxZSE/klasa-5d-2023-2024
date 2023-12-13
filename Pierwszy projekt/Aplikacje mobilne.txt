@@ -1,0 +1,30 @@
+
+
+1. Pojedyñcza strona
+
+2. Nawigacja
+ a) w pliku App.xaml.cs
+	MainPage = new NavigationPage(new MainPage());
+ b) pokaznie nowej strony
+   * dodajemy nowy plik "Conten page" do projektu
+   * pod zadzeniem
+     Navigation.PushAsync(new AboutPage());
+ c) powrót do poprzedniej strony (pod zdarzeniem)
+     Navigation.PopAsync();
+
+3. Zak³adki
+   a) w pliku xaml zmieniæ ContentPage na TabbedPage
+   b) w pliku cs zmieniamy dziedziczenie na TabbedPage
+   c) usun¹æ ca³¹ zawartoœæ znacznika TabbedPage z xamla
+   d) robimy zak³adki
+        * jeœli w tym samym pliku to dodajemy znaczniki tyle razy ile zak³adek
+           <ContentPage Title="Zak³adka 1">
+        * jeœli w osobnym pliku
+           - dodajemy nowy plik "Conten page" do projektu
+           - do TabbedPage dodajemy
+              xmlns:jakasNazwa="clr-namespace:TestowyApp"
+           - dodajemy zak³¹dkê
+              <jakasNazwa:AboutPage Title="Zak³adka 3"/>
+
+ 4. Karuzela
+    a) to samo co zak³adki tylko uzywamy slowa CarouselPage

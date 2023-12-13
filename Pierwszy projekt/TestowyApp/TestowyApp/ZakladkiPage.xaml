@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="TestowyApp.ZakladkiPage"
+            xmlns:strona ="clr-namespace:TestowyApp">
+
+    <ContentPage Title="z1">
+        <Label Text="zakładka 1"/>
+    </ContentPage>
+
+    <ContentPage Title="z2">
+        <StackLayout>
+            <Label Text="zakładka 2"/>
+            <Label Text="zakładka 2"/>
+        </StackLayout>
+    </ContentPage>
+
+    <ContentPage Title="z3">
+        <StackLayout>
+            <Label Text="zakładka 3"/>
+            <Label Text="zakładka 3"/>
+            <Label Text="zakładka 3"/>
+        </StackLayout>
+    </ContentPage>
+
+    <strona:Zakładka4Page Title="z4"/>
+    <strona:Zakładka4Page Title="z5"/>
+
+</TabbedPage>
