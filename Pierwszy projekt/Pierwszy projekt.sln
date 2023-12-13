@@ -137,7 +137,12 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestowyApp.Android", "Testo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestowyApp.iOS", "TestowyApp\TestowyApp.iOS\TestowyApp.iOS.csproj", "{8EC23EF6-CD7F-4156-A706-0F82F6EEDA26}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestowyApp", "TestowyApp\TestowyApp\TestowyApp.csproj", "{44A09CE8-5C4E-4813-9638-2958C5FAC2AD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "TestowyApp", "TestowyApp\TestowyApp\TestowyApp.csproj", "{44A09CE8-5C4E-4813-9638-2958C5FAC2AD}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DF6A6D69-B5B0-44A1-A5A5-8EC4E27A3E4B}"
+	ProjectSection(SolutionItems) = preProject
+		Aplikacje mobilne.txt = Aplikacje mobilne.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

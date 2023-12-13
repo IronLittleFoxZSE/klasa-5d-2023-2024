@@ -25,6 +25,12 @@
               xmlns:jakasNazwa="clr-namespace:TestowyApp"
            - dodajemy zak³¹dkê
               <jakasNazwa:AboutPage Title="Zak³adka 3"/>
+    e) ikonki
+       - dodajemy pliki do androida
+            - Android -> Resources -> drawable
+       - dodajemy pliki do IOS
+            IOS -> Resources
+       - IconImageSource = "nazwaPliku.ico"
 
  4. Karuzela
     a) to samo co zak³adki tylko uzywamy slowa CarouselPage

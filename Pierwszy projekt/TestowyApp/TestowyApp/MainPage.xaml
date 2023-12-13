@@ -1,22 +1,14 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
-<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="TestowyApp.MainPage"
-            xmlns:jakasNazwa="clr-namespace:TestowyApp">
-    
-    <ContentPage Title="Zakładka 1">
-        <StackLayout>
-            <Button Text="Kliknij mnie"/>
-        </StackLayout>
-    </ContentPage>
+             x:Class="TestowyApp.MainPage">
 
-    <ContentPage Title="Zakładka 2">
-        <StackLayout>
-            <Button Text="Kliknij mnie"/>
-        </StackLayout>
-    </ContentPage>
+    <StackLayout>
+        <Label Text="To jest pierwsza strona"/>
+        <Entry Text="Przykładowy" x:Name="ourEntry"/>
+        <Button Text="Inna strona" Clicked="Button_Clicked"/>
+        <Button Text="Do zakładek" Clicked="Button_Clicked_1"/>
 
-    <jakasNazwa:AboutPage Title="Zakładka 3"/>
-    <jakasNazwa:AboutPage Title="Zakładka 4"/>
+    </StackLayout>
 
-</TabbedPage>
+</ContentPage>
